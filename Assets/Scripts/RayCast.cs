@@ -10,7 +10,6 @@ public class RayCast : MonoBehaviour
     public Material highlightMaterial;
     public Material selectionMaterial;
     public GameObject model;
-    public Button isolateBtn;
 
     private bool clickStatus;
 
@@ -109,17 +108,6 @@ public class RayCast : MonoBehaviour
             else
             {
                 selection = null;
-            }
-        }
-        for (int i = 0; i >= 1 ; i++)
-        {
-            if(i == 0)
-            {
-                isolateBtn.onClick.AddListener(IsolatePart);
-            }
-            if(i == 1)
-            {
-                isolateBtn.onClick.AddListener(RestorePart);
             }
         }
 

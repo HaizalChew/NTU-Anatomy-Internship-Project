@@ -1,18 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BasicInteractions : MonoBehaviour
 {
     [SerializeField] Material selectedMat;
+    [SerializeField] Material highlightMaterial;
+    [SerializeField] Material orignialMaterial;
     [SerializeField] Transform selectedObj;
     [SerializeField] LayerMask selectableLayerMask;
-
     [SerializeField] GameObject selectedInstantiatedObj;
+
+    private Transform highlight;
+    private RaycastHit raycastHit;
+
     // Update is called once per frame
     void Update()
     {
-        SelectPart();
+        HighlightPart();
+        SelectPart();   
     }
 
     void SelectPart()
@@ -72,6 +79,33 @@ public class BasicInteractions : MonoBehaviour
             }
 
             
+        }
+    }
+
+    private void HighlightPart()
+    {
+        if (highlight != null)
+        {
+            highlight.GetComponent<MeshRenderer>().material = orignialMaterial;
+            highlight = null;
+        }
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        // Hightlight Object when hovered
+        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit, Mathf.Infinity, selectableLayerMask))
+        {
+            highlight = raycastHit.transform;
+            if (highlight != selectedObj)
+            {
+                if (highlight.GetComponent<MeshRenderer>().material != highlightMaterial)
+                {
+                    orignialMaterial = highlight.GetComponent<MeshRenderer>().material;
+                    highlight.GetComponent<MeshRenderer>().material = highlightMaterial;
+                }
+            }
+            else
+            {
+                highlight = null;
+            }
         }
     }
 }
