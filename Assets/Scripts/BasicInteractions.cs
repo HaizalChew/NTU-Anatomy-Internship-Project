@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using UnityEngine.UI;
+using TMPro;
 public class BasicInteractions : MonoBehaviour
 {
     [SerializeField] Material selectedMat;
@@ -11,20 +12,32 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] Transform selectedObj;
     [SerializeField] LayerMask selectableLayerMask;
     [SerializeField] GameObject selectedInstantiatedObj;
+    [SerializeField] GameObject model;
+    [SerializeField] CameraControls camControl;
+    [SerializeField] Button isolateBtn;
 
     private Transform highlight;
     private RaycastHit raycastHit;
+    private bool isolateCheck;
 
     // Update is called once per frame
     void Update()
     {
-        HighlightPart();
-        SelectPart();   
+        if(isolateCheck == false)
+        {
+            SelectPart();
+            HighlightPart();
+            isolateBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Isolate";
+        }
+        else
+        {
+            isolateBtn.GetComponentInChildren<TextMeshProUGUI>().text = "DeIsolate";
+        }
     }
 
     void SelectPart()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(1))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -46,6 +59,9 @@ public class BasicInteractions : MonoBehaviour
 
                     selectedInstantiatedObj.layer = 0;
                     selectedObj.gameObject.SetActive(false);
+
+                    camControl.ActivateRecentering(selectedObj);
+
                 }
             }
             else
@@ -75,6 +91,8 @@ public class BasicInteractions : MonoBehaviour
 
                     selectedInstantiatedObj.layer = 0;
                     selectedObj.gameObject.SetActive(false);
+
+                    camControl.ActivateRecentering(selectedObj);
                 }
             }
 
@@ -108,4 +126,27 @@ public class BasicInteractions : MonoBehaviour
             }
         }
     }
+    public void IsolatePart()
+    {
+        if (selectedObj)
+        {
+            isolateCheck = !isolateCheck;
+
+            foreach (Transform child in model.transform)
+            {
+                if (child.name == selectedObj.name)
+                {
+                    child.gameObject.SetActive(isolateCheck);
+                    selectedInstantiatedObj.SetActive(isolateCheck);
+                }
+                else
+                {
+                    child.gameObject.SetActive(!isolateCheck);
+                    selectedInstantiatedObj.SetActive(!isolateCheck);
+                }
+
+            }
+        }
+    }
+        
 }

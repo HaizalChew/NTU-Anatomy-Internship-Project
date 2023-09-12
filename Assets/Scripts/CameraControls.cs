@@ -18,7 +18,7 @@ public class CameraControls : MonoBehaviour
     // Control orbit rotation expressed in degrees
     [SerializeField, Range(1f, 360f)] float rotationSpeed = 90f;
     [SerializeField, Range(-89f, 89f)] float minVerticalAngle = -30f, maxVerticalAngle = 60f;
-    [SerializeField] InputActionReference orbitLookInput, orbitUnlockInput, panUnlockInput;
+    [SerializeField] InputActionReference orbitLookInput, orbitUnlockInput, panUnlockInput, focusInput;
 
     // Control camera zoom
     [SerializeField] InputActionReference zoomScrollInput;
@@ -34,6 +34,16 @@ public class CameraControls : MonoBehaviour
     {
         //focusPoint = focus.position;
         transform.localRotation = Quaternion.Euler(orbitAngles);
+    }
+
+    private void OnEnable()
+    {
+        focusInput.action.performed += ctx => ActivateRecenteringOnButton();
+    }
+
+    private void OnDisable()
+    {
+        focusInput.action.performed -= ctx => ActivateRecenteringOnButton();
     }
 
     void OnValidate()
@@ -100,6 +110,17 @@ public class CameraControls : MonoBehaviour
             t = Mathf.Min(t, focusRadius / distance);
         }
         focus.transform.position = Vector3.Lerp(targetPoint, focus.transform.position, t);
+    }
+
+    public void ActivateRecentering(Transform targetPos)
+    {
+        stopRecentering = false;
+        target = targetPos;
+    }
+
+    public void ActivateRecenteringOnButton()
+    {
+        stopRecentering = false;
     }
 
     // This will orbit the camera around the focus
