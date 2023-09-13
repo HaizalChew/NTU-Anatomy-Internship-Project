@@ -8,12 +8,12 @@ public class CameraControls : MonoBehaviour
 {
     // Control camera focus
     [SerializeField] Transform focus;
-    [SerializeField] Transform target;
+    [SerializeField] public Transform target;
     [SerializeField] Transform orientation;
-    [SerializeField, Range(1f, 20f)] float distance = 5f;
+    [SerializeField, Range(0.1f, 20f)] float distance = 5f;
     [SerializeField, Min(0f)] float focusRadius = 1f;
     [SerializeField, Range(0f, 1f)] float focusCentering = 0.5f;
-    [SerializeField] bool stopRecentering;
+    [SerializeField] public bool stopRecentering;
 
     // Control orbit rotation expressed in degrees
     [SerializeField, Range(1f, 360f)] float rotationSpeed = 90f;
@@ -22,6 +22,7 @@ public class CameraControls : MonoBehaviour
 
     // Control camera zoom
     [SerializeField] InputActionReference zoomScrollInput;
+    [SerializeField] LayerMask ignoreMask;
     [SerializeField] float zoomSpeed = 1f;
 
     // Set orbit angles
@@ -76,7 +77,13 @@ public class CameraControls : MonoBehaviour
         }
 
         // Zoom the camera
-        ZoomCamera();
+        Ray raycast = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (!Physics.Raycast(raycast, out RaycastHit hitInfo, Mathf.Infinity, ignoreMask))
+        {
+            ZoomCamera();
+        }
+        
 
         // Enable camera panning
         if (panUnlockInput.action.IsPressed() && orbitUnlockInput.action.IsPressed())
@@ -168,7 +175,7 @@ public class CameraControls : MonoBehaviour
             distance += zoomSpeed * Mathf.Abs(input / 120f);
         }
 
-        distance = Mathf.Clamp(distance, 1f, 20f);
+        distance = Mathf.Clamp(distance, .1f, 20f);
     }
 
     // This will control camera panning
@@ -182,7 +189,7 @@ public class CameraControls : MonoBehaviour
 
         if (Input.GetMouseButton(0))
         {
-            Vector3 direction = (Input.mousePosition - newMousePoint) * 0.01f;
+            Vector3 direction = (Input.mousePosition - newMousePoint) * 0.001f;
 
             Vector3 viewDir = focus.position - transform.position;
             orientation.forward = viewDir.normalized;

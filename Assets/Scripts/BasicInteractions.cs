@@ -18,14 +18,18 @@ public class BasicInteractions : MonoBehaviour
 
     private Transform highlight;
     private RaycastHit raycastHit;
-    private bool isolateCheck;
+    public bool isolateCheck;
 
     // Update is called once per frame
     void Update()
     {
         if(isolateCheck == false)
         {
-            SelectPart();
+            if (Input.GetMouseButtonDown(1))
+            {
+                SelectPart();
+            }
+            
             HighlightPart();
             isolateBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Isolate";
         }
@@ -35,68 +39,110 @@ public class BasicInteractions : MonoBehaviour
         }
     }
 
-    void SelectPart()
+    public void SelectPart(Transform selected = null)
     {
-        if (Input.GetMouseButtonDown(1))
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+        if (selectedObj == null && selected == null)
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            if (selectedObj == null)
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, selectableLayerMask))
             {
-                if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, selectableLayerMask))
+                selectedObj = hitInfo.transform;
+
+                selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
+
+                Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
+
+                for (int i = 0; i < matArray.Length; i++)
                 {
-                    selectedObj = hitInfo.transform;
-
-                    selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
-
-                    Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
-
-                    for (int i = 0; i < matArray.Length; i++)
-                    {
-                        matArray[i] = selectedMat;
-                    }
-                    selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
-
-                    selectedInstantiatedObj.layer = 0;
-                    selectedObj.gameObject.SetActive(false);
-
-                    camControl.ActivateRecentering(selectedObj);
-
+                    matArray[i] = selectedMat;
                 }
+                selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
+
+                selectedInstantiatedObj.layer = 0;
+                selectedObj.gameObject.SetActive(false);
+
+                camControl.ActivateRecentering(selectedObj);
+
             }
-            else
+        }
+        else if (selectedObj != null && selected == null)
+        {
+            if (selectedInstantiatedObj != null)
             {
-                if (selectedInstantiatedObj != null)
-                {
-                    Destroy(selectedInstantiatedObj);
-                    selectedInstantiatedObj = null;
-                }
-
-                selectedObj.gameObject.SetActive(true);
-                selectedObj = null;
-
-                if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, selectableLayerMask))
-                {
-                    selectedObj = hitInfo.transform;
-
-                    selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
-
-                    Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
-
-                    for (int i = 0; i < matArray.Length; i++)
-                    {
-                        matArray[i] = selectedMat;
-                    }
-                    selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
-
-                    selectedInstantiatedObj.layer = 0;
-                    selectedObj.gameObject.SetActive(false);
-
-                    camControl.ActivateRecentering(selectedObj);
-                }
+                Destroy(selectedInstantiatedObj);
+                selectedInstantiatedObj = null;
             }
 
-            
+            selectedObj.gameObject.SetActive(true);
+            selectedObj = null;
+
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, selectableLayerMask))
+            {
+                selectedObj = hitInfo.transform;
+
+                selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
+
+                Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
+
+                for (int i = 0; i < matArray.Length; i++)
+                {
+                    matArray[i] = selectedMat;
+                }
+                selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
+
+                selectedInstantiatedObj.layer = 0;
+                selectedObj.gameObject.SetActive(false);
+
+                camControl.ActivateRecentering(selectedObj);
+            }
+        }
+        else if (selectedObj == null && selected != null)
+        {
+            selectedObj = selected;
+
+            selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
+
+            Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
+
+            for (int i = 0; i < matArray.Length; i++)
+            {
+                matArray[i] = selectedMat;
+            }
+            selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
+
+            selectedInstantiatedObj.layer = 0;
+            selectedObj.gameObject.SetActive(false);
+
+            camControl.ActivateRecentering(selectedObj);
+        }
+        else if (selectedObj != null && selected != null)
+        {
+            if (selectedInstantiatedObj != null)
+            {
+                Destroy(selectedInstantiatedObj);
+                selectedInstantiatedObj = null;
+            }
+
+            selectedObj.gameObject.SetActive(true);
+            selectedObj = null;
+
+            selectedObj = selected;
+
+            selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
+
+            Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
+
+            for (int i = 0; i < matArray.Length; i++)
+            {
+                matArray[i] = selectedMat;
+            }
+            selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
+
+            selectedInstantiatedObj.layer = 0;
+            selectedObj.gameObject.SetActive(false);
+
+            camControl.ActivateRecentering(selectedObj);
         }
     }
 
