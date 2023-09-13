@@ -83,14 +83,11 @@ public class CameraControls : MonoBehaviour
         {
             ZoomCamera();
         }
-        
+
 
         // Enable camera panning
-        if (panUnlockInput.action.IsPressed() && orbitUnlockInput.action.IsPressed())
-        {
-            Pan();
-        }
-        
+        Pan();
+
 
         Vector3 lookDirection = lookRotation * Vector3.forward;
         Vector3 lookPosition = focus.transform.position - lookDirection * distance;
@@ -181,25 +178,51 @@ public class CameraControls : MonoBehaviour
     // This will control camera panning
     void Pan()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (panUnlockInput.action.IsPressed() && orbitUnlockInput.action.IsPressed())
         {
-            newMousePoint = Input.mousePosition;
-            stopRecentering = true;
-        }
+            if (Input.GetMouseButtonDown(0))
+            {
+                newMousePoint = Input.mousePosition;
+                stopRecentering = true;
+            }
 
-        if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 direction = (Input.mousePosition - newMousePoint) * 0.001f;
+
+                Vector3 viewDir = focus.position - transform.position;
+                orientation.forward = viewDir.normalized;
+
+                Vector3 movement = orientation.up * direction.y + orientation.right * direction.x;
+
+                focus.transform.Translate(movement);
+
+                newMousePoint = Input.mousePosition;
+            }
+        }
+        else
         {
-            Vector3 direction = (Input.mousePosition - newMousePoint) * 0.001f;
+            if (Input.GetMouseButtonDown(2))
+            {
+                newMousePoint = Input.mousePosition;
+                stopRecentering = true;
+            }
 
-            Vector3 viewDir = focus.position - transform.position;
-            orientation.forward = viewDir.normalized;
+            if (Input.GetMouseButton(2))
+            {
+                Vector3 direction = (Input.mousePosition - newMousePoint) * 0.001f;
 
-            Vector3 movement = orientation.up * direction.y + orientation.right * direction.x;
+                Vector3 viewDir = focus.position - transform.position;
+                orientation.forward = viewDir.normalized;
 
-            focus.transform.Translate(movement);
+                Vector3 movement = orientation.up * direction.y + orientation.right * direction.x;
 
-            newMousePoint = Input.mousePosition;
+                focus.transform.Translate(movement);
+
+                newMousePoint = Input.mousePosition;
+            }
         }
+        
     }
 
     private void OnDrawGizmos()
