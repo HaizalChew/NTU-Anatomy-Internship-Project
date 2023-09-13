@@ -237,7 +237,6 @@ GameObject:
   m_Component:
   - component: {fileID: 735201546}
   - component: {fileID: 735201547}
-  - component: {fileID: 735201548}
   m_Layer: 0
   m_Name: MainController
   m_TagString: Untagged
@@ -283,24 +282,7 @@ MonoBehaviour:
   model: {fileID: 503258125}
   camControl: {fileID: 963194229}
   isolateBtn: {fileID: 1578270798}
---- !u!114 &735201548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 735201545}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6dd26cc119756a4c87b3811fc3fb7ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectableLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  toolTipUi: {fileID: 0}
-  partText: {fileID: 0}
-  transformToolTip: {fileID: 0}
+  isolateCheck: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,6 +396,9 @@ MonoBehaviour:
   panUnlockInput: {fileID: -3213935088973138889, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
   focusInput: {fileID: 4811017476606095658, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
   zoomScrollInput: {fileID: 2617239034850158910, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 0
   zoomSpeed: 0.5
 --- !u!114 &963194230
 MonoBehaviour:

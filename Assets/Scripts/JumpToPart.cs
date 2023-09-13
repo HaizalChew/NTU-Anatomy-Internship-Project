@@ -16,11 +16,10 @@ public class JumpToPart : MonoBehaviour
 
     public void GoToPart()
     {
-        camControl.target = assignedPart.transform;
-        camControl.stopRecentering = false;
-
         if (!basicInteractions.isolateCheck)
         {
+            camControl.target = assignedPart.transform;
+            camControl.stopRecentering = false;
             basicInteractions.SelectPart(assignedPart.transform);
         }
         
