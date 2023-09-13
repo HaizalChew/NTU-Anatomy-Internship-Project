@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class ShowPartUi : MonoBehaviour
 {
     //SerializeField] GameObject toolTipCanvas;
     //[SerializeField] GameObject toolTipPrefab;
+    [SerializeField] GameObject toolTipUI;
 
     private Vector3 toolTipPos;
     private Vector2 mousePos;
@@ -23,6 +25,7 @@ public class ShowPartUi : MonoBehaviour
         showCheck = false;
         objRect = new Rect(0, 0, 300, 100);
         Debug.Log("START");
+        
       
     }
 
@@ -32,14 +35,19 @@ public class ShowPartUi : MonoBehaviour
     {
         if (showCheck)
         {
-            Debug.Log("yes");
-            mousePos = Input.mousePosition + offset;
-            objRect.x = mousePos.x;
+            if (BasicInteractions.highlight != null)
+            {
+                Debug.Log("yes");
+                //mousePos = Input.mousePosition + offset;
+                //objRect.x = mousePos.x;
 
-            objRect.y = Mathf.Abs(mousePos.y - Camera.main.pixelHeight);
-            GUI.skin.label.fontSize = GUI.skin.box.fontSize = GUI.skin.button.fontSize = 40;
-            GUI.Label(objRect, gameObject.name);
-            
+                //objRect.y = Mathf.Abs(mousePos.y - Camera.main.pixelHeight);
+                //GUI.skin.label.fontSize = GUI.skin.box.fontSize = GUI.skin.button.fontSize = 40;
+                //GUI.Label(objRect, gameObject.name);
+                toolTipUI.gameObject.SetActive(true);
+                Debug.Log("active");
+
+            }
         }
     }
 

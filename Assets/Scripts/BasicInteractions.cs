@@ -16,9 +16,22 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] CameraControls camControl;
     [SerializeField] Button isolateBtn;
 
-    private Transform highlight;
+    private Vector3 toolTipPos;
+    private Vector2 mousePos;
+    private Vector3 offset = new Vector3(16, 16, 0);
+    private Rect objRect;
+    private bool showCheck;
+
+    public static Transform highlight;
     private RaycastHit raycastHit;
     private bool isolateCheck;
+
+    void Start()
+    {
+        mousePos = new Vector2(0, 0);
+        showCheck = false;
+        objRect = new Rect(0, 0, 300, 100);
+    }
 
     // Update is called once per frame
     void Update()
@@ -27,6 +40,8 @@ public class BasicInteractions : MonoBehaviour
         {
             SelectPart();
             HighlightPart();
+            OnMouseEnter();
+
             isolateBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Isolate";
         }
         else
@@ -148,5 +163,25 @@ public class BasicInteractions : MonoBehaviour
             }
         }
     }
-        
+
+    private void OnGUI()
+    {
+        if (showCheck)
+        {
+            if (highlight != null)
+            {
+                Debug.Log("show");
+                mousePos = Input.mousePosition + offset;
+                objRect.x = mousePos.x;
+
+                objRect.y = Mathf.Abs(mousePos.y - Camera.main.pixelHeight);
+                GUI.skin.label.fontSize = GUI.skin.box.fontSize = GUI.skin.button.fontSize = 40;
+                GUI.Label(objRect, highlight.name);
+            }
+        }
+    }
+
+    public void OnMouseEnter() { showCheck = true; }
+    public void OnMouseExit() { showCheck = false; }
+
 }
