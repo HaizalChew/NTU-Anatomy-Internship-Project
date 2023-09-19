@@ -10,11 +10,17 @@ public class UiManger : MonoBehaviour
 
     [SerializeField] Button button;
 
+    [SerializeField] Image searchImage;
+    [SerializeField] Image controlImage;
+
+    [SerializeField] BasicInteractions variable;
+
+
     private Image image;
     private Color originColor;
 
 
-    private bool controlCheck, searchCheck, uiCheck, selectCheck;
+    private bool controlCheck, searchCheck, uiCheck, uiSeleceted;
 
 
     // Start is called before the first frame update
@@ -30,35 +36,37 @@ public class UiManger : MonoBehaviour
     }
 
     public void SwitchSprite(Image image = null)
-    {
+    {   
         if (image != null)
         {
-            selectCheck = true;
             uiCheck = !uiCheck;
-            if(uiCheck == true && selectCheck == true)
+            if (uiCheck == true)
             {
                 originColor = image.color;
                 image.color = new Color(0.4056604f, 0.4056604f, 0.4056604f, 1);
+
                 Debug.Log("Yes");
             }
             else
             {
                 image.color = originColor;
                 Debug.Log("No");
+
             }
         }
     }
 
     public void ShowControls()
     {
-        if(searchCheck == false)
+        if(searchCheck == false && variable.isolateCheck == false)
         {
             controlCheck = !controlCheck;
 
             if (uiPanel != null)
             {
                 uiPanel.SetActive(controlCheck);
-                
+                SwitchSprite(controlImage);
+
 
             }
             else
@@ -71,7 +79,7 @@ public class UiManger : MonoBehaviour
 
     public void ShowSearch()
     {
-        if (controlCheck == false)
+        if (controlCheck == false && variable.isolateCheck == false)
         {
             searchCheck = !searchCheck;
 
@@ -79,6 +87,7 @@ public class UiManger : MonoBehaviour
             {
                 Debug.Log("1");
                 searchPanel.SetActive(searchCheck);
+                SwitchSprite(searchImage);
 
             }
             else
