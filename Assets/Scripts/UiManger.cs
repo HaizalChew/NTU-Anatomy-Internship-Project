@@ -33,8 +33,9 @@ public class UiManger : MonoBehaviour
     {
         if (image != null)
         {
+            selectCheck = true;
             uiCheck = !uiCheck;
-            if(uiCheck == true)
+            if(uiCheck == true && selectCheck == true)
             {
                 originColor = image.color;
                 image.color = new Color(0.4056604f, 0.4056604f, 0.4056604f, 1);
