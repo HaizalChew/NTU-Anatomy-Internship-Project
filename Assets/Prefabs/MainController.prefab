@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7967620616014208699
+--- !u!1 &6654262569695046421
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7967620616014208696}
-  - component: {fileID: 7967620616014208697}
-  - component: {fileID: 7967620616014208702}
+  - component: {fileID: 6654262569695046422}
+  - component: {fileID: 6654262569695046423}
+  - component: {fileID: 6654262569695046416}
   m_Layer: 0
   m_Name: MainController
   m_TagString: GameController
@@ -18,13 +18,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7967620616014208696
+--- !u!4 &6654262569695046422
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7967620616014208699}
+  m_GameObject: {fileID: 6654262569695046421}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -33,13 +33,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7967620616014208697
+--- !u!114 &6654262569695046423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7967620616014208699}
+  m_GameObject: {fileID: 6654262569695046421}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6fd97b1f6c6586e47994cb3f5671cb34, type: 3}
@@ -57,13 +57,15 @@ MonoBehaviour:
   camControl: {fileID: 0}
   isolateBtn: {fileID: 0}
   isolateCheck: 0
---- !u!114 &7967620616014208702
+  uiMangerScript: {fileID: 0}
+  image: {fileID: 0}
+--- !u!114 &6654262569695046416
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7967620616014208699}
+  m_GameObject: {fileID: 6654262569695046421}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 03e5af3abafe07d4bb6472d8c4cbecdb, type: 3}

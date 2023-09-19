@@ -26,6 +26,9 @@ public class BasicInteractions : MonoBehaviour
     private RaycastHit raycastHit;
     public bool isolateCheck;
 
+
+    [SerializeField] UiManger uiMangerScript;
+    [SerializeField] Image image;
     void Start()
     {
         mousePos = new Vector2(0, 0);
@@ -46,11 +49,10 @@ public class BasicInteractions : MonoBehaviour
             HighlightPart();
             OnMouseEnter();
 
-            isolateBtn.GetComponentInChildren<TextMeshProUGUI>().text = "Isolate";
         }
         else
         {
-            isolateBtn.GetComponentInChildren<TextMeshProUGUI>().text = "DeIsolate";
+
         }
     }
 
@@ -192,6 +194,8 @@ public class BasicInteractions : MonoBehaviour
         if (selectedObj)
         {
             isolateCheck = !isolateCheck;
+
+            uiMangerScript.SwitchSprite(image);
 
             foreach (Transform child in model.transform)
             {
