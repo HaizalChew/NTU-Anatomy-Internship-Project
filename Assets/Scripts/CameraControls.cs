@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Camera))]
 public class CameraControls : MonoBehaviour
@@ -24,6 +25,7 @@ public class CameraControls : MonoBehaviour
     [SerializeField] InputActionReference zoomScrollInput;
     [SerializeField] LayerMask ignoreMask;
     [SerializeField] float zoomSpeed = 1f;
+    [SerializeField] Slider zoomSlider;
 
     // Set orbit angles
     Vector2 orbitAngles = new Vector2(45f, 0f);
@@ -35,6 +37,9 @@ public class CameraControls : MonoBehaviour
     {
         //focusPoint = focus.position;
         transform.localRotation = Quaternion.Euler(orbitAngles);
+
+        zoomSlider.minValue = 0.1f;
+        zoomSlider.maxValue = 20f;
     }
 
     private void OnEnable()
@@ -173,6 +178,20 @@ public class CameraControls : MonoBehaviour
         }
 
         distance = Mathf.Clamp(distance, .1f, 20f);
+        zoomSlider.value = distance;
+    }
+
+    public void SetZoomCamera(float value = 0)
+    {
+        if (value < 0 || value > 0)
+        {
+            distance += value;
+            distance = Mathf.Clamp(distance, .1f, 20f);
+        }
+        else
+        {
+            distance = zoomSlider.value;
+        }
     }
 
     // This will control camera panning
