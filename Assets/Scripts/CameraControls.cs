@@ -36,6 +36,7 @@ public class CameraControls : MonoBehaviour
 
     private void Awake()
     {
+        orbitAngles = transform.localRotation.eulerAngles;
         //focusPoint = focus.position;
         transform.localRotation = Quaternion.Euler(orbitAngles);
 

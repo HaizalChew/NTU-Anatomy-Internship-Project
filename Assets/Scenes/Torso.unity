@@ -721,7 +721,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92ff0c7db3678e343a23180e9067d555, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92ff0c7db3678e343a23180e9067d555, type: 3}
       propertyPath: m_LocalRotation.x
@@ -729,7 +729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92ff0c7db3678e343a23180e9067d555, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92ff0c7db3678e343a23180e9067d555, type: 3}
       propertyPath: m_LocalRotation.z
@@ -741,7 +741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92ff0c7db3678e343a23180e9067d555, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 92ff0c7db3678e343a23180e9067d555, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -1416,6 +1416,14 @@ PrefabInstance:
     - target: {fileID: 3856961073451982039, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: IsolatePart
+      objectReference: {fileID: 0}
+    - target: {fileID: 4028191274820187799, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 963194229}
+    - target: {fileID: 4028191274820187799, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActivateRecenteringOnButton
       objectReference: {fileID: 0}
     - target: {fileID: 4028191275238493025, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_AnchorMax.x
