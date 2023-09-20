@@ -195,7 +195,7 @@ public class BasicInteractions : MonoBehaviour
         {
             isolateCheck = !isolateCheck;
 
-            uiMangerScript.SwitchSprite(image);
+            uiMangerScript.SwitchSprite(isolateCheck, image);
 
             foreach (Transform child in model.transform)
             {
