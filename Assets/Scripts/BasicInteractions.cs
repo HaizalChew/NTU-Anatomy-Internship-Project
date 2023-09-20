@@ -220,7 +220,6 @@ public class BasicInteractions : MonoBehaviour
         {
             if (highlight != null)
             {
-                Debug.Log("show");
                 mousePos = Input.mousePosition + offset;
                 objRect.x = mousePos.x;
 

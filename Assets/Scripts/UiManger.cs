@@ -7,23 +7,13 @@ using UnityEngine.UI;
 public class UiManger : MonoBehaviour
 {
     [SerializeField] GameObject uiPanel, searchPanel, animationPanel;
-
     [SerializeField] Button button;
-
     [SerializeField] Image searchImage, controlImage, animImage;
-
     [SerializeField] BasicInteractions variable;
-
 
     private Image image;
     private Color originColor;
-
-
     private bool controlCheck, searchCheck, animCheck;
-
-    private GameObject previousPanel = null;
-    private Image previousImage = null;
-
 
     // Start is called before the first frame update
     void Start()
@@ -47,13 +37,10 @@ public class UiManger : MonoBehaviour
             {
                 originColor = image.color;
                 image.color = new Color(0.4056604f, 0.4056604f, 0.4056604f, 1);
-
-                Debug.Log("Yes");
             }
             else
             {
                 image.color = Color.white;
-                Debug.Log("No");
 
             }
         }

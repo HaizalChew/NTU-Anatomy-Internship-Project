@@ -249,6 +249,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &761979163 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 171610908659456056, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+  m_PrefabInstance: {fileID: 4848736888131023564}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6857dafc74d4e854e880dac48a9e176c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -367,6 +378,7 @@ MonoBehaviour:
     m_Bits: 32
   zoomSpeed: 0.25
   zoomSlider: {fileID: 4848736888131023565}
+  selectableHandler: {fileID: 761979163}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1307,6 +1319,62 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 49981656, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 963194229}
+    - target: {fileID: 49981656, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ActivateRecenteringOnButton
+      objectReference: {fileID: 0}
+    - target: {fileID: 468555054, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 468555054, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 468555054, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554172142, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554172142, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 554172142, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 655504466, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 963194229}
+    - target: {fileID: 655504466, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetZoomCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 793682796, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 963194229}
+    - target: {fileID: 793682796, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetZoomCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 1016937785, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 963194229}
+    - target: {fileID: 1016937785, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetZoomCamera
+      objectReference: {fileID: 0}
     - target: {fileID: 171610907340423832, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
