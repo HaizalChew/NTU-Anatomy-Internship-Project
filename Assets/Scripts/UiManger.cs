@@ -10,10 +10,11 @@ public class UiManger : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] Image searchImage, controlImage, animImage;
     [SerializeField] BasicInteractions variable;
+    [SerializeField] Animator hotbarAnimator;
 
     private Image image;
     private Color originColor;
-    private bool controlCheck, searchCheck, animCheck;
+    private bool controlCheck, searchCheck, animCheck,animState;
 
     // Start is called before the first frame update
     void Start()
@@ -76,6 +77,19 @@ public class UiManger : MonoBehaviour
         uiPanel.SetActive(false);
         searchPanel.SetActive(false);
         animationPanel.SetActive(animCheck);
+    }
+
+    public void ActivateAnimState()
+    {
+        animState = !animState;
+        hotbarAnimator.SetBool("Close",animState);
+        controlCheck = false;
+        searchCheck = false;
+        animCheck = false;
+
+        uiPanel.SetActive(false);
+        searchPanel.SetActive(false);
+        animationPanel.SetActive(false);
     }
 
 }
