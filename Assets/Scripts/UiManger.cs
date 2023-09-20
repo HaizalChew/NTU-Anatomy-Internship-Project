@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,8 +10,7 @@ public class UiManger : MonoBehaviour
 
     [SerializeField] Button button;
 
-    [SerializeField] Image searchImage;
-    [SerializeField] Image controlImage;
+    [SerializeField] Image searchImage, controlImage, animImage;
 
     [SerializeField] BasicInteractions variable;
 
@@ -19,7 +19,10 @@ public class UiManger : MonoBehaviour
     private Color originColor;
 
 
-    private bool controlCheck, searchCheck, uiCheck, uiSeleceted, animCheck;
+    private bool controlCheck, searchCheck, animCheck;
+
+    private GameObject previousPanel = null;
+    private Image previousImage = null;
 
 
     // Start is called before the first frame update
@@ -31,7 +34,9 @@ public class UiManger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        SwitchSprite(controlCheck, controlImage);
+        SwitchSprite(searchCheck, searchImage);
+        SwitchSprite(animCheck, animImage);
     }
 
     public void SwitchSprite(bool check, Image image = null)
@@ -47,72 +52,42 @@ public class UiManger : MonoBehaviour
             }
             else
             {
-                image.color = originColor;
+                image.color = Color.white;
                 Debug.Log("No");
 
             }
         }
     }
 
-    public void ChangePanel()
-    {
-
-    }
-
     public void ActivateControls()
     {
         controlCheck = !controlCheck;
-        if (uiPanel != null)
-        {
-            uiPanel.SetActive(controlCheck);
-            SwitchSprite(controlCheck, controlImage);
+        searchCheck = false;
+        animCheck = false;
 
-        }
+        uiPanel.SetActive(controlCheck);
+        searchPanel.SetActive(false);
+        animationPanel.SetActive(false);
     }
     public void ActivateSearch()
     {
+        controlCheck = false;
         searchCheck = !searchCheck;
-        if (searchPanel != null)
-        {
-            searchPanel.SetActive(searchCheck);
-            SwitchSprite(searchCheck, searchImage);
+        animCheck = false;
 
-        }
-    }
-    public void ShowPanel()
-    {
-        
+        uiPanel.SetActive(false);
+        searchPanel.SetActive(searchCheck);
+        animationPanel.SetActive(false);
     }
 
-    public void ShowControls()
+    public void ActivateAnim()
     {
-        if(searchCheck == false)
-        {
-            ActivateControls();
-        }
-        else
-        {
-            ActivateControls();
-            ActivateSearch();
-        }
-    }
-
-    public void ShowSearch()
-    {
-        if (controlCheck == false)
-        {
-            ActivateSearch();
-        }
-        else
-        {
-            ActivateSearch();
-            ActivateControls();
-        }
-    }
-    public void ShowAnimation()
-    {
+        controlCheck = false;
+        searchCheck = false;
         animCheck = !animCheck;
 
+        uiPanel.SetActive(false);
+        searchPanel.SetActive(false);
         animationPanel.SetActive(animCheck);
     }
 
