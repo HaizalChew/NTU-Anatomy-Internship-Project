@@ -366,6 +366,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 32
   zoomSpeed: 0.25
+  zoomSlider: {fileID: 4848736888131023565}
 --- !u!114 &963194230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1408,3 +1409,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+--- !u!114 &4848736888131023565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 655504466, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+  m_PrefabInstance: {fileID: 4848736888131023564}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
