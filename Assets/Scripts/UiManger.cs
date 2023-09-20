@@ -7,6 +7,7 @@ public class UiManger : MonoBehaviour
 {
     [SerializeField] GameObject uiPanel;
     [SerializeField] GameObject searchPanel;
+    [SerializeField] GameObject animationPanel;
 
     [SerializeField] Button button;
 
@@ -21,6 +22,7 @@ public class UiManger : MonoBehaviour
 
 
     private bool controlCheck, searchCheck, uiCheck, uiSeleceted;
+    private bool animCheck;
 
 
     // Start is called before the first frame update
@@ -97,5 +99,12 @@ public class UiManger : MonoBehaviour
 
             }
         }
+    }
+
+    public void ShowAnimation()
+    {
+        animCheck = !animCheck;
+
+        animationPanel.SetActive(animCheck);
     }
 }
