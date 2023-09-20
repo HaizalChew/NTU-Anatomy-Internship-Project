@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 [RequireComponent(typeof(Camera))]
 public class CameraControls : MonoBehaviour
@@ -24,6 +25,8 @@ public class CameraControls : MonoBehaviour
     [SerializeField] InputActionReference zoomScrollInput;
     [SerializeField] LayerMask ignoreMask;
     [SerializeField] float zoomSpeed = 1f;
+    [SerializeField] Slider zoomSlider;
+    [SerializeField] SelectableHandler selectableHandler;
 
     // Set orbit angles
     Vector2 orbitAngles = new Vector2(45f, 0f);
@@ -35,6 +38,9 @@ public class CameraControls : MonoBehaviour
     {
         //focusPoint = focus.position;
         transform.localRotation = Quaternion.Euler(orbitAngles);
+
+        zoomSlider.minValue = 0.1f;
+        zoomSlider.maxValue = 20f;
     }
 
     private void OnEnable()
@@ -88,7 +94,6 @@ public class CameraControls : MonoBehaviour
         // Enable camera panning
         Pan();
 
-
         Vector3 lookDirection = lookRotation * Vector3.forward;
         Vector3 lookPosition = focus.transform.position - lookDirection * distance;
         transform.SetPositionAndRotation(lookPosition, lookRotation);
@@ -126,14 +131,14 @@ public class CameraControls : MonoBehaviour
     {
         stopRecentering = false;
     }
-
+    
     // This will orbit the camera around the focus
     bool OrbitCamera()
     {
         Vector2 input = new Vector2(-orbitLookInput.action.ReadValue<Vector2>().y, orbitLookInput.action.ReadValue<Vector2>().x);
 
         const float e = 0.001f;
-        if ((input.x < -e || input.x > e || input.y < -e || input.y > e) && orbitUnlockInput.action.IsPressed() && !panUnlockInput.action.IsPressed() && Input.GetMouseButton(0))
+        if ((input.x < -e || input.x > e || input.y < -e || input.y > e) && ((orbitUnlockInput.action.IsPressed() && !panUnlockInput.action.IsPressed()) || selectableHandler.buttonPressed) && Input.GetMouseButton(0))
         {
             orbitAngles += rotationSpeed * Time.unscaledDeltaTime * input;
             return true;
@@ -173,6 +178,20 @@ public class CameraControls : MonoBehaviour
         }
 
         distance = Mathf.Clamp(distance, .1f, 20f);
+        zoomSlider.value = distance;
+    }
+
+    public void SetZoomCamera(float value = 0)
+    {
+        if (value < 0 || value > 0)
+        {
+            distance += value;
+            distance = Mathf.Clamp(distance, .1f, 20f);
+        }
+        else
+        {
+            distance = zoomSlider.value;
+        }
     }
 
     // This will control camera panning
