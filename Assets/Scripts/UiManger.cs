@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class UiManger : MonoBehaviour
 {
-    [SerializeField] GameObject uiPanel;
-    [SerializeField] GameObject searchPanel;
+    [SerializeField] GameObject uiPanel, searchPanel, animationPanel;
 
     [SerializeField] Button button;
 
@@ -20,7 +19,7 @@ public class UiManger : MonoBehaviour
     private Color originColor;
 
 
-    private bool controlCheck, searchCheck, uiCheck, uiSeleceted;
+    private bool controlCheck, searchCheck, uiCheck, uiSeleceted, animCheck;
 
 
     // Start is called before the first frame update
@@ -110,43 +109,11 @@ public class UiManger : MonoBehaviour
             ActivateControls();
         }
     }
-    //public void ShowControls()
-    //{
-    //    if(searchCheck == false && variable.isolateCheck == false)
-    //    {
-    //        controlCheck = !controlCheck;
+    public void ShowAnimation()
+    {
+        animCheck = !animCheck;
 
-    //        if (uiPanel != null)
-    //        {
-    //            uiPanel.SetActive(controlCheck);
-    //            SwitchSprite(controlImage);
-
-    //        }
-    //    }
-    //    else
-    //    {
-    //        controlCheck = false;
-    //        ShowSearch();
-    //    }
-    //}
-
-    //public void ShowSearch()
-    //{
-    //    if (controlCheck == false && variable.isolateCheck == false)
-    //    {
-    //        searchCheck = !searchCheck;
-
-    //        if (searchPanel != null)
-    //        {
-    //            Debug.Log("1");
-    //            searchPanel.SetActive(searchCheck);
-    //            SwitchSprite(searchImage);
-
-    //        }
-    //    }
-    //    else
-    //    {
-
-    //    }
+        animationPanel.SetActive(animCheck);
+    }
 
 }
