@@ -9,12 +9,14 @@ public class UiManger : MonoBehaviour
     [SerializeField] GameObject uiPanel, searchPanel, animationPanel;
     [SerializeField] Button button;
     [SerializeField] Image searchImage, controlImage, animImage;
+    [SerializeField] RawImage controlAnimImage;
     [SerializeField] BasicInteractions variable;
     [SerializeField] Animator hotbarAnimator;
+    [SerializeField] GameObject originalModel;
+    [SerializeField] Texture pauseBtn, playBtn;
 
-    private Image image;
-    private Color originColor;
-    private bool controlCheck, searchCheck, animCheck,animState;
+    private bool controlCheck, searchCheck, animCheck, animState, modelAnimState;
+    private GameObject loadedAnimModel;
 
     // Start is called before the first frame update
     void Start()
@@ -34,9 +36,8 @@ public class UiManger : MonoBehaviour
     {   
         if (image != null)
         {
-            if (check == true)
+            if (check)
             {
-                originColor = image.color;
                 image.color = new Color(0.4056604f, 0.4056604f, 0.4056604f, 1);
             }
             else
@@ -44,6 +45,18 @@ public class UiManger : MonoBehaviour
                 image.color = Color.white;
 
             }
+        }
+    }
+
+    public void SwitchBetweenDiffSprites(bool check, RawImage image)
+    {
+        if (check)
+        {
+            image.texture = pauseBtn;
+        }
+        else
+        {
+            image.texture = playBtn;
         }
     }
 
@@ -90,6 +103,35 @@ public class UiManger : MonoBehaviour
         uiPanel.SetActive(false);
         searchPanel.SetActive(false);
         animationPanel.SetActive(false);
+    }
+
+    public void LoadAnimationModel(GameObject model)
+    {
+        loadedAnimModel = Instantiate(model, Vector3.zero, Quaternion.identity);
+        originalModel.SetActive(false);
+    }
+
+    public void TogglePlaying()
+    {
+        modelAnimState = !modelAnimState;
+
+        if (modelAnimState)
+        {
+            loadedAnimModel.GetComponent<Animator>().speed = 0;
+        }
+        else
+        {
+            loadedAnimModel.GetComponent<Animator>().speed = 1;
+        }
+
+        SwitchBetweenDiffSprites(!modelAnimState, controlAnimImage);
+    }
+
+    public void ReturnToModel()
+    {
+        Destroy(loadedAnimModel);
+        loadedAnimModel = null;
+        originalModel.SetActive(true);
     }
 
 }

@@ -21,23 +21,21 @@ public class ImportCustomModel : MonoBehaviour
             {
                 finalPath = path;
                 Debug.Log("Picked File: " + finalPath);
-
-                StartCoroutine(LoadImport());
             }
         }, new string[] { fileType });
     }
 
 
-    IEnumerator LoadImport()
-    {
-        WWW www = new WWW(finalPath);
+    //IEnumerator LoadImport()
+    //{
+    //    WWW www = new WWW(finalPath);
 
-        while (!www.isDone)
-        {
-            yield return null;
-        }
+    //    while (!www.isDone)
+    //    {
+    //        yield return null;
+    //    }
         
-        //Scene newScene = SceneManager.CreateScene(finalPath);
-        //SceneManager.LoadSceneAsync(newScene.name);
-    }
+    //    //Scene newScene = SceneManager.CreateScene(finalPath);
+    //    //SceneManager.LoadSceneAsync(newScene.name);
+    //}
 }
