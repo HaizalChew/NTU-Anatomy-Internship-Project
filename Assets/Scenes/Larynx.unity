@@ -1173,6 +1173,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -298
       objectReference: {fileID: 0}
+    - target: {fileID: 975330245853118951, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_text
+      value: "Question: \nTest Question "
+      objectReference: {fileID: 0}
+    - target: {fileID: 975330245853118951, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_fontSize
+      value: 48.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2203885168299154646, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856961072452234447, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_Transition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856961073451982039, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
