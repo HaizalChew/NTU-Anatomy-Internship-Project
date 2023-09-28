@@ -10,7 +10,6 @@ public class UiManger : MonoBehaviour
     [SerializeField] Button button;
     [SerializeField] Image searchImage, controlImage, animImage;
     [SerializeField] RawImage controlAnimImage;
-    [SerializeField] BasicInteractions variable;
     [SerializeField] Animator hotbarAnimator;
     [SerializeField] GameObject originalModel;
     [SerializeField] Texture pauseBtn, playBtn;

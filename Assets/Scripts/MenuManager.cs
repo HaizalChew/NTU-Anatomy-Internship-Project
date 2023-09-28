@@ -7,7 +7,7 @@ public class MenuManager : MonoBehaviour
 {
     public void ToMenu()
     {
-        SceneManager.LoadSceneAsync(0);
+        SceneManager.LoadSceneAsync("Menu");
     }
 
     public void ToOtherScenes(int buildIndex)
