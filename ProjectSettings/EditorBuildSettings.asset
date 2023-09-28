@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 16f388f9e719e794da1c1ee9ae8dc42e
   - enabled: 1
+    path: Assets/Scenes/CoronaryVessel.unity
+    guid: e6d4c8e72557010409c9fe514eeb37aa
+  - enabled: 1
     path: Assets/Scenes/Torso.unity
     guid: d1b48c9b116759241be7fef41063aa80
   - enabled: 1
