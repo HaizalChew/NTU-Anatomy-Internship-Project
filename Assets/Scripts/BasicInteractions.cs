@@ -11,7 +11,7 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] Material orignialMaterial;
     public Transform selectedObj;
     [SerializeField] LayerMask selectableLayerMask;
-    [SerializeField] GameObject selectedInstantiatedObj;
+    public GameObject selectedInstantiatedObj;
     [SerializeField] GameObject model;
     [SerializeField] CameraControls camControl;
     [SerializeField] Button isolateBtn;

@@ -5,6 +5,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using UnityEditor;
 
 public class QuizManager : MonoBehaviour
 {
@@ -46,19 +47,24 @@ public class QuizManager : MonoBehaviour
 
     void Update()
     {
-        if (basicInteractions.selectedObj = null)
+       
+    }
+    
+    bool answerStatus()
+    {
+        if (basicInteractions.selectedObj == null)
         {
-            answerCheck = true;
+            return false;
         }
         else
         {
-            answerCheck = false;
+            return true;
         }
     }
 
+   
     private IEnumerator GetQuizQuestion()
     {
-        
         List<QuesDatum> listOfQuestions = new List<QuesDatum>();
 
         for (int i = questionList.Count - 1; i >= 0; i--)
@@ -69,17 +75,29 @@ public class QuizManager : MonoBehaviour
         listOfQuestions = shuffleList(listOfQuestions);
 
 
-        for (int i = 0; i < listOfQuestions.Count; i++)
+        for (int i = 0; i < listOfQuestions.Count;)
         {
-            Debug.Log("Start Quiz");
+            Debug.Log(i);
             Debug.Log(listOfQuestions[i].Question);
             Debug.Log(listOfQuestions[i].Answer);
-            yield return new WaitWhile(() => answerCheck);
-            if (basicInteractions.selectedObj != null)
+            yield return new WaitUntil(answerStatus);
+            if (basicInteractions.selectedObj.name == listOfQuestions[i].Answer)
             {
-                CheckAnswer(listOfQuestions[i].Answer, basicInteractions.selectedObj.name);
+                basicInteractions.selectedObj.gameObject.SetActive(true);
+                Destroy(basicInteractions.selectedInstantiatedObj);
+                basicInteractions.selectedObj = null;
+                i++;
+                Debug.Log("Correct");
+            }
+            else
+            {
+                basicInteractions.selectedObj.gameObject.SetActive(true);
+                Destroy(basicInteractions.selectedInstantiatedObj);
+                basicInteractions.selectedObj = null;
+                Debug.Log("Try again");
             }
         }
+        Debug.Log("quiz ended");
 
     }
 
