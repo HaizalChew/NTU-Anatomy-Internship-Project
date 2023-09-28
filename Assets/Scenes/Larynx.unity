@@ -699,7 +699,7 @@ MonoBehaviour:
   focus: {fileID: 2026031936}
   target: {fileID: 1135147809}
   orientation: {fileID: 1481258923}
-  distance: 5
+  distance: 10
   focusRadius: 1
   focusCentering: 0.9
   stopRecentering: 0

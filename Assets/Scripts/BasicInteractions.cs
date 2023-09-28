@@ -8,7 +8,7 @@ public class BasicInteractions : MonoBehaviour
 {
     [SerializeField] Material selectedMat;
     [SerializeField] Material highlightMaterial;
-    [SerializeField] Material orignialMaterial;
+    [SerializeField] Material[] orignialMaterial;
     [SerializeField] Transform selectedObj;
     [SerializeField] LayerMask selectableLayerMask;
     [SerializeField] GameObject selectedInstantiatedObj;
@@ -27,7 +27,7 @@ public class BasicInteractions : MonoBehaviour
 
     private float sliderValue;
 
-    public static Transform highlight;
+    public Transform highlight;
     private RaycastHit raycastHit;
     public bool isolateCheck;
     public bool veinCheck;
@@ -183,7 +183,7 @@ public class BasicInteractions : MonoBehaviour
     {
         if (highlight != null)
         {
-            highlight.GetComponent<MeshRenderer>().material = orignialMaterial;
+            highlight.GetComponent<MeshRenderer>().materials = orignialMaterial;
             highlight = null;
         }
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -193,11 +193,16 @@ public class BasicInteractions : MonoBehaviour
             highlight = raycastHit.transform;
             if (highlight != selectedObj)
             {
-                if (highlight.GetComponent<MeshRenderer>().material != highlightMaterial)
+                orignialMaterial = highlight.GetComponent<MeshRenderer>().materials;
+                Material[] highlightMaterials = new Material[orignialMaterial.Length];
+
+                for (int i = 0; i < highlightMaterials.Length; i++)
                 {
-                    orignialMaterial = highlight.GetComponent<MeshRenderer>().material;
-                    highlight.GetComponent<MeshRenderer>().material = highlightMaterial;
+                    highlightMaterials.SetValue(highlightMaterial, i);
                 }
+
+                highlight.GetComponent<MeshRenderer>().materials = highlightMaterials;
+
             }
             else
             {

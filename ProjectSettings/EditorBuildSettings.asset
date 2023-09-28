@@ -20,4 +20,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SalivaryGlands.unity
     guid: 09f131497f8eaa342a44a6ffc6d77b68
+  - enabled: 1
+    path: Assets/Scenes/Diaphragm.unity
+    guid: 783507c1605d1ca488508c2b064308dd
+  - enabled: 1
+    path: Assets/Scenes/CoronaryVessel.unity
+    guid: e6d4c8e72557010409c9fe514eeb37aa
   m_configObjects: {}
