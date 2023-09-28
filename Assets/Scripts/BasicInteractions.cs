@@ -16,15 +16,22 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] CameraControls camControl;
     [SerializeField] Button isolateBtn;
 
+    [SerializeField] GameObject coronaryModel;
+    [SerializeField] Slider renderingSlider;
+
     private Vector3 toolTipPos;
     private Vector2 mousePos;
     private Vector3 offset = new Vector3(16, 16, 0);
     private Rect objRect;
     private bool showCheck;
 
+    private float sliderValue;
+
     public static Transform highlight;
     private RaycastHit raycastHit;
     public bool isolateCheck;
+    public bool veinCheck;
+    public bool viewMode;
 
 
     [SerializeField] UiManger uiMangerScript;
@@ -39,13 +46,16 @@ public class BasicInteractions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(isolateCheck == false)
+        ShowVein();
+
+        if (isolateCheck == false)
         {
             if (Input.GetMouseButtonDown(1))
             {
+
                 SelectPart();
             }
-            
+
             HighlightPart();
             OnMouseEnter();
 
@@ -67,6 +77,8 @@ public class BasicInteractions : MonoBehaviour
                 selectedObj = hitInfo.transform;
 
                 selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
+
+                selectedInstantiatedObj.transform.parent = model.transform;
 
                 Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
 
@@ -99,6 +111,8 @@ public class BasicInteractions : MonoBehaviour
                 selectedObj = hitInfo.transform;
 
                 selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
+
+                selectedInstantiatedObj.transform.parent = model.transform;
 
                 Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
 
@@ -147,6 +161,8 @@ public class BasicInteractions : MonoBehaviour
             selectedObj = selected;
 
             selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
+
+            selectedInstantiatedObj.transform.parent = model.transform;
 
             Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
 
@@ -230,7 +246,80 @@ public class BasicInteractions : MonoBehaviour
         }
     }
 
+    public void UpdateSliderValue()
+    {
+        sliderValue = renderingSlider.value;
+        veinCheck = true;
+    }
+
+    public void ShowVein()
+    {
+        //veinCheck = !veinCheck;
+        if (veinCheck)
+        {
+            foreach (Transform child in coronaryModel.transform)
+            {
+                if (child.tag != "Vein")
+                {
+                    ////child.gameObject.SetActive(false);
+                    ////Destroy(selectedInstantiatedObj);
+                    ////selectedInstantiatedObj = null;
+                    ////selectedObj = null;
+                    Debug.Log(child);
+                    child.GetComponent<MeshRenderer>().material.SetFloat("_Mode", 3);
+                    //Turn on Alpha Blending
+                    child.GetComponent<MeshRenderer>().material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
+                    child.GetComponent<MeshRenderer>().material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
+                    child.GetComponent<MeshRenderer>().material.EnableKeyword("_ALPHABLEND_ON");
+                    child.GetComponent<MeshRenderer>().material.renderQueue = 3000;
+                    Color color = child.GetComponent<MeshRenderer>().material.color;
+                    color.a = sliderValue;
+                    child.GetComponent<MeshRenderer>().material.color = color;
+                    Debug.Log("vein");
+                }
+            }
+        }
+        else
+        {
+            //foreach (Transform child in coronaryModel.transform)
+            //{
+            //    if (child.tag != "Vein")
+            //    {
+            //        //child.gameObject.SetActive(true);
+            //        Color color = child.GetComponent<Renderer>().material.color;
+            //        color.a = 0;
+            //        child.GetComponent<Renderer>().material.color = color;
+            //        Debug.Log("yes");
+            //    }
+            //}
+        }
+    }
+
+    public void ActivateViewMode()
+    {
+        viewMode = !viewMode;
+        if (viewMode)
+        {
+            foreach (Transform child in coronaryModel.transform)
+            {
+                if (child.tag != "Vein")
+                {
+                    child.GetComponent<Collider>().enabled = false;
+                }
+            }
+        }
+        else
+        {
+            foreach (Transform child in coronaryModel.transform)
+            {
+                if (child.tag != "Vein")
+                {
+                    child.GetComponent<Collider>().enabled = true;
+                }
+            }
+        }
+
+    }
     public void OnMouseEnter() { showCheck = true; }
     public void OnMouseExit() { showCheck = false; }
-
 }

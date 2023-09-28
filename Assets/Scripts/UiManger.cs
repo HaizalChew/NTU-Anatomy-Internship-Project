@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,8 +14,9 @@ public class UiManger : MonoBehaviour
     [SerializeField] Animator hotbarAnimator;
     [SerializeField] GameObject originalModel;
     [SerializeField] Texture pauseBtn, playBtn;
+    [SerializeField] Slider transSlider;
 
-    private bool controlCheck, searchCheck, animCheck, animState, modelAnimState;
+    private bool controlCheck, searchCheck, animCheck, animState, modelAnimState, sliderCheck;
     private GameObject loadedAnimModel;
 
     // Start is called before the first frame update
@@ -131,6 +133,19 @@ public class UiManger : MonoBehaviour
         Destroy(loadedAnimModel);
         loadedAnimModel = null;
         originalModel.SetActive(true);
+    }
+
+    public void ActivateTransSlider()
+    {
+        sliderCheck = !sliderCheck;
+        if (sliderCheck)
+        {
+            transSlider.gameObject.SetActive(true);
+        }
+        else
+        {
+            transSlider.gameObject.SetActive(false);
+        }
     }
 
 }
