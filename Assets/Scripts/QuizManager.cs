@@ -5,15 +5,22 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using TMPro;
 
 public class QuizManager : MonoBehaviour
 {
     //public TextAsset textFile;
     List<Course> topic = new List<Course>();
-    public List<int> questionList = new List<int>() { 1, 2, 3, 4, 5 };
-    int sceneNo = 0;
     public BasicInteractions basicInteractions;
     private bool answerCheck;
+
+    [Header("Questions")]
+    [SerializeField] private int topicIndex;
+    [SerializeField] List<QuesDatum> questions = new List<QuesDatum>();
+    [SerializeField] private TextMeshProUGUI questionTextDisplay, questionNumberTextDisplay;
+    [SerializeField] private GameObject submitButton, notificationPanel, notificationRight, notificationWrong;
+    [SerializeField] private string currentQuestion, currentAnswer;
+    [SerializeField] private int questionNumberCount;
 
     [Serializable]
     public class QuesDatum
@@ -31,55 +38,93 @@ public class QuizManager : MonoBehaviour
 
     void Start()
     {
-        sceneNo = SceneManager.GetActiveScene().buildIndex;
+        if (questionTextDisplay == null)
+        {
+            questionTextDisplay = GameObject.FindGameObjectWithTag("QuestionText").GetComponent<TextMeshProUGUI>();
+        }
 
         using (StreamReader r = new StreamReader("Assets/test3.json"))
         {
             string json = r.ReadToEnd(); 
             topic = JsonConvert.DeserializeObject<List<Course>>(json);
-            //GetQuizQuestion();
-            StartCoroutine(GetQuizQuestion());
         }
-
 
     }
 
-    void Update()
+    private void Update()
     {
-        if (basicInteractions.selectedObj = null)
+
+        questionTextDisplay.text = currentQuestion;
+
+        if (basicInteractions.selectedObj)
         {
-            answerCheck = true;
+            submitButton.SetActive(true);
         }
         else
         {
-            answerCheck = false;
+            submitButton.SetActive(false);
+        }
+
+        questionNumberTextDisplay.text = "Question " + (questionNumberCount).ToString() + " out of " + questions.Count;
+    }
+
+    public void OnQuizStart()
+    {
+        questions = GetQuizQuestions(topicIndex);
+        questionNumberCount = 0;
+    }
+
+    public void OnMoveOnNextQuestion()
+    {
+        if (questionNumberCount < questions.Count)
+        {
+            currentQuestion = questions[questionNumberCount].Question;
+            currentAnswer = questions[questionNumberCount].Answer;
+            questionNumberCount++;
+        }
+        
+    }
+
+    public void OnCheckForRightAnswer()
+    {
+        if (CheckAnswer(basicInteractions.selectedObj.name))
+        {
+            notificationPanel.SetActive(true);
+            notificationRight.SetActive(true);
+
+        }
+        else
+        {
+            notificationPanel.SetActive(true);
+            notificationWrong.SetActive(true);
         }
     }
 
-    private IEnumerator GetQuizQuestion()
+    private bool CheckAnswer(string userAnswer)
+    {
+        if (currentAnswer.ToLower() == userAnswer.ToLower())
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    private List<QuesDatum> GetQuizQuestions(int topicIndex)
     {
         
         List<QuesDatum> listOfQuestions = new List<QuesDatum>();
 
-        for (int i = questionList.Count - 1; i >= 0; i--)
+        for (int i = topic[topicIndex].Ques_Data.Count - 1; i >= 0; i--)
         {
-            listOfQuestions.Add(topic[sceneNo - 1].Ques_Data[i]);
+            listOfQuestions.Add(topic[topicIndex].Ques_Data[i]);
         }
 
         listOfQuestions = shuffleList(listOfQuestions);
 
-
-        for (int i = 0; i < listOfQuestions.Count; i++)
-        {
-            Debug.Log("Start Quiz");
-            Debug.Log(listOfQuestions[i].Question);
-            Debug.Log(listOfQuestions[i].Answer);
-            yield return new WaitWhile(() => answerCheck);
-            if (basicInteractions.selectedObj != null)
-            {
-                CheckAnswer(listOfQuestions[i].Answer, basicInteractions.selectedObj.name);
-            }
-        }
+        return listOfQuestions;
 
     }
 
@@ -92,17 +137,7 @@ public class QuizManager : MonoBehaviour
 
     //}
 
-    private void CheckAnswer(string answerName, string selectedObjName = null)
-    {
-        if (selectedObjName == answerName)
-        {
-            Debug.Log("WellDone");
-        }
-        else
-        {
-            Debug.Log("Well");
-        }
-    }
+    
     private List<QuesDatum> shuffleList(List<QuesDatum> inputList)
     {    //take any list of GameObjects and return it with Fischer-Yates shuffle
         int i = 0;

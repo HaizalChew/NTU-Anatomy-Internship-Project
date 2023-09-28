@@ -9,7 +9,7 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] Material selectedMat;
     [SerializeField] Material highlightMaterial;
     [SerializeField] Material[] orignialMaterial;
-    [SerializeField] Transform selectedObj;
+    [SerializeField] public Transform selectedObj;
     [SerializeField] LayerMask selectableLayerMask;
     [SerializeField] GameObject selectedInstantiatedObj;
     [SerializeField] GameObject model;

@@ -1449,6 +1449,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 6133395870038159714, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: topicIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133395870038159714, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: basicInteractions
+      value: 
+      objectReference: {fileID: 735201547}
     - target: {fileID: 8560359015765136205, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_Name
       value: UserInteractMenu
