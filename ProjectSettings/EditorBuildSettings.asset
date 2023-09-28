@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/CoronaryVessel.unity
     guid: e6d4c8e72557010409c9fe514eeb37aa
   - enabled: 1
-    path: Assets/Scenes/Torso.unity
-    guid: d1b48c9b116759241be7fef41063aa80
-  - enabled: 1
     path: Assets/Scenes/Larynx.unity
     guid: 958cea06aa462e84dbc4421bc2cfa09b
+  - enabled: 1
+    path: Assets/Scenes/Torso.unity
+    guid: d1b48c9b116759241be7fef41063aa80
   m_configObjects: {}
