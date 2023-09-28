@@ -1,18 +1,19 @@
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.IO;
-using System.Net.NetworkInformation;
-using Unity.VisualScripting;
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
+using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class QuizManager : MonoBehaviour
 {
-    public TextAsset textFile;
+    //public TextAsset textFile;
+    List<Course> topic = new List<Course>();
+    public List<int> questionList = new List<int>() { 1, 2, 3, 4, 5 };
+    int sceneNo = 0;
+    public BasicInteractions basicInteractions;
+    private bool answerCheck;
 
     [Serializable]
     public class QuesDatum
@@ -28,50 +29,80 @@ public class QuizManager : MonoBehaviour
         public List<QuesDatum> Ques_Data { get; set; }
     }
 
-    List<Course> topic = new List<Course>();
-    public List<int> questionList = new List<int>() { 1, 2, 3, 4, 5 };
-    System.Random random = new System.Random();
-
-
-    // jsonString = File.ReadAllText("Assets/QuizJSON.txt");
     void Start()
     {
-        //Debug.Log(jsonString);
-        //Heart topic = JsonConvert.DeserializeObject<Heart>(jsonString);
+        sceneNo = SceneManager.GetActiveScene().buildIndex;
 
         using (StreamReader r = new StreamReader("Assets/test3.json"))
         {
             string json = r.ReadToEnd(); 
-            //Debug.Log(json);
             topic = JsonConvert.DeserializeObject<List<Course>>(json);
-            //Debug.Log(topic[1].CourseName);
-            //Debug.Log(topic[1].Ques_Data[4].Question);
-            //Debug.Log(topic[1].Ques_Data[0].Answer);
-            LarynxQuiz();
+            //GetQuizQuestion();
+            StartCoroutine(GetQuizQuestion());
         }
 
 
     }
 
-    public void LarynxQuiz()
+    void Update()
     {
-        Debug.Log(topic[1].Ques_Data.Count);
+        if (basicInteractions.selectedObj = null)
+        {
+            answerCheck = true;
+        }
+        else
+        {
+            answerCheck = false;
+        }
+    }
+
+    private IEnumerator GetQuizQuestion()
+    {
         
         List<QuesDatum> listOfQuestions = new List<QuesDatum>();
 
         for (int i = questionList.Count - 1; i >= 0; i--)
         {
-            listOfQuestions.Add(topic[1].Ques_Data[i]);
+            listOfQuestions.Add(topic[sceneNo - 1].Ques_Data[i]);
         }
 
         listOfQuestions = shuffleList(listOfQuestions);
 
+
         for (int i = 0; i < listOfQuestions.Count; i++)
         {
+            Debug.Log("Start Quiz");
             Debug.Log(listOfQuestions[i].Question);
+            Debug.Log(listOfQuestions[i].Answer);
+            yield return new WaitWhile(() => answerCheck);
+            if (basicInteractions.selectedObj != null)
+            {
+                CheckAnswer(listOfQuestions[i].Answer, basicInteractions.selectedObj.name);
+            }
         }
+
     }
 
+    //private IEnumerator StartQuiz()
+    //{
+    //    if (basicInteractions.selectedObj != null)
+    //    {
+
+    //    }
+
+    //}
+
+    private void CheckAnswer(string answerName, string selectedObjName = null)
+    {
+        if (selectedObjName == answerName)
+        {
+            Debug.Log("WellDone");
+        }
+        else
+        {
+            Debug.Log("Well");
+        }
+    }
     private List<QuesDatum> shuffleList(List<QuesDatum> inputList)
     {    //take any list of GameObjects and return it with Fischer-Yates shuffle
         int i = 0;

@@ -1268,7 +1268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74712626303241148b584647c3b897b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  textFile: {fileID: 4900000, guid: 2c1cdd676b57be04483f14820a2dd2e6, type: 3}
+  questionList: 0100000002000000030000000400000005000000
+  basicInteractions: {fileID: 735201547}
 --- !u!1 &1011608218
 GameObject:
   m_ObjectHideFlags: 0
