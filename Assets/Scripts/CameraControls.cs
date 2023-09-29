@@ -126,11 +126,22 @@ public class CameraControls : MonoBehaviour
     {
         stopRecentering = false;
         target = targetPos;
+
+        if (distance >= 2f)
+        {
+            distance = 2f;
+        }
+        
     }
 
     public void ActivateRecenteringOnButton()
     {
         stopRecentering = false;
+        if (distance >= 2f)
+        {
+            distance = 2f;
+        }
+        
     }
     
     // This will orbit the camera around the focus

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class UiManger : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class UiManger : MonoBehaviour
     [SerializeField] GameObject originalModel;
     [SerializeField] Texture pauseBtn, playBtn;
     [SerializeField] Slider transSlider;
+    [SerializeField] TMP_Text displayName;
 
     [SerializeField] BasicInteractions basicInteractions;
 
@@ -34,6 +36,8 @@ public class UiManger : MonoBehaviour
         SwitchSprite(controlCheck, controlImage);
         SwitchSprite(searchCheck, searchImage);
         SwitchSprite(animCheck, animImage);
+
+        DisplayName();
 
         if (angioImage != null)
         {
@@ -72,6 +76,18 @@ public class UiManger : MonoBehaviour
                 image.color = Color.white;
 
             }
+        }
+    }
+
+    public void DisplayName()
+    {
+        if (basicInteractions.selectedObj != null)
+        {
+            displayName.text = basicInteractions.selectedObj.name;
+        }
+        else
+        {
+            displayName.text = null;
         }
     }
 

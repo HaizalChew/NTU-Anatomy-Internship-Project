@@ -2443,6 +2443,10 @@ PrefabInstance:
       propertyPath: originalModel
       value: 
       objectReference: {fileID: 2141141884}
+    - target: {fileID: 8560359015765136207, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: basicInteractions
+      value: 
+      objectReference: {fileID: 275088431}
     - target: {fileID: 8560359017219746563, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
