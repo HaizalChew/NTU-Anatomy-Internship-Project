@@ -878,6 +878,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6133395870038159714, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: topicIndex
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6133395870038159714, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: basicInteractions
       value: 
       objectReference: {fileID: 735201547}

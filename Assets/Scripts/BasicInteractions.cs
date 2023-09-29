@@ -318,6 +318,7 @@ public class BasicInteractions : MonoBehaviour
         viewMode = !viewMode;
         if (viewMode)
         {
+            uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 0;
             foreach (Transform child in selectedViewModel.transform)
             {
                 if (child.tag != "Vein")
@@ -328,6 +329,7 @@ public class BasicInteractions : MonoBehaviour
         }
         else
         {
+            uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 1;
             veinCheck = false;
             foreach (Transform child in selectedViewModel.transform)
             {
@@ -378,6 +380,7 @@ public class BasicInteractions : MonoBehaviour
         else
         {
             model = coronaryModel;
+            uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 0;
             partListScript.parentModel = coronaryModel.transform;
             if (uiManagerScript.sliderCheck)
             {

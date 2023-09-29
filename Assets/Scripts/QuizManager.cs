@@ -15,7 +15,7 @@ public class QuizManager : MonoBehaviour
     private bool answerCheck;
 
     [Header("Questions")]
-    [SerializeField] private int topicIndex;
+    [SerializeField] public int topicIndex;
     [SerializeField] List<QuesDatum> questions = new List<QuesDatum>();
     [SerializeField] private TextMeshProUGUI questionTextDisplay, questionNumberTextDisplay;
     [SerializeField] private GameObject submitButton, notificationPanel, notificationRight, notificationWrong, notificationCompleted;
