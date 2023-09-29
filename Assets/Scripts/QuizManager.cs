@@ -18,7 +18,7 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private int topicIndex;
     [SerializeField] List<QuesDatum> questions = new List<QuesDatum>();
     [SerializeField] private TextMeshProUGUI questionTextDisplay, questionNumberTextDisplay;
-    [SerializeField] private GameObject submitButton, notificationPanel, notificationRight, notificationWrong;
+    [SerializeField] private GameObject submitButton, notificationPanel, notificationRight, notificationWrong, notificationCompleted;
     [SerializeField] private string currentQuestion, currentAnswer;
     [SerializeField] private int questionNumberCount;
 
@@ -78,9 +78,17 @@ public class QuizManager : MonoBehaviour
     {
         if (questionNumberCount < questions.Count)
         {
+            // Get next quiz
             currentQuestion = questions[questionNumberCount].Question;
             currentAnswer = questions[questionNumberCount].Answer;
             questionNumberCount++;
+        }
+        else
+        {
+            // Quiz Completed
+            notificationPanel.SetActive(true);
+            notificationCompleted.SetActive(true);
+            SaveStateManager.instance.topicChecklistCompleted[topicIndex] = true;
         }
         
     }

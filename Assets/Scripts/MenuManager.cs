@@ -7,6 +7,19 @@ public class MenuManager : MonoBehaviour
 {
     [SerializeField] private GameObject fadeCanvas;
     [SerializeField] private RectTransform progressBar;
+    [SerializeField] private GameObject[] completedCheckIndex;
+
+    private void Update()
+    {
+        for (int i = 0; i < completedCheckIndex.Length; i++)
+        {
+            if (completedCheckIndex[i] != null)
+            {
+                completedCheckIndex[i].SetActive(SaveStateManager.instance.topicChecklistCompleted[i]);
+            }
+            
+        }
+    }
 
     public void ToMenu()
     {
