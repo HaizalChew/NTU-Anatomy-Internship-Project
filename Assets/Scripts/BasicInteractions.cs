@@ -17,7 +17,11 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] Button isolateBtn;
 
     [SerializeField] GameObject coronaryModel;
+    [SerializeField] GameObject coronaryModelAngio;
     [SerializeField] Slider renderingSlider;
+
+    [SerializeField] PartList partListScript;
+    [SerializeField] UiManger uiManagerScript;
 
     private Vector3 toolTipPos;
     private Vector2 mousePos;
@@ -32,10 +36,13 @@ public class BasicInteractions : MonoBehaviour
     public bool isolateCheck;
     public bool veinCheck;
     public bool viewMode;
+    public bool changeView;
 
 
     [SerializeField] UiManger uiMangerScript;
     [SerializeField] Image image;
+
+    [SerializeField] GameObject selectedViewModel;
     void Start()
     {
         mousePos = new Vector2(0, 0);
@@ -46,6 +53,14 @@ public class BasicInteractions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (changeView)
+        {
+            selectedViewModel = coronaryModelAngio.gameObject; 
+        }
+        else
+        {
+            selectedViewModel = coronaryModel.gameObject;
+        }
         ShowVein();
 
         if (isolateCheck == false)
@@ -262,15 +277,10 @@ public class BasicInteractions : MonoBehaviour
         //veinCheck = !veinCheck;
         if (veinCheck)
         {
-            foreach (Transform child in coronaryModel.transform)
+            foreach (Transform child in selectedViewModel.transform)
             {
                 if (child.tag != "Vein")
                 {
-                    ////child.gameObject.SetActive(false);
-                    ////Destroy(selectedInstantiatedObj);
-                    ////selectedInstantiatedObj = null;
-                    ////selectedObj = null;
-                    Debug.Log(child);
                     child.GetComponent<MeshRenderer>().material.SetFloat("_Mode", 3);
                     //Turn on Alpha Blending
                     child.GetComponent<MeshRenderer>().material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
@@ -280,23 +290,26 @@ public class BasicInteractions : MonoBehaviour
                     Color color = child.GetComponent<MeshRenderer>().material.color;
                     color.a = sliderValue;
                     child.GetComponent<MeshRenderer>().material.color = color;
-                    Debug.Log("vein");
                 }
             }
         }
         else
         {
-            //foreach (Transform child in coronaryModel.transform)
-            //{
-            //    if (child.tag != "Vein")
-            //    {
-            //        //child.gameObject.SetActive(true);
-            //        Color color = child.GetComponent<Renderer>().material.color;
-            //        color.a = 0;
-            //        child.GetComponent<Renderer>().material.color = color;
-            //        Debug.Log("yes");
-            //    }
-            //}
+            foreach (Transform child in model.transform)
+            {
+                if (child.tag != "Vein")
+                {
+                    child.GetComponent<MeshRenderer>().material.SetFloat("_Mode", 1);
+                    //Turn on Alpha Blending
+                    child.GetComponent<MeshRenderer>().material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
+                    child.GetComponent<MeshRenderer>().material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
+                    child.GetComponent<MeshRenderer>().material.DisableKeyword("_ALPHABLEND_ON");
+                    child.GetComponent<MeshRenderer>().material.renderQueue = 2000;
+                    Color color = child.GetComponent<MeshRenderer>().material.color;
+                    color.a = 1;
+                    child.GetComponent<MeshRenderer>().material.color = color;
+                }
+            }
         }
     }
 
@@ -305,7 +318,7 @@ public class BasicInteractions : MonoBehaviour
         viewMode = !viewMode;
         if (viewMode)
         {
-            foreach (Transform child in coronaryModel.transform)
+            foreach (Transform child in selectedViewModel.transform)
             {
                 if (child.tag != "Vein")
                 {
@@ -315,7 +328,8 @@ public class BasicInteractions : MonoBehaviour
         }
         else
         {
-            foreach (Transform child in coronaryModel.transform)
+            veinCheck = false;
+            foreach (Transform child in selectedViewModel.transform)
             {
                 if (child.tag != "Vein")
                 {
@@ -324,6 +338,69 @@ public class BasicInteractions : MonoBehaviour
             }
         }
 
+    }
+
+    public void ChangeViewMode()
+    {
+        changeView = !changeView;
+        if (viewMode)
+        {
+            ActivateViewMode();
+        }
+        veinCheck = false;
+
+        if (changeView)
+        {
+            model = coronaryModelAngio;
+            partListScript.parentModel = coronaryModelAngio.transform;
+            if (uiManagerScript.sliderCheck)
+            {
+                uiManagerScript.ActivateTransSlider();
+            }
+            if (selectedObj != null)
+            {
+                coronaryModel.gameObject.SetActive(!changeView);
+                coronaryModelAngio.gameObject.SetActive(changeView);
+                partListScript.ResetNameList();
+                partListScript.InitializeDictionary();
+                Destroy(selectedInstantiatedObj);
+                selectedObj.gameObject.SetActive(true);
+                selectedObj = null;
+            }
+            else
+            {
+                coronaryModel.gameObject.SetActive(!changeView);
+                coronaryModelAngio.gameObject.SetActive(changeView);
+                partListScript.ResetNameList();
+                partListScript.InitializeDictionary();
+            }
+        }
+        else
+        {
+            model = coronaryModel;
+            partListScript.parentModel = coronaryModel.transform;
+            if (uiManagerScript.sliderCheck)
+            {
+                uiManagerScript.ActivateTransSlider();
+            }
+            if (selectedObj != null)
+            {
+                coronaryModel.gameObject.SetActive(!changeView);
+                coronaryModelAngio.gameObject.SetActive(changeView);
+                partListScript.ResetNameList();
+                partListScript.InitializeDictionary();
+                Destroy(selectedInstantiatedObj);
+                selectedObj.gameObject.SetActive(true);
+                selectedObj = null;
+            }
+            else
+            {
+                coronaryModel.gameObject.SetActive(!changeView);
+                coronaryModelAngio.gameObject.SetActive(changeView);
+                partListScript.ResetNameList();
+                partListScript.InitializeDictionary();
+            }
+        }
     }
     public void OnMouseEnter() { showCheck = true; }
     public void OnMouseExit() { showCheck = false; }

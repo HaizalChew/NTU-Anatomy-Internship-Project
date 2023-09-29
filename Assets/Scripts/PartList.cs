@@ -6,7 +6,7 @@ using System.Linq;
 
 public class PartList : MonoBehaviour
 {
-    [SerializeField] Transform parentModel;
+    public Transform parentModel;
     [SerializeField] GameObject partNamePrefab;
     [SerializeField] GameObject partNameParent;
     [SerializeField] Dictionary<string, GameObject> partDict = new Dictionary<string, GameObject>();
@@ -14,10 +14,7 @@ public class PartList : MonoBehaviour
     void Awake()
     {
         ResetNameList();
-        foreach (Transform child in parentModel)
-        {
-            partDict.Add(child.name.ToLower(), child.gameObject);
-        }
+        InitializeDictionary();
     }
 
     public void SearchForPart(TMP_InputField input)
@@ -62,7 +59,16 @@ public class PartList : MonoBehaviour
         
     }
 
-    void ResetNameList()
+    public void InitializeDictionary()
+    {
+        partDict = new Dictionary<string, GameObject>();
+        foreach (Transform child in parentModel)
+        {
+            partDict.Add(child.name.ToLower(), child.gameObject);
+        }
+    }
+
+    public void ResetNameList()
     {
         foreach (Transform child in partNameParent.transform)
         {
