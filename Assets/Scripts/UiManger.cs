@@ -34,7 +34,12 @@ public class UiManger : MonoBehaviour
         SwitchSprite(controlCheck, controlImage);
         SwitchSprite(searchCheck, searchImage);
         SwitchSprite(animCheck, animImage);
-        SwitchSpritePink(basicInteractions.viewMode, angioImage);
+
+        if (angioImage != null)
+        {
+            SwitchSpritePink(basicInteractions.viewMode, angioImage);
+        }
+        
 
     }
 

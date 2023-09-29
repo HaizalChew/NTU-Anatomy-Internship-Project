@@ -366,7 +366,7 @@ MonoBehaviour:
   focusRadius: 1
   focusCentering: 0.9
   stopRecentering: 0
-  rotationSpeed: 90
+  rotationSpeed: 35
   minVerticalAngle: -89
   maxVerticalAngle: 89
   orbitLookInput: {fileID: -4357323021904490931, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
@@ -2237,6 +2237,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 275088431}
+    - target: {fileID: 442171267876842054, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2015470280505009927, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3856961072366308923, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -2252,6 +2260,10 @@ PrefabInstance:
     - target: {fileID: 3856961073451982039, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: IsolatePart
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895878621884014150, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_text
+      value: ok
       objectReference: {fileID: 0}
     - target: {fileID: 4028191274820187799, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -2405,10 +2417,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5170057311810668752, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6133395870038159714, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: basicInteractions
       value: 
       objectReference: {fileID: 275088431}
+    - target: {fileID: 6456790572740467617, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_text
+      value: 'There is no quiz avaliable (yet).
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7680279872487300917, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8407426785188563831, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_Controller
       value: 
