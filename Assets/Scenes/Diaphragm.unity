@@ -897,6 +897,10 @@ PrefabInstance:
       propertyPath: originalModel
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8560359015765136207, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
+      propertyPath: basicInteractions
+      value: 
+      objectReference: {fileID: 735201547}
     - target: {fileID: 8560359015765136241, guid: 20f123eade411a74ebebfd3251cadcc9, type: 3}
       propertyPath: m_Pivot.x
       value: 0
