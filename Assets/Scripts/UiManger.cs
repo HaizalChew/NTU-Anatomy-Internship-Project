@@ -9,12 +9,14 @@ public class UiManger : MonoBehaviour
 {
     [SerializeField] GameObject uiPanel, searchPanel, animationPanel;
     [SerializeField] Button button;
-    [SerializeField] Image searchImage, controlImage, animImage;
+    [SerializeField] Image searchImage, controlImage, animImage, angioImage;
     [SerializeField] RawImage controlAnimImage;
     [SerializeField] Animator hotbarAnimator;
     [SerializeField] GameObject originalModel;
     [SerializeField] Texture pauseBtn, playBtn;
     [SerializeField] Slider transSlider;
+
+    [SerializeField] BasicInteractions basicInteractions;
 
     private bool controlCheck, searchCheck, animCheck, animState, modelAnimState;
     public bool sliderCheck;
@@ -32,6 +34,8 @@ public class UiManger : MonoBehaviour
         SwitchSprite(controlCheck, controlImage);
         SwitchSprite(searchCheck, searchImage);
         SwitchSprite(animCheck, animImage);
+        SwitchSpritePink(basicInteractions.viewMode, angioImage);
+
     }
 
     public void SwitchSprite(bool check, Image image = null)
@@ -41,6 +45,22 @@ public class UiManger : MonoBehaviour
             if (check)
             {
                 image.color = new Color(0.4056604f, 0.4056604f, 0.4056604f, 1);
+            }
+            else
+            {
+                image.color = Color.white;
+
+            }
+        }
+    }
+
+    public void SwitchSpritePink(bool check, Image image = null)
+    {
+        if (image != null)
+        {
+            if (check)
+            {
+                image.color = new Color(0.8301887f, 0.206764f, 0.5564725f, 1);
             }
             else
             {

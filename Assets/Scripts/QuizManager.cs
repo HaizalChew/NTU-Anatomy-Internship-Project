@@ -72,6 +72,10 @@ public class QuizManager : MonoBehaviour
     {
         questions = GetQuizQuestions(topicIndex);
         questionNumberCount = 0;
+        if(topicIndex == 1)
+        {
+            basicInteractions.sliderValue = 0;
+        }
     }
 
     public void OnMoveOnNextQuestion()

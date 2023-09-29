@@ -29,7 +29,7 @@ public class BasicInteractions : MonoBehaviour
     private Rect objRect;
     private bool showCheck;
 
-    private float sliderValue;
+    public float sliderValue;
 
     public Transform highlight;
     private RaycastHit raycastHit;
@@ -313,12 +313,25 @@ public class BasicInteractions : MonoBehaviour
         }
     }
 
+    public void ShowSlider()
+    {
+        if (viewMode)
+        {
+            renderingSlider.gameObject.SetActive(true);
+        }
+        else
+        {
+            renderingSlider.gameObject.SetActive(false);
+        }
+    }
+
     public void ActivateViewMode()
     {
         viewMode = !viewMode;
         if (viewMode)
         {
-            uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 0;
+            uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 1;
+            UpdateSliderValue();
             foreach (Transform child in selectedViewModel.transform)
             {
                 if (child.tag != "Vein")
@@ -329,7 +342,7 @@ public class BasicInteractions : MonoBehaviour
         }
         else
         {
-            uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 1;
+            uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 0;
             veinCheck = false;
             foreach (Transform child in selectedViewModel.transform)
             {
