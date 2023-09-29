@@ -72,10 +72,6 @@ public class QuizManager : MonoBehaviour
     {
         questions = GetQuizQuestions(topicIndex);
         questionNumberCount = 0;
-        if(topicIndex == 1)
-        {
-            basicInteractions.sliderValue = 0;
-        }
     }
 
     public void OnMoveOnNextQuestion()
@@ -99,16 +95,34 @@ public class QuizManager : MonoBehaviour
 
     public void OnCheckForRightAnswer()
     {
-        if (CheckAnswer(basicInteractions.selectedObj.name))
+        if (basicInteractions.selectedObj.name == "Phr R" || basicInteractions.selectedObj.name == "Phr L")
         {
-            notificationPanel.SetActive(true);
-            notificationRight.SetActive(true);
+            if (CheckAnswer("Phr R or Phr L"))
+            {
+                notificationPanel.SetActive(true);
+                notificationRight.SetActive(true);
+
+            }
+            else
+            {
+                notificationPanel.SetActive(true);
+                notificationWrong.SetActive(true);
+            }
 
         }
         else
         {
-            notificationPanel.SetActive(true);
-            notificationWrong.SetActive(true);
+            if (CheckAnswer(basicInteractions.selectedObj.name))
+            {
+                notificationPanel.SetActive(true);
+                notificationRight.SetActive(true);
+
+            }
+            else
+            {
+                notificationPanel.SetActive(true);
+                notificationWrong.SetActive(true);
+            }
         }
     }
 
