@@ -16,7 +16,8 @@ public class UiManger : MonoBehaviour
     [SerializeField] Texture pauseBtn, playBtn;
     [SerializeField] Slider transSlider;
 
-    private bool controlCheck, searchCheck, animCheck, animState, modelAnimState, sliderCheck;
+    private bool controlCheck, searchCheck, animCheck, animState, modelAnimState;
+    public bool sliderCheck;
     private GameObject loadedAnimModel;
 
     // Start is called before the first frame update
