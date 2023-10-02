@@ -16,9 +16,13 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] CameraControls camControl;
     [SerializeField] Button isolateBtn;
 
-    [SerializeField] GameObject coronaryModel;
+    public GameObject coronaryModel;
+    public GameObject coronarySideModel;
     [SerializeField] GameObject coronaryModelAngio;
     [SerializeField] Slider renderingSlider;
+
+    private Transform coronaryTransform;
+    private Transform coronarySideTransform;
 
     [SerializeField] PartList partListScript;
     [SerializeField] UiManger uiManagerScript;
@@ -42,7 +46,7 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] UiManger uiMangerScript;
     [SerializeField] Image image;
 
-    [SerializeField] GameObject selectedViewModel;
+    //[SerializeField] GameObject selectedViewModel;
     void Start()
     {
         mousePos = new Vector2(0, 0);
@@ -52,15 +56,7 @@ public class BasicInteractions : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (changeView)
-        {
-            selectedViewModel = coronaryModelAngio.gameObject; 
-        }
-        else
-        {
-            selectedViewModel = coronaryModel.gameObject;
-        }
+    {   
         ShowVein();
 
         if (isolateCheck == false)
@@ -272,12 +268,11 @@ public class BasicInteractions : MonoBehaviour
         veinCheck = true;
     }
 
-    public void ShowVein()
+    public void ToggleVeinTransparent(GameObject model, bool check)
     {
-        //veinCheck = !veinCheck;
-        if (veinCheck)
+        if (check)
         {
-            foreach (Transform child in selectedViewModel.transform)
+            foreach (Transform child in model.transform)
             {
                 if (child.tag != "Vein")
                 {
@@ -313,6 +308,16 @@ public class BasicInteractions : MonoBehaviour
         }
     }
 
+    public void ShowVein()
+    {
+        if (coronaryModel != null)
+        {
+            ToggleVeinTransparent(coronaryModel, veinCheck);
+            ToggleVeinTransparent(coronarySideModel, veinCheck);
+        }
+        
+    }
+
     public void ShowSlider()
     {
         if (viewMode)
@@ -325,6 +330,23 @@ public class BasicInteractions : MonoBehaviour
         }
     }
 
+    public void ToggleCollider(GameObject model, bool viewMode)
+    {
+        foreach (Transform child in model.transform)
+        {
+            if (child.tag != "Vein")
+            {
+                if(viewMode)
+                {
+                    child.GetComponent<Collider>().enabled = !viewMode;
+                }
+                else
+                {
+                    child.GetComponent<Collider>().enabled = viewMode;
+                }
+            }
+        }
+    }
     public void ActivateViewMode()
     {
         viewMode = !viewMode;
@@ -332,92 +354,91 @@ public class BasicInteractions : MonoBehaviour
         {
             uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 1;
             UpdateSliderValue();
-            foreach (Transform child in selectedViewModel.transform)
-            {
-                if (child.tag != "Vein")
-                {
-                    child.GetComponent<Collider>().enabled = false;
-                }
-            }
+            ToggleCollider(coronaryModel,viewMode);
+            ToggleCollider(coronarySideModel,viewMode);
+            ResetDict();
         }
         else
         {
             uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 0;
             veinCheck = false;
-            foreach (Transform child in selectedViewModel.transform)
-            {
-                if (child.tag != "Vein")
-                {
-                    child.GetComponent<Collider>().enabled = true;
-                }
-            }
+            ToggleCollider(coronaryModel, viewMode);
+            ToggleCollider(coronarySideModel, viewMode);
+            ResetDict();
         }
 
     }
 
-    public void ChangeViewMode()
+    public void ResetDict()
     {
-        changeView = !changeView;
-        if (viewMode)
-        {
-            ActivateViewMode();
-        }
-        veinCheck = false;
+        //partListScript.ResetNameList(coronaryModel.transform);
+        //partListScript.ResetNameList(coronarySideModel.transform);
 
-        if (changeView)
-        {
-            model = coronaryModelAngio;
-            partListScript.parentModel = coronaryModelAngio.transform;
-            if (uiManagerScript.sliderCheck)
-            {
-                uiManagerScript.ActivateTransSlider();
-            }
-            if (selectedObj != null)
-            {
-                coronaryModel.gameObject.SetActive(!changeView);
-                coronaryModelAngio.gameObject.SetActive(changeView);
-                partListScript.ResetNameList();
-                partListScript.InitializeDictionary();
-                Destroy(selectedInstantiatedObj);
-                selectedObj.gameObject.SetActive(true);
-                selectedObj = null;
-            }
-            else
-            {
-                coronaryModel.gameObject.SetActive(!changeView);
-                coronaryModelAngio.gameObject.SetActive(changeView);
-                partListScript.ResetNameList();
-                partListScript.InitializeDictionary();
-            }
-        }
-        else
-        {
-            model = coronaryModel;
-            uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 0;
-            partListScript.parentModel = coronaryModel.transform;
-            if (uiManagerScript.sliderCheck)
-            {
-                uiManagerScript.ActivateTransSlider();
-            }
-            if (selectedObj != null)
-            {
-                coronaryModel.gameObject.SetActive(!changeView);
-                coronaryModelAngio.gameObject.SetActive(changeView);
-                partListScript.ResetNameList();
-                partListScript.InitializeDictionary();
-                Destroy(selectedInstantiatedObj);
-                selectedObj.gameObject.SetActive(true);
-                selectedObj = null;
-            }
-            else
-            {
-                coronaryModel.gameObject.SetActive(!changeView);
-                coronaryModelAngio.gameObject.SetActive(changeView);
-                partListScript.ResetNameList();
-                partListScript.InitializeDictionary();
-            }
-        }
     }
+
+    ////public void ChangeViewMode()
+    ////{
+    ////    changeView = !changeView;
+    ////    if (viewMode)
+    ////    {
+    ////        ActivateViewMode();
+    ////    }
+    ////    veinCheck = false;
+
+    ////    if (changeView)
+    ////    {
+    ////        model = coronaryModelAngio;
+    ////        partListScript.parentModel = coronaryModelAngio.transform;
+    ////        if (uiManagerScript.sliderCheck)
+    ////        {
+    ////            uiManagerScript.ActivateTransSlider();
+    ////        }
+    ////        if (selectedObj != null)
+    ////        {
+    ////            coronaryModel.gameObject.SetActive(!changeView);
+    ////            coronaryModelAngio.gameObject.SetActive(changeView);
+    ////            partListScript.ResetNameList();
+    ////            partListScript.InitializeDictionary();
+    ////            Destroy(selectedInstantiatedObj);
+    ////            selectedObj.gameObject.SetActive(true);
+    ////            selectedObj = null;
+    ////        }
+    ////        else
+    ////        {
+    ////            coronaryModel.gameObject.SetActive(!changeView);
+    ////            coronaryModelAngio.gameObject.SetActive(changeView);
+    ////            partListScript.ResetNameList();
+    ////            partListScript.InitializeDictionary();
+    ////        }
+    ////    }
+    ////    else
+    ////    {
+    ////        model = coronaryModel;
+    ////        uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 0;
+    ////        partListScript.parentModel = coronaryModel.transform;
+    ////        if (uiManagerScript.sliderCheck)
+    ////        {
+    ////            uiManagerScript.ActivateTransSlider();
+    ////        }
+    ////        if (selectedObj != null)
+    ////        {
+    ////            coronaryModel.gameObject.SetActive(!changeView);
+    ////            coronaryModelAngio.gameObject.SetActive(changeView);
+    ////            partListScript.ResetNameList();
+    ////            partListScript.InitializeDictionary();
+    ////            Destroy(selectedInstantiatedObj);
+    ////            selectedObj.gameObject.SetActive(true);
+    ////            selectedObj = null;
+    ////        }
+    ////        else
+    ////        {
+    ////            coronaryModel.gameObject.SetActive(!changeView);
+    ////            coronaryModelAngio.gameObject.SetActive(changeView);
+    ////            partListScript.ResetNameList();
+    ////            partListScript.InitializeDictionary();
+    ////        }
+    ////    }
+
     public void OnMouseEnter() { showCheck = true; }
     public void OnMouseExit() { showCheck = false; }
 }

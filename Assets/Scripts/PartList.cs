@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class PartList : MonoBehaviour
 {
-    public Transform parentModel;
+    public Transform[] parentModel;
     [SerializeField] GameObject partNamePrefab;
     [SerializeField] GameObject partNameParent;
     [SerializeField] Dictionary<string, GameObject> partDict = new Dictionary<string, GameObject>();
 
     void Awake()
     {
-        ResetNameList();
-        InitializeDictionary();
+        ResetNameList(parentModel);
+        InitializeDictionary(parentModel);
     }
 
     public void SearchForPart(TMP_InputField input)
@@ -54,21 +55,33 @@ public class PartList : MonoBehaviour
         }
         else
         {
-            ResetNameList();
+            ResetNameList(parentModel);
         }
         
     }
 
-    public void InitializeDictionary()
+    public void InitializeDictionary(Transform[] parentModel)
     {
-        partDict = new Dictionary<string, GameObject>();
-        foreach (Transform child in parentModel)
+        for (int i = 0; i < parentModel.Length; i++)
         {
-            partDict.Add(child.name.ToLower(), child.gameObject);
+            foreach (Transform child in parentModel[i])
+            {
+                if (partDict.ContainsKey(child.name))
+                {
+                    return;
+                }
+                else
+                {
+                    partDict.Add(child.name.ToLower(), child.gameObject);
+                }
+            }
         }
+        //partDict = new Dictionary<string, GameObject>();
+        
     }
 
-    public void ResetNameList()
+
+    public void ResetNameList(Transform[] parentModel)
     {
         foreach (Transform child in partNameParent.transform)
         {
@@ -78,17 +91,20 @@ public class PartList : MonoBehaviour
         float spacing = 0;
         float counter = 0;
 
-        foreach (Transform child in parentModel)
+        for (int i = 0; i < parentModel.Length; i++) 
         {
-            spacing += -50f;
-            counter++;
+            foreach (Transform child in parentModel[i])
+            {
+                spacing += -50f;
+                counter++;
 
-            GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
+                GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
 
-            spawnName.GetComponent<TMP_Text>().text = child.name;
-            spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
-            spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
-            spawnName.name = child.name;
+                spawnName.GetComponent<TMP_Text>().text = child.name;
+                spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
+                spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
+                spawnName.name = child.name;
+            }
         }
 
         partNameParent.GetComponent<RectTransform>().sizeDelta = new Vector2(partNameParent.GetComponent<RectTransform>().sizeDelta.x, -partNameParent.transform.GetChild(partNameParent.transform.childCount - 1).GetComponent<RectTransform>().localPosition.y + 30);
