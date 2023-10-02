@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections;
 using TMPro;
+using UnityEngine.Networking;
 
 public class QuizManager : MonoBehaviour
 {
@@ -43,12 +44,33 @@ public class QuizManager : MonoBehaviour
             questionTextDisplay = GameObject.FindGameObjectWithTag("QuestionText").GetComponent<TextMeshProUGUI>();
         }
 
-        using (StreamReader r = new StreamReader("Assets/test3.json"))
-        {
-            string json = r.ReadToEnd(); 
-            topic = JsonConvert.DeserializeObject<List<Course>>(json);
-        }
+        //using (StreamReader r = new StreamReader("Assets/test3.json"))
+        //{
+        //    string json = r.ReadToEnd(); 
+        //    topic = JsonConvert.DeserializeObject<List<Course>>(json);
+        //}
 
+        StartCoroutine(GetStreamingAssetFile("test3.json"));
+
+    }
+
+    IEnumerator GetStreamingAssetFile(string url)
+    {
+        string path = Path.Combine(Application.streamingAssetsPath, url);
+
+        using (var request = UnityWebRequest.Get(path))
+        {
+            yield return request.SendWebRequest();
+
+            if (request.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError("Error: " + request.error);
+                yield break;
+            }
+
+            string jsonFile = request.downloadHandler.text;
+            topic = JsonConvert.DeserializeObject<List<Course>>(jsonFile);
+        }
     }
 
     private void Update()
