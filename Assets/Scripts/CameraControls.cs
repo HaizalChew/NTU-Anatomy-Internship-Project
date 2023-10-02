@@ -127,9 +127,9 @@ public class CameraControls : MonoBehaviour
         stopRecentering = false;
         target = targetPos;
 
-        if (distance >= 2f)
+        if (distance >= 3f)
         {
-            distance = 2f;
+            distance = 3f;
         }
         
     }

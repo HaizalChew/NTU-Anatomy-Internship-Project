@@ -465,6 +465,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeCanvas: {fileID: 0}
   progressBar: {fileID: 0}
+  completedCheckIndex: []
 --- !u!1 &440880218
 GameObject:
   m_ObjectHideFlags: 0
