@@ -23,6 +23,8 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private string currentQuestion, currentAnswer;
     [SerializeField] private int questionNumberCount;
 
+    private float originSliderValue;
+
     [Serializable]
     public class QuesDatum
     {
@@ -94,6 +96,27 @@ public class QuizManager : MonoBehaviour
     {
         questions = GetQuizQuestions(topicIndex);
         questionNumberCount = 0;
+        basicInteractions.coronaryModel.gameObject.SetActive(false);
+        originSliderValue = basicInteractions.sliderValue;
+        if(basicInteractions.selectedObj != null)
+        {
+            basicInteractions.selectedObj.gameObject.SetActive(true);
+            basicInteractions.selectedObj = null;
+            Destroy(basicInteractions.selectedInstantiatedObj);
+        }
+        basicInteractions.model = basicInteractions.coronarySideModel;
+        if (basicInteractions.veinCheck)
+        {
+            basicInteractions.sliderValue = 0;
+        }
+        basicInteractions.ToggleVeinTransparent(basicInteractions.coronarySideModel, basicInteractions.veinCheck);
+    }
+
+    public void OnQuizExit()
+    {
+        basicInteractions.coronaryModel.gameObject.SetActive(true);
+        basicInteractions.sliderValue = originSliderValue;
+        basicInteractions.ToggleVeinTransparent(basicInteractions.coronaryModel, basicInteractions.veinCheck);
     }
 
     public void OnMoveOnNextQuestion()

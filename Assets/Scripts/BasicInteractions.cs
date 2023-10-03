@@ -12,7 +12,7 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] public Transform selectedObj;
     [SerializeField] LayerMask selectableLayerMask;
     public GameObject selectedInstantiatedObj;
-    [SerializeField] GameObject model;
+    public GameObject model;
     [SerializeField] CameraControls camControl;
     [SerializeField] Button isolateBtn;
 
@@ -338,11 +338,15 @@ public class BasicInteractions : MonoBehaviour
             {
                 if(viewMode)
                 {
+                    Debug.Log("activate");
                     child.GetComponent<Collider>().enabled = !viewMode;
+                    Debug.Log(viewMode);
                 }
                 else
                 {
-                    child.GetComponent<Collider>().enabled = viewMode;
+                    child.GetComponent<Collider>().enabled = !viewMode;
+                    Debug.Log("deactivate");
+                    Debug.Log(viewMode);
                 }
             }
         }

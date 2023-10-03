@@ -615,6 +615,10 @@ PrefabInstance:
       propertyPath: partNameParent
       value: 
       objectReference: {fileID: 1684770498}
+    - target: {fileID: 6654262569695046416, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: parentModel.Array.data[0]
+      value: 
+      objectReference: {fileID: 1102422594103231590}
     - target: {fileID: 6654262569695046421, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: m_Name
       value: MainController
