@@ -23,6 +23,9 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private string currentQuestion, currentAnswer;
     [SerializeField] private int questionNumberCount;
 
+
+    public static bool quizModeActive;
+
     private float originSliderValue;
 
     [Serializable]
@@ -96,27 +99,47 @@ public class QuizManager : MonoBehaviour
     {
         questions = GetQuizQuestions(topicIndex);
         questionNumberCount = 0;
-        basicInteractions.coronaryModel.gameObject.SetActive(false);
-        originSliderValue = basicInteractions.sliderValue;
+
+        if (basicInteractions.coronaryModel != null)
+        {
+            basicInteractions.coronaryModel.gameObject.SetActive(false);
+            originSliderValue = basicInteractions.sliderValue;
+            basicInteractions.model = basicInteractions.coronarySideModel;
+            basicInteractions.ToggleVeinTransparent(basicInteractions.coronarySideModel, basicInteractions.veinCheck);
+
+            if (basicInteractions.veinCheck)
+            {
+                basicInteractions.sliderValue = 0;
+                basicInteractions.dropdownPanel.SetBool("IsOpen", false);
+            }
+        }
+              
         if(basicInteractions.selectedObj != null)
         {
             basicInteractions.selectedObj.gameObject.SetActive(true);
             basicInteractions.selectedObj = null;
             Destroy(basicInteractions.selectedInstantiatedObj);
         }
-        basicInteractions.model = basicInteractions.coronarySideModel;
-        if (basicInteractions.veinCheck)
-        {
-            basicInteractions.sliderValue = 0;
-        }
-        basicInteractions.ToggleVeinTransparent(basicInteractions.coronarySideModel, basicInteractions.veinCheck);
+        
+        quizModeActive = true;
     }
 
     public void OnQuizExit()
     {
-        basicInteractions.coronaryModel.gameObject.SetActive(true);
-        basicInteractions.sliderValue = originSliderValue;
-        basicInteractions.ToggleVeinTransparent(basicInteractions.coronaryModel, basicInteractions.veinCheck);
+        if (basicInteractions.coronaryModel != null)
+        {
+            basicInteractions.coronaryModel.gameObject.SetActive(true);
+            basicInteractions.sliderValue = originSliderValue;
+            basicInteractions.ToggleVeinTransparent(basicInteractions.coronaryModel, basicInteractions.veinCheck);
+
+            if (basicInteractions.veinCheck)
+            {
+                basicInteractions.dropdownPanel.SetBool("IsOpen", true);
+            }
+
+        }
+
+        quizModeActive = false;
     }
 
     public void OnMoveOnNextQuestion()

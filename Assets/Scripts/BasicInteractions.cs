@@ -20,6 +20,7 @@ public class BasicInteractions : MonoBehaviour
     public GameObject coronarySideModel;
     [SerializeField] GameObject coronaryModelAngio;
     [SerializeField] Slider renderingSlider;
+    public Animator dropdownPanel;
 
     private Transform coronaryTransform;
     private Transform coronarySideTransform;
@@ -250,7 +251,7 @@ public class BasicInteractions : MonoBehaviour
     {
         if (showCheck)
         {
-            if (highlight != null)
+            if (highlight != null && !QuizManager.quizModeActive)
             {
                 mousePos = Input.mousePosition + offset;
                 objRect.x = mousePos.x;
@@ -338,15 +339,11 @@ public class BasicInteractions : MonoBehaviour
             {
                 if(viewMode)
                 {
-                    Debug.Log("activate");
                     child.GetComponent<Collider>().enabled = !viewMode;
-                    Debug.Log(viewMode);
                 }
                 else
                 {
                     child.GetComponent<Collider>().enabled = !viewMode;
-                    Debug.Log("deactivate");
-                    Debug.Log(viewMode);
                 }
             }
         }
@@ -361,6 +358,7 @@ public class BasicInteractions : MonoBehaviour
             ToggleCollider(coronaryModel,viewMode);
             ToggleCollider(coronarySideModel,viewMode);
             ResetDict();
+            dropdownPanel.SetBool("IsOpen", true);
         }
         else
         {
@@ -369,6 +367,7 @@ public class BasicInteractions : MonoBehaviour
             ToggleCollider(coronaryModel, viewMode);
             ToggleCollider(coronarySideModel, viewMode);
             ResetDict();
+            dropdownPanel.SetBool("IsOpen", false);
         }
 
     }
