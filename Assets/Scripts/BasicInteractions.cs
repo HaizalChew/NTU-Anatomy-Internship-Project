@@ -19,8 +19,12 @@ public class BasicInteractions : MonoBehaviour
     public GameObject coronaryModel;
     public GameObject coronarySideModel;
     [SerializeField] GameObject coronaryModelAngio;
+    [SerializeField] PartList partList;
     [SerializeField] Slider renderingSlider;
     public Animator dropdownPanel;
+    
+    public Material transMat;
+    private Material newMat;
 
     private Transform coronaryTransform;
     private Transform coronarySideTransform;
@@ -43,9 +47,13 @@ public class BasicInteractions : MonoBehaviour
     public bool viewMode;
     public bool changeView;
 
+    public GameObject cloneContainer;
+
 
     [SerializeField] UiManger uiMangerScript;
     [SerializeField] Image image;
+
+    public List<Material> originalmats = new List<Material>();
 
     //[SerializeField] GameObject selectedViewModel;
     void Start()
@@ -53,11 +61,27 @@ public class BasicInteractions : MonoBehaviour
         mousePos = new Vector2(0, 0);
         showCheck = false;
         objRect = new Rect(0, 0, 300, 100);
+        if(transMat != null )
+        {
+            newMat = Instantiate(transMat);
+
+        }
     }
 
     // Update is called once per frame
     void Update()
-    {   
+    {
+        //if (veinCheck)
+        //{
+
+        //    ToggleVeinTransparent(coronaryModel, veinCheck);
+        //    Debug.Log("yes");
+        //}
+        //else
+        //{
+        //    ToggleVeinTransparent(coronaryModel, veinCheck);
+        //    Debug.Log("no");
+        //}
         ShowVein();
 
         if (isolateCheck == false)
@@ -230,7 +254,7 @@ public class BasicInteractions : MonoBehaviour
 
             uiMangerScript.SwitchSprite(isolateCheck, image);
 
-            foreach (Transform child in model.transform)
+            foreach (Transform child in selectedObj.transform.parent)
             {
                 if (child.name == selectedObj.name)
                 {
@@ -266,44 +290,65 @@ public class BasicInteractions : MonoBehaviour
     public void UpdateSliderValue()
     {
         sliderValue = renderingSlider.value;
+
         veinCheck = true;
     }
 
-    public void ToggleVeinTransparent(GameObject model, bool check)
+
+    GameObject ChangeMaterial(GameObject bodyPart)
     {
-        if (check)
+        GameObject changedMat = Instantiate(bodyPart, bodyPart.transform.position, bodyPart.transform.rotation, cloneContainer.transform);
+        Destroy(changedMat.GetComponent<Rigidbody>());
+        Destroy(changedMat.GetComponent<MeshCollider>());
+        Renderer targetRend = changedMat.GetComponent<Renderer>();
+        Renderer srcRend = bodyPart.GetComponent<Renderer>();
+        Material newMat = Instantiate(transMat);
+        newMat.mainTexture = srcRend.material.mainTexture;
+        targetRend.material = newMat;
+        return (changedMat);
+    }
+
+    public void ToggleVeinTransparent()
+    {
+        if (veinCheck)
         {
-            foreach (Transform child in model.transform)
+            foreach (Transform child in coronaryModel.transform)
             {
                 if (child.tag != "Vein")
                 {
-                    child.GetComponent<MeshRenderer>().material.SetFloat("_Mode", 3);
-                    //Turn on Alpha Blending
-                    child.GetComponent<MeshRenderer>().material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
-                    child.GetComponent<MeshRenderer>().material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.OneMinusSrcAlpha);
-                    child.GetComponent<MeshRenderer>().material.EnableKeyword("_ALPHABLEND_ON");
-                    child.GetComponent<MeshRenderer>().material.renderQueue = 3000;
-                    Color color = child.GetComponent<MeshRenderer>().material.color;
-                    color.a = sliderValue;
-                    child.GetComponent<MeshRenderer>().material.color = color;
+          
+                    ChangeMaterial(child.gameObject);
+                    child.gameObject.SetActive(false);
+                }
+            }
+            foreach (Transform child in coronarySideModel.transform)
+            {
+                if (child.tag != "Vein")
+                {
+
+                    ChangeMaterial(child.gameObject);
+                    child.gameObject.SetActive(false);
                 }
             }
         }
         else
         {
-            foreach (Transform child in model.transform)
+            foreach (Transform child in cloneContainer.transform)
+            {
+                Destroy(child.gameObject);
+            }
+            foreach (Transform child in coronaryModel.transform)
             {
                 if (child.tag != "Vein")
                 {
-                    child.GetComponent<MeshRenderer>().material.SetFloat("_Mode", 1);
-                    //Turn on Alpha Blending
-                    child.GetComponent<MeshRenderer>().material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);
-                    child.GetComponent<MeshRenderer>().material.SetInt("_DstBlend", (int)UnityEngine.Rendering.BlendMode.Zero);
-                    child.GetComponent<MeshRenderer>().material.DisableKeyword("_ALPHABLEND_ON");
-                    child.GetComponent<MeshRenderer>().material.renderQueue = 2000;
-                    Color color = child.GetComponent<MeshRenderer>().material.color;
-                    color.a = 1;
-                    child.GetComponent<MeshRenderer>().material.color = color;
+                    child.gameObject.SetActive(true);
+                }
+            }
+            foreach (Transform child in coronarySideModel.transform)
+            {
+                if (child.tag != "Vein")
+                {
+                    child.gameObject.SetActive(true);
                 }
             }
         }
@@ -313,8 +358,8 @@ public class BasicInteractions : MonoBehaviour
     {
         if (coronaryModel != null)
         {
-            ToggleVeinTransparent(coronaryModel, veinCheck);
-            ToggleVeinTransparent(coronarySideModel, veinCheck);
+            //ToggleVeinTransparent(coronaryModel, veinCheck);
+            //ToggleVeinTransparent(coronarySideModel, veinCheck);
         }
         
     }
@@ -351,6 +396,9 @@ public class BasicInteractions : MonoBehaviour
     public void ActivateViewMode()
     {
         viewMode = !viewMode;
+        partList.useExclude = viewMode;
+        partList.ResetNameListOnButton();
+
         if (viewMode)
         {
             uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 1;
@@ -359,6 +407,14 @@ public class BasicInteractions : MonoBehaviour
             ToggleCollider(coronarySideModel,viewMode);
             ResetDict();
             dropdownPanel.SetBool("IsOpen", true);
+
+            if (selectedObj != null)
+            {
+                selectedObj.gameObject.SetActive(true);
+                selectedObj = null;
+                Destroy(selectedInstantiatedObj);
+            }
+            
         }
         else
         {
@@ -368,6 +424,13 @@ public class BasicInteractions : MonoBehaviour
             ToggleCollider(coronarySideModel, viewMode);
             ResetDict();
             dropdownPanel.SetBool("IsOpen", false);
+
+            if (selectedObj != null)
+            {
+                selectedObj.gameObject.SetActive(true);
+                selectedObj = null;
+                Destroy(selectedInstantiatedObj);
+            }
         }
 
     }

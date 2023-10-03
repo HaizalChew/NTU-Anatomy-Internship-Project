@@ -124,12 +124,12 @@ public class CameraControls : MonoBehaviour
 
     public void ActivateRecentering(Transform targetPos)
     {
-        stopRecentering = false;
         target = targetPos;
+        stopRecentering = false;
 
-        if (distance >= 3f)
+        if (distance >= 2f)
         {
-            distance = 3f;
+            distance = 2f;
         }
         
     }

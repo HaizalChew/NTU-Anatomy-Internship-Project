@@ -13,6 +13,7 @@ public class QuizManager : MonoBehaviour
     //public TextAsset textFile;
     List<Course> topic = new List<Course>();
     public BasicInteractions basicInteractions;
+    public CameraControls camControls;
     private bool answerCheck;
 
     [Header("Questions")]
@@ -99,18 +100,24 @@ public class QuizManager : MonoBehaviour
     {
         questions = GetQuizQuestions(topicIndex);
         questionNumberCount = 0;
+        
+        if(basicInteractions.isolateCheck == true)
+        {
+            basicInteractions.IsolatePart();
+        }
 
         if (basicInteractions.coronaryModel != null)
         {
             basicInteractions.coronaryModel.gameObject.SetActive(false);
             originSliderValue = basicInteractions.sliderValue;
             basicInteractions.model = basicInteractions.coronarySideModel;
-            basicInteractions.ToggleVeinTransparent(basicInteractions.coronarySideModel, basicInteractions.veinCheck);
+            //basicInteractions.ToggleVeinTransparent(basicInteractions.coronarySideModel, basicInteractions.veinCheck);
 
             if (basicInteractions.veinCheck)
             {
                 basicInteractions.sliderValue = 0;
                 basicInteractions.dropdownPanel.SetBool("IsOpen", false);
+                basicInteractions.cloneContainer.SetActive(false);
             }
         }
               
@@ -130,10 +137,11 @@ public class QuizManager : MonoBehaviour
         {
             basicInteractions.coronaryModel.gameObject.SetActive(true);
             basicInteractions.sliderValue = originSliderValue;
-            basicInteractions.ToggleVeinTransparent(basicInteractions.coronaryModel, basicInteractions.veinCheck);
+            //basicInteractions.ToggleVeinTransparent(basicInteractions.coronaryModel, basicInteractions.veinCheck);
 
             if (basicInteractions.veinCheck)
             {
+                basicInteractions.cloneContainer.SetActive(true);
                 basicInteractions.dropdownPanel.SetBool("IsOpen", true);
             }
 
