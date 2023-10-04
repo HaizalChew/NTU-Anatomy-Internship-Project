@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Camera))]
 public class CameraControls : MonoBehaviour
@@ -33,6 +34,7 @@ public class CameraControls : MonoBehaviour
 
     //Vector3 focusPoint;
     Vector3 newMousePoint;
+    int UILayer;
 
     private void Awake()
     {
@@ -42,6 +44,8 @@ public class CameraControls : MonoBehaviour
 
         zoomSlider.minValue = 0.1f;
         zoomSlider.maxValue = 20f;
+
+        UILayer = LayerMask.NameToLayer("UI");
     }
 
     private void OnEnable()
@@ -99,7 +103,6 @@ public class CameraControls : MonoBehaviour
         Vector3 lookPosition = focus.transform.position - lookDirection * distance;
         transform.SetPositionAndRotation(lookPosition, lookRotation);
 
-        
 
     }
 
@@ -180,13 +183,17 @@ public class CameraControls : MonoBehaviour
         float input = zoomScrollInput.action.ReadValue<Vector2>().y;
 
         const float e = 0.001f;
-        if (input > -e)
+
+        if (!IsPointerOverUIElement())
         {
-            distance -= zoomSpeed * Mathf.Abs(input / 120f);
-        }
-        else if (input < e)
-        {
-            distance += zoomSpeed * Mathf.Abs(input / 120f);
+            if (input > -e)
+            {
+                distance -= zoomSpeed * Mathf.Abs(input / 120f);
+            }
+            else if (input < e)
+            {
+                distance += zoomSpeed * Mathf.Abs(input / 120f);
+            }
         }
 
         distance = Mathf.Clamp(distance, .1f, 20f);
@@ -260,4 +267,35 @@ public class CameraControls : MonoBehaviour
     {
         Gizmos.DrawWireSphere(focus.transform.position, .5f);
     }
+
+    //Returns 'true' if we touched or hovering on Unity UI element.
+    public bool IsPointerOverUIElement()
+    {
+        return IsPointerOverUIElement(GetEventSystemRaycastResults());
+    }
+
+
+    //Returns 'true' if we touched or hovering on Unity UI element.
+    private bool IsPointerOverUIElement(List<RaycastResult> eventSystemRaysastResults)
+    {
+        for (int index = 0; index < eventSystemRaysastResults.Count; index++)
+        {
+            RaycastResult curRaysastResult = eventSystemRaysastResults[index];
+            if (curRaysastResult.gameObject.layer == UILayer)
+                return true;
+        }
+        return false;
+    }
+
+
+    //Gets all event system raycast results of current mouse or touch position.
+    static List<RaycastResult> GetEventSystemRaycastResults()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+        List<RaycastResult> raysastResults = new List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, raysastResults);
+        return raysastResults;
+    }
+
 }

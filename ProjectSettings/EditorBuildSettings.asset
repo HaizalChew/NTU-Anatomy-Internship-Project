@@ -26,4 +26,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CoronaryVessel.unity
     guid: e6d4c8e72557010409c9fe514eeb37aa
+  - enabled: 1
+    path: Assets/Scenes/Dual Venous Sinus.unity
+    guid: 4c2f19d775a5bfe4a915920faca80eac
+  - enabled: 1
+    path: Assets/Scenes/Neck Fascia.unity
+    guid: f65e70136d7438d4aad565dc0a27d11a
+  - enabled: 1
+    path: Assets/Scenes/Prostate and perineum.unity
+    guid: 6b2e6cd9bbb2e9644aa3b13dad8a31f6
+  - enabled: 1
+    path: Assets/Scenes/Spinal Cord Blood Supply.unity
+    guid: f096e447f935dd94689d630a25d93dee
   m_configObjects: {}
