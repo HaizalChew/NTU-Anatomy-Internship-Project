@@ -238,7 +238,8 @@ public class BasicInteractions : MonoBehaviour
 
                 for (int i = 0; i < highlightMaterials.Length; i++)
                 {
-                    highlightMaterials.SetValue(highlightMaterial, i);
+                    highlightMaterials[i] = new Material(highlightMaterial);
+                    highlightMaterials[i].color = orignialMaterial[i].color;
                 }
 
                 highlight.GetComponent<MeshRenderer>().materials = highlightMaterials;

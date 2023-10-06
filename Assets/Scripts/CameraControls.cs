@@ -28,6 +28,7 @@ public class CameraControls : MonoBehaviour
     [SerializeField] float zoomSpeed = 1f;
     [SerializeField] Slider zoomSlider;
     [SerializeField] SelectableHandler selectableHandler;
+    [SerializeField] GameObject orbitPoint;
 
     // Set orbit angles
     Vector2 orbitAngles = new Vector2(45f, 0f);
@@ -35,6 +36,7 @@ public class CameraControls : MonoBehaviour
     //Vector3 focusPoint;
     Vector3 newMousePoint;
     int UILayer;
+    bool showOrbitPoint;
 
     private void Awake()
     {
@@ -98,6 +100,15 @@ public class CameraControls : MonoBehaviour
 
         // Enable camera panning
         Pan();
+
+        if (showOrbitPoint)
+        {
+            orbitPoint.SetActive(true);
+        }
+        else
+        {
+            orbitPoint.SetActive(false);
+        }
 
         Vector3 lookDirection = lookRotation * Vector3.forward;
         Vector3 lookPosition = focus.transform.position - lookDirection * distance;
@@ -222,6 +233,7 @@ public class CameraControls : MonoBehaviour
             {
                 newMousePoint = Input.mousePosition;
                 stopRecentering = true;
+                
             }
 
             if (Input.GetMouseButton(0))
@@ -236,7 +248,14 @@ public class CameraControls : MonoBehaviour
                 focus.transform.Translate(movement);
 
                 newMousePoint = Input.mousePosition;
+
+                showOrbitPoint = true;
             }
+            else
+            {
+                showOrbitPoint = false;
+            }
+
         }
         else
         {
@@ -244,6 +263,7 @@ public class CameraControls : MonoBehaviour
             {
                 newMousePoint = Input.mousePosition;
                 stopRecentering = true;
+                
             }
 
             if (Input.GetMouseButton(2))
@@ -258,8 +278,15 @@ public class CameraControls : MonoBehaviour
                 focus.transform.Translate(movement);
 
                 newMousePoint = Input.mousePosition;
+
+                showOrbitPoint = true;
+            }
+            else
+            {
+                showOrbitPoint = false;
             }
         }
+
         
     }
 
