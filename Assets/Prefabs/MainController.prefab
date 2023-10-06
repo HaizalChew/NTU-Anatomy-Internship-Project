@@ -45,9 +45,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd97b1f6c6586e47994cb3f5671cb34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedMat: {fileID: 2100000, guid: f4d824290b0326b4ba94da546bd02c36, type: 2}
+  selectedMat: {fileID: 2100000, guid: e6b8f7920f4dea74ea5409aea36259c4, type: 2}
   highlightMaterial: {fileID: 2100000, guid: fa1d6908d6e444d4aa59f3aa139828f1, type: 2}
-  orignialMaterial: {fileID: 0}
+  orignialMaterial:
+  - {fileID: 0}
   selectedObj: {fileID: 0}
   selectableLayerMask:
     serializedVersion: 2
@@ -56,9 +57,25 @@ MonoBehaviour:
   model: {fileID: 0}
   camControl: {fileID: 0}
   isolateBtn: {fileID: 0}
+  coronaryModel: {fileID: 0}
+  coronarySideModel: {fileID: 0}
+  coronaryModelAngio: {fileID: 0}
+  partList: {fileID: 0}
+  renderingSlider: {fileID: 0}
+  dropdownPanel: {fileID: 0}
+  transMat: {fileID: 0}
+  partListScript: {fileID: 0}
+  uiManagerScript: {fileID: 0}
+  sliderValue: 0
+  highlight: {fileID: 0}
   isolateCheck: 0
+  veinCheck: 0
+  viewMode: 0
+  changeView: 0
+  cloneContainer: {fileID: 0}
   uiMangerScript: {fileID: 0}
   image: {fileID: 0}
+  originalmats: []
 --- !u!114 &6654262569695046416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,6 +88,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03e5af3abafe07d4bb6472d8c4cbecdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parentModel: {fileID: 0}
+  parentModel:
+  - {fileID: 0}
   partNamePrefab: {fileID: 4794136648567507673, guid: 7b02ac4eade5de64bb20a2f80b8dfba2, type: 3}
   partNameParent: {fileID: 0}
+  excludeTag: 
+  useExclude: 0

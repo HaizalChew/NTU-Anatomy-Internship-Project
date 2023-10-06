@@ -120,7 +120,8 @@ public class BasicInteractions : MonoBehaviour
 
                 for (int i = 0; i < matArray.Length; i++)
                 {
-                    matArray[i] = selectedMat;
+                    matArray[i] = new Material(selectedMat);
+                    matArray[i].color = orignialMaterial[i].color;
                 }
                 selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
@@ -154,7 +155,8 @@ public class BasicInteractions : MonoBehaviour
 
                 for (int i = 0; i < matArray.Length; i++)
                 {
-                    matArray[i] = selectedMat;
+                    matArray[i] = new Material(selectedMat);
+                    matArray[i].color = orignialMaterial[i].color;
                 }
                 selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
@@ -174,7 +176,8 @@ public class BasicInteractions : MonoBehaviour
 
             for (int i = 0; i < matArray.Length; i++)
             {
-                matArray[i] = selectedMat;
+                matArray[i] = new Material(selectedMat);
+                matArray[i].color = selected.GetComponent<MeshRenderer>().materials[i].color;
             }
             selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
@@ -204,7 +207,8 @@ public class BasicInteractions : MonoBehaviour
 
             for (int i = 0; i < matArray.Length; i++)
             {
-                matArray[i] = selectedMat;
+                matArray[i] = new Material(selectedMat);
+                matArray[i].color = selected.GetComponent<MeshRenderer>().materials[i].color;
             }
             selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
