@@ -20,6 +20,7 @@ public class CameraControls : MonoBehaviour
     // Control orbit rotation expressed in degrees
     [SerializeField, Range(1f, 360f)] float rotationSpeed = 90f;
     [SerializeField, Range(-89f, 89f)] float minVerticalAngle = -30f, maxVerticalAngle = 60f;
+    [SerializeField] float cameraPanningSensitivity = 1.0f;
     [SerializeField] InputActionReference orbitLookInput, orbitUnlockInput, panUnlockInput, focusInput;
 
     // Control camera zoom
@@ -245,7 +246,7 @@ public class CameraControls : MonoBehaviour
 
                 Vector3 movement = orientation.up * direction.y + orientation.right * direction.x;
 
-                focus.transform.Translate(movement);
+                focus.transform.Translate(movement * cameraPanningSensitivity);
 
                 newMousePoint = Input.mousePosition;
 
@@ -275,7 +276,7 @@ public class CameraControls : MonoBehaviour
 
                 Vector3 movement = orientation.up * direction.y + orientation.right * direction.x;
 
-                focus.transform.Translate(movement);
+                focus.transform.Translate(movement * cameraPanningSensitivity);
 
                 newMousePoint = Input.mousePosition;
 
