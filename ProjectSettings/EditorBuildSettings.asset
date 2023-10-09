@@ -33,7 +33,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Neck Fascia.unity
     guid: f65e70136d7438d4aad565dc0a27d11a
   - enabled: 1
-    path: Assets/Scenes/Prostate and perineum.unity
+    path: Assets/Scenes/1.5.1 Thick Skin No text.unity
     guid: 6b2e6cd9bbb2e9644aa3b13dad8a31f6
   - enabled: 1
     path: Assets/Scenes/Spinal Cord Blood Supply.unity

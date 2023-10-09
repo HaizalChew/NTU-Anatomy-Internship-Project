@@ -106,20 +106,20 @@ public class QuizManager : MonoBehaviour
             basicInteractions.IsolatePart();
         }
 
-        if (basicInteractions.coronaryModel != null)
-        {
-            basicInteractions.coronaryModel.gameObject.SetActive(false);
-            originSliderValue = basicInteractions.sliderValue;
-            basicInteractions.model = basicInteractions.coronarySideModel;
-            //basicInteractions.ToggleVeinTransparent(basicInteractions.coronarySideModel, basicInteractions.veinCheck);
+        //if (basicInteractions.coronaryModel != null)
+        //{
+        //    basicInteractions.coronaryModel.gameObject.SetActive(false);
+        //    originSliderValue = basicInteractions.sliderValue;
+        //    basicInteractions.model = basicInteractions.coronarySideModel;
+        //    //basicInteractions.ToggleVeinTransparent(basicInteractions.coronarySideModel, basicInteractions.veinCheck);
 
-            if (basicInteractions.veinCheck)
-            {
-                basicInteractions.sliderValue = 0;
-                basicInteractions.dropdownPanel.SetBool("IsOpen", false);
-                basicInteractions.cloneContainer.SetActive(false);
-            }
-        }
+        //    if (basicInteractions.veinCheck)
+        //    {
+        //        basicInteractions.sliderValue = 0;
+        //        basicInteractions.dropdownPanel.SetBool("IsOpen", false);
+        //        basicInteractions.cloneContainer.SetActive(false);
+        //    }
+        //}
               
         if(basicInteractions.selectedObj != null)
         {
@@ -133,19 +133,19 @@ public class QuizManager : MonoBehaviour
 
     public void OnQuizExit()
     {
-        if (basicInteractions.coronaryModel != null)
-        {
-            basicInteractions.coronaryModel.gameObject.SetActive(true);
-            basicInteractions.sliderValue = originSliderValue;
-            //basicInteractions.ToggleVeinTransparent(basicInteractions.coronaryModel, basicInteractions.veinCheck);
+        //if (basicInteractions.coronaryModel != null)
+        //{
+        //    basicInteractions.coronaryModel.gameObject.SetActive(true);
+        //    basicInteractions.sliderValue = originSliderValue;
+        //    //basicInteractions.ToggleVeinTransparent(basicInteractions.coronaryModel, basicInteractions.veinCheck);
 
-            if (basicInteractions.veinCheck)
-            {
-                basicInteractions.cloneContainer.SetActive(true);
-                basicInteractions.dropdownPanel.SetBool("IsOpen", true);
-            }
+        //    if (basicInteractions.veinCheck)
+        //    {
+        //        basicInteractions.cloneContainer.SetActive(true);
+        //        basicInteractions.dropdownPanel.SetBool("IsOpen", true);
+        //    }
 
-        }
+        //}
 
         quizModeActive = false;
     }

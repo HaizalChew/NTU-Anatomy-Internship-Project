@@ -16,7 +16,6 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] CameraControls camControl;
     [SerializeField] Button isolateBtn;
 
-    public GameObject coronaryModel;
     public GameObject coronarySideModel;
     [SerializeField] GameObject coronaryModelAngio;
     [SerializeField] PartList partList;
@@ -71,18 +70,6 @@ public class BasicInteractions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //if (veinCheck)
-        //{
-
-        //    ToggleVeinTransparent(coronaryModel, veinCheck);
-        //    Debug.Log("yes");
-        //}
-        //else
-        //{
-        //    ToggleVeinTransparent(coronaryModel, veinCheck);
-        //    Debug.Log("no");
-        //}
-        ShowVein();
 
         if (isolateCheck == false)
         {
@@ -317,15 +304,6 @@ public class BasicInteractions : MonoBehaviour
     {
         if (veinCheck)
         {
-            foreach (Transform child in coronaryModel.transform)
-            {
-                if (child.tag != "Vein")
-                {
-          
-                    ChangeMaterial(child.gameObject);
-                    child.gameObject.SetActive(false);
-                }
-            }
             foreach (Transform child in coronarySideModel.transform)
             {
                 if (child.tag != "Vein")
@@ -342,13 +320,6 @@ public class BasicInteractions : MonoBehaviour
             {
                 Destroy(child.gameObject);
             }
-            foreach (Transform child in coronaryModel.transform)
-            {
-                if (child.tag != "Vein")
-                {
-                    child.gameObject.SetActive(true);
-                }
-            }
             foreach (Transform child in coronarySideModel.transform)
             {
                 if (child.tag != "Vein")
@@ -357,16 +328,6 @@ public class BasicInteractions : MonoBehaviour
                 }
             }
         }
-    }
-
-    public void ShowVein()
-    {
-        if (coronaryModel != null)
-        {
-            //ToggleVeinTransparent(coronaryModel, veinCheck);
-            //ToggleVeinTransparent(coronarySideModel, veinCheck);
-        }
-        
     }
 
     public void ShowSlider()
@@ -408,7 +369,6 @@ public class BasicInteractions : MonoBehaviour
         {
             uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 1;
             UpdateSliderValue();
-            ToggleCollider(coronaryModel,viewMode);
             ToggleCollider(coronarySideModel,viewMode);
             ResetDict();
             dropdownPanel.SetBool("IsOpen", true);
@@ -425,7 +385,7 @@ public class BasicInteractions : MonoBehaviour
         {
             uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 0;
             veinCheck = false;
-            ToggleCollider(coronaryModel, viewMode);
+     
             ToggleCollider(coronarySideModel, viewMode);
             ResetDict();
             dropdownPanel.SetBool("IsOpen", false);
