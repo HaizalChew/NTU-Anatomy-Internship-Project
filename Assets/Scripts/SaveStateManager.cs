@@ -20,6 +20,38 @@ public class SaveStateManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
+        LoadData();
+        Debug.Log(topicChecklistCompleted[1]);
+            
+        //for (int i = 0; i < topicChecklistCompleted.Length; i++)
+        //{
+        //    topicChecklistCompleted[i] = true;
+        //}
+
+    }
+
+    public bool allComplete()
+    {
+        foreach ( bool topicCheck in topicChecklistCompleted )
+        {
+            if ( topicCheck == false )
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void LoadData()
+    {
+        for ( int i = 0; i < topicChecklistCompleted.Length; i++ )
+        {
+            if(PlayerPrefs.GetInt("topicCheckListCompleted" + i) == 1)
+            {
+                topicChecklistCompleted[i] = true;
+                Debug.Log("Check");
+            }
+        }
     }
 }

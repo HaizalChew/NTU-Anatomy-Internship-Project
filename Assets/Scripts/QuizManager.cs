@@ -24,6 +24,10 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private string currentQuestion, currentAnswer;
     [SerializeField] private int questionNumberCount;
 
+    private string stringTopicIndex;
+    //private SaveStateManager saveState = SaveStateManager.instance;
+    //private bool[] completedTopics = new bool[5];
+
 
     public static bool quizModeActive;
 
@@ -165,6 +169,7 @@ public class QuizManager : MonoBehaviour
             notificationPanel.SetActive(true);
             notificationCompleted.SetActive(true);
             SaveStateManager.instance.topicChecklistCompleted[topicIndex] = true;
+            PlayerPrefs.SetInt("topicCheckListCompleted" + topicIndex, SaveStateManager.instance.topicChecklistCompleted[topicIndex] ? 1 : 0 );
         }
         
     }
