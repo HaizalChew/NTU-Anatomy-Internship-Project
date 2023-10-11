@@ -17,9 +17,6 @@ public class ContentFilter : MonoBehaviour
     public GameObject[] contentArray; 
     public Button[] topicArray;
 
-    private bool ContentStatus;
-    private bool active;
-
     public int him;
 
     // Start is called before the first frame update
@@ -33,13 +30,6 @@ public class ContentFilter : MonoBehaviour
             topicArray[count].onClick.AddListener(delegate { him = count; });
             topicArray[count].onClick.AddListener(delegate { ShowContent(); });
         }
-
-        //topicArray[0].onClick.AddListener(() => him = 0);
-        //topicArray[0].onClick.AddListener(delegate { ShowContent(); });
-        //topicArray[1].onClick.AddListener(() => him = 1);
-        //topicArray[1].onClick.AddListener(delegate { ShowContent(); });
-        //topicArray[2].onClick.AddListener(() => him = 2);
-        //topicArray[2].onClick.AddListener(delegate { ShowContent(); });
 
 
     }
