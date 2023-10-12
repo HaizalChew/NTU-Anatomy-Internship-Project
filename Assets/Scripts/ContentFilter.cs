@@ -1,11 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using UnityEngine.WSA;
-using UnityEngine.Windows.Speech;
 
 public class ContentFilter : MonoBehaviour
 {
