@@ -349,9 +349,11 @@ MonoBehaviour:
   focusRadius: 1
   focusCentering: 0.9
   stopRecentering: 0
+  recenteringZoom: 3
   rotationSpeed: 90
   minVerticalAngle: -89
   maxVerticalAngle: 89
+  cameraPanningSensitivity: 1
   orbitLookInput: {fileID: -4357323021904490931, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
   orbitUnlockInput: {fileID: 6991840353829052109, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
   panUnlockInput: {fileID: -3213935088973138889, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
@@ -676,7 +678,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28170eaa17613a54e90330cfba76a7cb, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28170eaa17613a54e90330cfba76a7cb, type: 3}
       propertyPath: m_LocalRotation.x
@@ -684,7 +686,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28170eaa17613a54e90330cfba76a7cb, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28170eaa17613a54e90330cfba76a7cb, type: 3}
       propertyPath: m_LocalRotation.z
@@ -696,7 +698,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28170eaa17613a54e90330cfba76a7cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 28170eaa17613a54e90330cfba76a7cb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

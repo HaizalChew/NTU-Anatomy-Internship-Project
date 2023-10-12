@@ -27,7 +27,7 @@ EditorBuildSettings:
     path: Assets/Scenes/1.4.1 Perineum.unity
     guid: eafd0129e41d9a84e8711647d407d520
   - enabled: 1
-    path: Assets/Scenes/1.4.2 Proste Zone 1.unity
+    path: Assets/Scenes/1.4.2 Proste Zone.unity
     guid: f707929b3d688344ab63025ba4b7febd
   - enabled: 1
     path: Assets/Scenes/1.5.1 Thick Skin No text.unity

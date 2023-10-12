@@ -16,6 +16,7 @@ public class CameraControls : MonoBehaviour
     [SerializeField, Min(0f)] float focusRadius = 1f;
     [SerializeField, Range(0f, 1f)] float focusCentering = 0.5f;
     [SerializeField] public bool stopRecentering;
+    [SerializeField] float recenteringZoom = 3f;
 
     // Control orbit rotation expressed in degrees
     [SerializeField, Range(1f, 360f)] float rotationSpeed = 90f;
@@ -142,9 +143,9 @@ public class CameraControls : MonoBehaviour
         target = targetPos;
         stopRecentering = false;
 
-        if (distance >= 2f)
+        if (distance >= recenteringZoom)
         {
-            distance = 2f;
+            distance = recenteringZoom;
         }
         
     }
@@ -152,9 +153,9 @@ public class CameraControls : MonoBehaviour
     public void ActivateRecenteringOnButton()
     {
         stopRecentering = false;
-        if (distance >= 2f)
+        if (distance >= recenteringZoom)
         {
-            distance = 2f;
+            distance = recenteringZoom;
         }
         
     }
