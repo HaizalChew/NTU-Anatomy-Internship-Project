@@ -12,13 +12,15 @@ public class ContentFilter : MonoBehaviour
 
     public GameObject[] contentArray; 
     public Button[] topicArray;
+    public static int saveYearInt;
 
     public int him;
 
     // Start is called before the first frame update
     void Start()
     {
-        FilterContent("Year1");
+        dropDownPanel.value = saveYearInt;
+        DropDownPanelValueChanged(dropDownPanel);
         dropDownPanel.onValueChanged.AddListener(delegate { DropDownPanelValueChanged(dropDownPanel); });
         for (int i = 0; i < contentArray.Length; i++)
         {
@@ -41,10 +43,12 @@ public class ContentFilter : MonoBehaviour
        if ( change.value == 0)
         {
             FilterContent("Year1");
+            saveYearInt = 0;
         }
         else
         {
             FilterContent("Year2");
+            saveYearInt = 1;
         }
     }
 

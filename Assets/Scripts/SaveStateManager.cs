@@ -12,6 +12,7 @@ public class SaveStateManager : MonoBehaviour
 
     public int maximum;
     public int current;
+    public int loadYearInt;
 
     private void Awake()
     {
@@ -25,6 +26,11 @@ public class SaveStateManager : MonoBehaviour
             Destroy(gameObject);
         }
 
+        if(loadYearInt != 0)
+        {
+            ContentFilter.saveYearInt = loadYearInt;
+        }
+
         LoadData();
         Debug.Log(topicChecklistCompleted[1]);
 
@@ -34,6 +40,11 @@ public class SaveStateManager : MonoBehaviour
         //}
         GetCurrentFill();
 
+    }
+
+    private void Update()
+    {
+        loadYearInt = ContentFilter.saveYearInt;
     }
 
     public bool allComplete()
