@@ -7912,8 +7912,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 602315993}
-  - component: {fileID: 602315996}
-  - component: {fileID: 602315995}
   - component: {fileID: 602315994}
   m_Layer: 5
   m_Name: Year 2 mask
