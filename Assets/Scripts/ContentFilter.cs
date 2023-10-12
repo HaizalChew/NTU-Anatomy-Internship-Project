@@ -10,7 +10,7 @@ public class ContentFilter : MonoBehaviour
     public TMP_Dropdown dropDownPanel;
     public Dictionary<GameObject, GameObject> TopicContent = new Dictionary<GameObject, GameObject>();
 
-    public GameObject[] contentArray; 
+    public GameObject[] contentArray;
     public Button[] topicArray;
     public static int saveYearInt;
 
@@ -34,13 +34,13 @@ public class ContentFilter : MonoBehaviour
 
     private int GetNumber(int i)
     {
-        him = i; 
+        him = i;
         return i;
     }
 
     public void DropDownPanelValueChanged(TMP_Dropdown change)
     {
-       if ( change.value == 0)
+        if (change.value == 0)
         {
             FilterContent("Year1");
             saveYearInt = 0;
@@ -89,12 +89,12 @@ public class ContentFilter : MonoBehaviour
             }
             contentArray[him].SetActive(true);
         }
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-       //Debug.Log(him);
+        //Debug.Log(him);
     }
 }

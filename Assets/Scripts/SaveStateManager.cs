@@ -7,11 +7,9 @@ public class SaveStateManager : MonoBehaviour
 {
 
     public static SaveStateManager instance;
-    public Image bar;
     public bool[] topicChecklistCompleted = new bool[5];
+    public GameObject achievementPanel;
 
-    public int maximum;
-    public int current;
     public int loadYearInt;
 
     private void Awake()
@@ -26,7 +24,7 @@ public class SaveStateManager : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(loadYearInt != 0)
+        if (loadYearInt != 0)
         {
             ContentFilter.saveYearInt = loadYearInt;
         }
@@ -38,20 +36,25 @@ public class SaveStateManager : MonoBehaviour
         //{
         //    topicChecklistCompleted[i] = true;
         //}
-        GetCurrentFill();
+
 
     }
 
     private void Update()
     {
         loadYearInt = ContentFilter.saveYearInt;
+        if (allComplete())
+        {
+            achievementPanel.SetActive(true);
+        }
     }
 
+    //Check if All Quiz is Compeleted
     public bool allComplete()
     {
-        foreach ( bool topicCheck in topicChecklistCompleted )
+        foreach (bool topicCheck in topicChecklistCompleted)
         {
-            if ( topicCheck == false )
+            if (topicCheck == false)
             {
                 return false;
             }
@@ -74,21 +77,13 @@ public class SaveStateManager : MonoBehaviour
 
     public void LoadData()
     {
-        for ( int i = 0; i < topicChecklistCompleted.Length; i++ )
+        for (int i = 0; i < topicChecklistCompleted.Length; i++)
         {
-            if(PlayerPrefs.GetInt("topicCheckListCompleted" + i) == 1)
+            if (PlayerPrefs.GetInt("topicCheckListCompleted" + i) == 1)
             {
                 topicChecklistCompleted[i] = true;
                 Debug.Log("Check");
             }
         }
-    }
-
-    private void GetCurrentFill()
-    {
-        current = NumComplete();
-        maximum = 6;
-        float fillAmount = (float)current / (float)maximum;
-        bar.fillAmount = fillAmount;
     }
 }
