@@ -694,6 +694,7 @@ MonoBehaviour:
   rotationSpeed: 90
   minVerticalAngle: -89
   maxVerticalAngle: 89
+  cameraPanningSensitivity: 1
   orbitLookInput: {fileID: -4357323021904490931, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
   orbitUnlockInput: {fileID: 6991840353829052109, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
   panUnlockInput: {fileID: -3213935088973138889, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
@@ -1004,6 +1005,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 735201547}
+    - target: {fileID: 2249991514973661088, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7a80991085e6957479231cd7d4545ff2, type: 3}
     - target: {fileID: 2249991514973661091, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1012,10 +1017,20 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 735201547}
+    - target: {fileID: 2249991514973661149, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
+      propertyPath: m_Name
+      value: angiobutton
+      objectReference: {fileID: 0}
     - target: {fileID: 2249991515021316552, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 735201547}
+    - target: {fileID: 2249991516356800276, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
+      propertyPath: m_text
+      value: 'Angio
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 3623134657364016667, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 9

@@ -110,6 +110,11 @@ public class QuizManager : MonoBehaviour
             basicInteractions.IsolatePart();
         }
 
+        if (basicInteractions.veinCheck)
+        {
+            basicInteractions.dropdownPanel.SetBool("IsOpen", false);
+        }
+
         //if (basicInteractions.coronaryModel != null)
         //{
         //    basicInteractions.coronaryModel.gameObject.SetActive(false);
@@ -150,6 +155,11 @@ public class QuizManager : MonoBehaviour
         //    }
 
         //}
+
+        if (basicInteractions.veinCheck)
+        {
+            basicInteractions.dropdownPanel.SetBool("IsOpen", true);
+        }
 
         quizModeActive = false;
     }

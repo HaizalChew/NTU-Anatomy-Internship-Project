@@ -18923,6 +18923,7 @@ MonoBehaviour:
   topicChecklistCompleted: 0000000000
   maximum: 0
   current: 0
+  loadYearInt: 0
 --- !u!4 &1632221846
 Transform:
   m_ObjectHideFlags: 0
