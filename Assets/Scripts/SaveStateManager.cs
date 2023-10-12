@@ -7,11 +7,9 @@ public class SaveStateManager : MonoBehaviour
 {
 
     public static SaveStateManager instance;
-    public Image bar;
     public bool[] topicChecklistCompleted = new bool[5];
+    public GameObject achievementPanel;
 
-    public int maximum;
-    public int current;
     public int loadYearInt;
 
     private void Awake()
@@ -38,15 +36,20 @@ public class SaveStateManager : MonoBehaviour
         //{
         //    topicChecklistCompleted[i] = true;
         //}
-        GetCurrentFill();
+
 
     }
 
     private void Update()
     {
         loadYearInt = ContentFilter.saveYearInt;
+        if (allComplete())
+        {
+            achievementPanel.SetActive(true);
+        }
     }
 
+    //Check if All Quiz is Compeleted
     public bool allComplete()
     {
         foreach ( bool topicCheck in topicChecklistCompleted )
@@ -82,13 +85,5 @@ public class SaveStateManager : MonoBehaviour
                 Debug.Log("Check");
             }
         }
-    }
-
-    private void GetCurrentFill()
-    {
-        current = NumComplete();
-        maximum = 6;
-        float fillAmount = (float)current / (float)maximum;
-        bar.fillAmount = fillAmount;
     }
 }

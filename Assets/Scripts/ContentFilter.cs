@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.UIElements;
+using Unity.VisualScripting;
 
 public class ContentFilter : MonoBehaviour
 {
@@ -14,6 +16,12 @@ public class ContentFilter : MonoBehaviour
     public Button[] topicArray;
     public static int saveYearInt;
 
+    public Image bar;
+    public Image twoBar;
+
+    public int maximum;
+    public int current;
+
     public int him;
 
     // Start is called before the first frame update
@@ -21,7 +29,10 @@ public class ContentFilter : MonoBehaviour
     {
         dropDownPanel.value = saveYearInt;
         DropDownPanelValueChanged(dropDownPanel);
+        GetCurrentFill();
+        SwitchProgressBar();
         dropDownPanel.onValueChanged.AddListener(delegate { DropDownPanelValueChanged(dropDownPanel); });
+        dropDownPanel.onValueChanged.AddListener(delegate { SwitchProgressBar(); });
         for (int i = 0; i < contentArray.Length; i++)
         {
             int count = i;
@@ -30,6 +41,30 @@ public class ContentFilter : MonoBehaviour
         }
 
 
+    }
+
+    public void SwitchProgressBar()
+    {
+        Debug.Log("Switch");
+        if (ContentFilter.saveYearInt == 0)
+        {
+            bar.gameObject.SetActive(true);
+            twoBar.gameObject.SetActive(false);
+
+        }
+        else
+        {
+            bar.gameObject.SetActive(false);
+            twoBar.gameObject.SetActive(true);
+        }
+    }
+
+    public void GetCurrentFill()
+    {
+        current = SaveStateManager.instance.NumComplete();
+        maximum = 6;
+        float fillAmount = (float)current / (float)maximum;
+        bar.fillAmount = fillAmount;
     }
 
     private int GetNumber(int i)
