@@ -132,7 +132,7 @@ public class QuizManager : MonoBehaviour
               
         if(basicInteractions.selectedObj != null)
         {
-            basicInteractions.selectedObj.gameObject.SetActive(true);
+            basicInteractions.selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
             basicInteractions.selectedObj = null;
             Destroy(basicInteractions.selectedInstantiatedObj);
         }

@@ -113,7 +113,8 @@ public class BasicInteractions : MonoBehaviour
                 selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
                 selectedInstantiatedObj.layer = 0;
-                selectedObj.gameObject.SetActive(false);
+                //selectedObj.gameObject.SetActive(false);
+                selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
                 camControl.ActivateRecentering(selectedObj);
 
@@ -127,7 +128,7 @@ public class BasicInteractions : MonoBehaviour
                 selectedInstantiatedObj = null;
             }
 
-            selectedObj.gameObject.SetActive(true);
+            selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
             selectedObj = null;
 
             if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, selectableLayerMask))
@@ -148,7 +149,7 @@ public class BasicInteractions : MonoBehaviour
                 selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
                 selectedInstantiatedObj.layer = 0;
-                selectedObj.gameObject.SetActive(false);
+                selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
                 camControl.ActivateRecentering(selectedObj);
             }
@@ -169,7 +170,7 @@ public class BasicInteractions : MonoBehaviour
             selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
             selectedInstantiatedObj.layer = 0;
-            selectedObj.gameObject.SetActive(false);
+            selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
             camControl.ActivateRecentering(selectedObj);
         }
@@ -181,7 +182,7 @@ public class BasicInteractions : MonoBehaviour
                 selectedInstantiatedObj = null;
             }
 
-            selectedObj.gameObject.SetActive(true);
+            selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
             selectedObj = null;
 
             selectedObj = selected;
@@ -200,7 +201,7 @@ public class BasicInteractions : MonoBehaviour
             selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
             selectedInstantiatedObj.layer = 0;
-            selectedObj.gameObject.SetActive(false);
+            selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
             camControl.ActivateRecentering(selectedObj);
         }
@@ -250,7 +251,7 @@ public class BasicInteractions : MonoBehaviour
             {
                 if (child.name == selectedObj.name)
                 {
-                    child.gameObject.SetActive(isolateCheck);
+                    //child.gameObject.SetActive(isolateCheck);
                     selectedInstantiatedObj.SetActive(isolateCheck);
                 }
                 else
@@ -259,6 +260,15 @@ public class BasicInteractions : MonoBehaviour
                     selectedInstantiatedObj.SetActive(!isolateCheck);
                 }
 
+            }
+
+            if (isolateCheck)
+            {
+                selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
+            }
+            else
+            {
+                selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
             }
         }
     }
@@ -375,7 +385,7 @@ public class BasicInteractions : MonoBehaviour
 
             if (selectedObj != null)
             {
-                selectedObj.gameObject.SetActive(true);
+                selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
                 selectedObj = null;
                 Destroy(selectedInstantiatedObj);
             }
@@ -392,7 +402,7 @@ public class BasicInteractions : MonoBehaviour
 
             if (selectedObj != null)
             {
-                selectedObj.gameObject.SetActive(true);
+                selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
                 selectedObj = null;
                 Destroy(selectedInstantiatedObj);
             }
