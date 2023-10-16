@@ -80,7 +80,7 @@ public class ContentFilter : MonoBehaviour
     public void GetCurrentFill()
     {
         current = SaveStateManager.instance.NumComplete();
-        maximum = 6;
+        maximum = SaveStateManager.instance.topicChecklistCompleted.Length;
         float fillAmount = (float)current / (float)maximum;
         bar.fillAmount = fillAmount;
     }

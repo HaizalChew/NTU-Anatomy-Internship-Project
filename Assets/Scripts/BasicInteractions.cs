@@ -111,7 +111,7 @@ public class BasicInteractions : MonoBehaviour
 
                 selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
 
-                selectedInstantiatedObj.transform.parent = model.transform;
+                //selectedInstantiatedObj.transform.parent = model.transform;
 
                 Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
 
@@ -144,10 +144,11 @@ public class BasicInteractions : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, selectableLayerMask))
             {
                 selectedObj = hitInfo.transform;
+                orignialMaterial = selectedObj.GetComponent<MeshRenderer>().materials;
 
                 selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
 
-                selectedInstantiatedObj.transform.parent = model.transform;
+                //selectedInstantiatedObj.transform.parent = model.transform;
 
                 Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
 
@@ -199,7 +200,7 @@ public class BasicInteractions : MonoBehaviour
 
             selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
 
-            selectedInstantiatedObj.transform.parent = model.transform;
+           //selectedInstantiatedObj.transform.parent = model.transform;
 
             Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
 
@@ -329,17 +330,17 @@ public class BasicInteractions : MonoBehaviour
                 if (child.tag != "Vein")
                 {
 
-                    ChangeMaterial(child.gameObject);
+                    //ChangeMaterial(child.gameObject);
                     child.gameObject.SetActive(false);
                 }
             }
         }
         else
         {
-            foreach (Transform child in cloneContainer.transform)
-            {
-                Destroy(child.gameObject);
-            }
+            //foreach (Transform child in cloneContainer.transform)
+            //{
+            //    Destroy(child.gameObject);
+            //}
             foreach (Transform child in coronarySideModel.transform)
             {
                 if (child.tag != "Vein")

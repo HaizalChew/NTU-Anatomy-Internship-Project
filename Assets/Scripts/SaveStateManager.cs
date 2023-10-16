@@ -7,7 +7,7 @@ public class SaveStateManager : MonoBehaviour
 {
 
     public static SaveStateManager instance;
-    public bool[] topicChecklistCompleted = new bool[5];
+    public bool[] topicChecklistCompleted;
     public GameObject achievementPanel;
 
     public int loadYearInt;

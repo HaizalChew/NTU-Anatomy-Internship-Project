@@ -1377,7 +1377,7 @@ GameObject:
   - component: {fileID: 59941271}
   - component: {fileID: 59941270}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3548,7 +3548,7 @@ GameObject:
   - component: {fileID: 238818600}
   - component: {fileID: 238818599}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3624,7 +3624,7 @@ GameObject:
   - component: {fileID: 249421967}
   - component: {fileID: 249421966}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5967,7 +5967,7 @@ GameObject:
   - component: {fileID: 421885580}
   - component: {fileID: 421885579}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7084,7 +7084,7 @@ GameObject:
   - component: {fileID: 528472605}
   - component: {fileID: 528472604}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9246,7 +9246,7 @@ GameObject:
   - component: {fileID: 702112278}
   - component: {fileID: 702112277}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15218,7 +15218,7 @@ GameObject:
   - component: {fileID: 1214530643}
   - component: {fileID: 1214530642}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15518,7 +15518,7 @@ GameObject:
   - component: {fileID: 1238405565}
   - component: {fileID: 1238405564}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17458,11 +17458,18 @@ MonoBehaviour:
   fadeCanvas: {fileID: 695552235}
   progressBar: {fileID: 1841921968}
   completedCheckIndex:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1238405562}
+  - {fileID: 2111109660}
+  - {fileID: 528472602}
+  - {fileID: 59941268}
+  - {fileID: 249421964}
+  - {fileID: 702112275}
+  - {fileID: 238818597}
+  - {fileID: 421885577}
+  - {fileID: 1905052654}
+  - {fileID: 1214530640}
+  - {fileID: 1501155062}
+  - {fileID: 1859174964}
 --- !u!114 &1364807306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19132,7 +19139,7 @@ GameObject:
   - component: {fileID: 1501155065}
   - component: {fileID: 1501155064}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20269,7 +20276,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b84a7df03fdb2ab4a917c49ee724e2dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  topicChecklistCompleted: 0000000000
+  topicChecklistCompleted: 000000000000000000000000
   achievementPanel: {fileID: 1037402210}
   loadYearInt: 0
 --- !u!4 &1632221846
@@ -22568,7 +22575,7 @@ GameObject:
   - component: {fileID: 1859174967}
   - component: {fileID: 1859174966}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -23309,7 +23316,7 @@ GameObject:
   - component: {fileID: 1905052657}
   - component: {fileID: 1905052656}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25441,7 +25448,7 @@ GameObject:
   - component: {fileID: 2111109663}
   - component: {fileID: 2111109662}
   m_Layer: 5
-  m_Name: CompletedCheckTopic
+  m_Name: CompletedCheckTopic 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

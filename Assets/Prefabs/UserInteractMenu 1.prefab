@@ -13793,6 +13793,11 @@ MonoBehaviour:
   playBtn: {fileID: 2800000, guid: d42cfe7bed8439c439378d1a7e76f4e3, type: 3}
   transSlider: {fileID: 2249991514520058837}
   displayName: {fileID: 4731701751685893265}
+  zoomSlider: {fileID: 2114506453379507970}
+  orbitControl: {fileID: 2249991516386511720}
+  plus: {fileID: 2114506453240279100}
+  minus: {fileID: 2114506453556129385}
+  camControls: {fileID: 0}
   basicInteractions: {fileID: 0}
   sliderCheck: 0
 --- !u!95 &6887507669355483463

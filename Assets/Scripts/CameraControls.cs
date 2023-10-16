@@ -40,20 +40,15 @@ public class CameraControls : MonoBehaviour
     int UILayer;
     bool showOrbitPoint;
 
-    private void Awake()
+
+    private void Start()
     {
         orbitAngles = transform.localRotation.eulerAngles;
         //focusPoint = focus.position;
         transform.localRotation = Quaternion.Euler(orbitAngles);
 
-        zoomSlider.minValue = 0.1f;
-        zoomSlider.maxValue = 20f;
-
         UILayer = LayerMask.NameToLayer("UI");
-    }
 
-    private void Start()
-    {
         if (target == null)
         {
             target = GameObject.FindGameObjectWithTag("Model").transform;
@@ -132,18 +127,21 @@ public class CameraControls : MonoBehaviour
     // Applies easing in whenever it moves to prevent sharp snapping
     void UpdateFocusPoint()
     {
-        Vector3 targetPoint = target.position;
-        float distance = Vector3.Distance(targetPoint, focus.transform.position);
-        float t = 1f;
-        if (distance > 0.01f && focusCentering > 0f)
+        if (target != null)
         {
-            t = Mathf.Pow(1f - focusCentering, Time.unscaledDeltaTime);
+            Vector3 targetPoint = target.position;
+            float distance = Vector3.Distance(targetPoint, focus.transform.position);
+            float t = 1f;
+            if (distance > 0.01f && focusCentering > 0f)
+            {
+                t = Mathf.Pow(1f - focusCentering, Time.unscaledDeltaTime);
+            }
+            if (distance > focusRadius)
+            {
+                t = Mathf.Min(t, focusRadius / distance);
+            }
+            focus.transform.position = Vector3.Lerp(targetPoint, focus.transform.position, t);
         }
-        if (distance > focusRadius)
-        {
-            t = Mathf.Min(t, focusRadius / distance);
-        }
-        focus.transform.position = Vector3.Lerp(targetPoint, focus.transform.position, t);
     }
 
     public void ActivateRecentering(Transform targetPos)
