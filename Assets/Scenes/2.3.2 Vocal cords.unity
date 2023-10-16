@@ -244,6 +244,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5987f29071956b54a8b84a723844b6d5, type: 3}
+--- !u!114 &196706624 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3173874927683395365, guid: 5987f29071956b54a8b84a723844b6d5, type: 3}
+  m_PrefabInstance: {fileID: 196706623}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e1cedc7ca87a0f48bdf333aa35b6f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &196706625 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3173874927742240388, guid: 5987f29071956b54a8b84a723844b6d5, type: 3}
+  m_PrefabInstance: {fileID: 196706623}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519467465
 GameObject:
   m_ObjectHideFlags: 0
@@ -1504,7 +1520,7 @@ PrefabInstance:
     - target: {fileID: 6654262569695046416, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: partNameParent
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 196706625}
     - target: {fileID: 6654262569695046416, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: parentModel.Array.data[0]
       value: 
@@ -1588,7 +1604,7 @@ PrefabInstance:
     - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: uiMangerScript
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 196706624}
     - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: uiManagerScript
       value: 

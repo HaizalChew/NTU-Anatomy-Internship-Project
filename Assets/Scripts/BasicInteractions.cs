@@ -25,9 +25,6 @@ public class BasicInteractions : MonoBehaviour
     public Material transMat;
     private Material newMat;
 
-    private Transform coronaryTransform;
-    private Transform coronarySideTransform;
-
     [SerializeField] PartList partListScript;
     [SerializeField] UiManger uiManagerScript;
 
@@ -48,11 +45,7 @@ public class BasicInteractions : MonoBehaviour
 
     public GameObject cloneContainer;
 
-
-    [SerializeField] UiManger uiMangerScript;
     [SerializeField] Image image;
-
-    public List<Material> originalmats = new List<Material>();
 
     //[SerializeField] GameObject selectedViewModel;
     void Start()
@@ -118,7 +111,7 @@ public class BasicInteractions : MonoBehaviour
                 for (int i = 0; i < matArray.Length; i++)
                 {
                     matArray[i] = new Material(selectedMat);
-                    matArray[i].color = orignialMaterial[i].color;
+                    matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
                 }
                 selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
@@ -144,7 +137,6 @@ public class BasicInteractions : MonoBehaviour
             if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, selectableLayerMask))
             {
                 selectedObj = hitInfo.transform;
-                orignialMaterial = selectedObj.GetComponent<MeshRenderer>().materials;
 
                 selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
 
@@ -155,7 +147,7 @@ public class BasicInteractions : MonoBehaviour
                 for (int i = 0; i < matArray.Length; i++)
                 {
                     matArray[i] = new Material(selectedMat);
-                    matArray[i].color = orignialMaterial[i].color;
+                    matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
                 }
                 selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
@@ -256,7 +248,7 @@ public class BasicInteractions : MonoBehaviour
         {
             isolateCheck = !isolateCheck;
 
-            uiMangerScript.SwitchSprite(isolateCheck, image);
+            uiManagerScript.SwitchSprite(isolateCheck, image);
 
             foreach (Transform child in selectedObj.transform.parent)
             {

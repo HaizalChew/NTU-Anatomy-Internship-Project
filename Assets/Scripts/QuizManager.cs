@@ -196,47 +196,81 @@ public class QuizManager : MonoBehaviour
 
     public void OnCheckForRightAnswer()
     {
-        if (basicInteractions.selectedObj.name == "Phr R" || basicInteractions.selectedObj.name == "Phr L")
-        {
-            if (CheckAnswer("Phr R or Phr L"))
-            {
-                notificationPanel.SetActive(true);
-                notificationRight.SetActive(true);
+        //if (basicInteractions.selectedObj.name == "Phr R" || basicInteractions.selectedObj.name == "Phr L")
+        //{
+        //    if (CheckAnswer("Phr R or Phr L"))
+        //    {
+        //        notificationPanel.SetActive(true);
+        //        notificationRight.SetActive(true);
 
-            }
-            else
-            {
-                notificationPanel.SetActive(true);
-                notificationWrong.SetActive(true);
-            }
+        //    }
+        //    else
+        //    {
+        //        notificationPanel.SetActive(true);
+        //        notificationWrong.SetActive(true);
+        //    }
+
+        //}
+        //else
+        //{
+        //    if (CheckAnswer(basicInteractions.selectedObj.name))
+        //    {
+        //        notificationPanel.SetActive(true);
+        //        notificationRight.SetActive(true);
+
+        //    }
+        //    else
+        //    {
+        //        notificationPanel.SetActive(true);
+        //        notificationWrong.SetActive(true);
+        //    }
+        //}
+
+        if (CheckAnswer(basicInteractions.selectedObj.name))
+        {
+            notificationPanel.SetActive(true);
+            notificationRight.SetActive(true);
 
         }
         else
         {
-            if (CheckAnswer(basicInteractions.selectedObj.name))
-            {
-                notificationPanel.SetActive(true);
-                notificationRight.SetActive(true);
-
-            }
-            else
-            {
-                notificationPanel.SetActive(true);
-                notificationWrong.SetActive(true);
-            }
+            notificationPanel.SetActive(true);
+            notificationWrong.SetActive(true);
         }
     }
 
     private bool CheckAnswer(string userAnswer)
     {
-        if (currentAnswer.ToLower() == userAnswer.ToLower())
+        if (currentAnswer.Contains(" or "))
         {
-            return true;
+            string[] answers;
+            answers = currentAnswer.Split(" or ");
+
+            Debug.Log(answers[0] + answers[1]);
+
+            for (int i = 0; i < answers.Length; i++)
+            {
+                if (answers[i].ToLower() == userAnswer.ToLower())
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
         else
         {
-            return false;
+            if (currentAnswer.ToLower() == userAnswer.ToLower())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
+        
     }
 
     private List<QuesDatum> GetQuizQuestions(int topicIndex)
