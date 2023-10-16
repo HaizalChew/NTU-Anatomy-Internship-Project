@@ -57,6 +57,16 @@ public class BasicInteractions : MonoBehaviour
     //[SerializeField] GameObject selectedViewModel;
     void Start()
     {
+        if (model == null)
+        {
+            model = GameObject.FindGameObjectWithTag("Model");
+        }
+
+        if (camControl == null)
+        {
+            camControl = Camera.main.GetComponent<CameraControls>();
+        }
+
         mousePos = new Vector2(0, 0);
         showCheck = false;
         objRect = new Rect(0, 0, 300, 100);

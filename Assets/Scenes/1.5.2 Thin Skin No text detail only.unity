@@ -879,6 +879,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1.5.2 Thin Skin No text detail only
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: bf8bc6437a2fec342950324cdaa5f969, type: 3}
+      propertyPath: m_TagString
+      value: Model
+      objectReference: {fileID: 0}
     - target: {fileID: 3429351321499456996, guid: bf8bc6437a2fec342950324cdaa5f969, type: 3}
       propertyPath: m_Layer
       value: 6

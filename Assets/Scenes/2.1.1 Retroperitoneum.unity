@@ -1769,6 +1769,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 2.1.1 Retroperitoneum
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92ff0c7db3678e343a23180e9067d555, type: 3}
+      propertyPath: m_TagString
+      value: Model
+      objectReference: {fileID: 0}
     - target: {fileID: 928911833541816158, guid: 92ff0c7db3678e343a23180e9067d555, type: 3}
       propertyPath: m_CastShadows
       value: 0

@@ -886,6 +886,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a0ed6a4acd42d8f4f9b0075b521baae3, type: 3}
+      propertyPath: m_TagString
+      value: Model
+      objectReference: {fileID: 0}
     - target: {fileID: 946618169615413364, guid: a0ed6a4acd42d8f4f9b0075b521baae3, type: 3}
       propertyPath: m_CastShadows
       value: 1

@@ -9,6 +9,7 @@ TagManager:
   - QuestionText
   - Year1
   - Year2
+  - Model
   layers:
   - Default
   - TransparentFX

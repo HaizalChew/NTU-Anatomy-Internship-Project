@@ -258,6 +258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Diaphragm
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 9e2ed7016ca14e643a73755e6d46f2b2, type: 3}
+      propertyPath: m_TagString
+      value: Model
+      objectReference: {fileID: 0}
     - target: {fileID: 998256500755881885, guid: 9e2ed7016ca14e643a73755e6d46f2b2, type: 3}
       propertyPath: m_Layer
       value: 6

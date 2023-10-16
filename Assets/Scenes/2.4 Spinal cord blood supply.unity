@@ -347,7 +347,7 @@ GameObject:
   - component: {fileID: 800127245}
   m_Layer: 0
   m_Name: 2.4 Spinal cord blood supply
-  m_TagString: Untagged
+  m_TagString: Model
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

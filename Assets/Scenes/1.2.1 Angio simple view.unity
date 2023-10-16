@@ -359,6 +359,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1.2.1 Angio simple view
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1745fc01dbf094942bc6c33a66dd0da8, type: 3}
+      propertyPath: m_TagString
+      value: Model
+      objectReference: {fileID: 0}
     - target: {fileID: 1821527176427572446, guid: 1745fc01dbf094942bc6c33a66dd0da8, type: 3}
       propertyPath: m_Layer
       value: 6

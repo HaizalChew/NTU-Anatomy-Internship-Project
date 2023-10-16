@@ -49,6 +49,16 @@ public class QuizManager : MonoBehaviour
 
     void Start()
     {
+        if (basicInteractions == null)
+        {
+            basicInteractions = GameObject.FindGameObjectWithTag("GameController").GetComponent<BasicInteractions>();
+        }
+
+        if (camControls == null)
+        {
+            camControls = Camera.main.GetComponent<CameraControls>();
+        }
+
         if (questionTextDisplay == null)
         {
             questionTextDisplay = GameObject.FindGameObjectWithTag("QuestionText").GetComponent<TextMeshProUGUI>();

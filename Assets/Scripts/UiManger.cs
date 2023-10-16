@@ -17,6 +17,10 @@ public class UiManger : MonoBehaviour
     [SerializeField] Texture pauseBtn, playBtn;
     [SerializeField] Slider transSlider;
     [SerializeField] TMP_Text displayName;
+    [SerializeField] Slider zoomSlider;
+    [SerializeField] SelectableHandler orbitControl;
+    [SerializeField] Button plus, minus;
+    [SerializeField] CameraControls camControls;
 
     [SerializeField] BasicInteractions basicInteractions;
 
@@ -27,7 +31,28 @@ public class UiManger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (basicInteractions == null)
+        {
+            basicInteractions = GameObject.FindGameObjectWithTag("GameController").GetComponent<BasicInteractions>();
+        }
 
+        if (camControls == null)
+        {
+            camControls = Camera.main.GetComponent<CameraControls>();
+        }
+        
+        if (originalModel == null)
+        {
+            originalModel = GameObject.FindGameObjectWithTag("Model");
+        }
+
+        if (camControls != null)
+        {
+            camControls.zoomSlider = zoomSlider;
+            camControls.selectableHandler = orbitControl;
+            plus.onClick.AddListener(delegate { camControls.SetZoomCamera(2); });
+            minus.onClick.AddListener(delegate { camControls.SetZoomCamera(-2); });
+        }   
     }
 
     // Update is called once per frame

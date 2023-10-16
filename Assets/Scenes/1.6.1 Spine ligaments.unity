@@ -827,6 +827,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1.6.1 Spine ligaments
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: c951bcf26cdb0d040b91c7f8137fa6b6, type: 3}
+      propertyPath: m_TagString
+      value: Model
+      objectReference: {fileID: 0}
     - target: {fileID: 1328614221780696727, guid: c951bcf26cdb0d040b91c7f8137fa6b6, type: 3}
       propertyPath: m_Layer
       value: 6

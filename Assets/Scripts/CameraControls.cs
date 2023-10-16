@@ -28,8 +28,8 @@ public class CameraControls : MonoBehaviour
     [SerializeField] InputActionReference zoomScrollInput;
     [SerializeField] LayerMask ignoreMask;
     [SerializeField] float zoomSpeed = 1f;
-    [SerializeField] Slider zoomSlider;
-    [SerializeField] SelectableHandler selectableHandler;
+    [SerializeField] public Slider zoomSlider;
+    [SerializeField] public SelectableHandler selectableHandler;
     [SerializeField] GameObject orbitPoint;
 
     // Set orbit angles
@@ -50,6 +50,14 @@ public class CameraControls : MonoBehaviour
         zoomSlider.maxValue = 20f;
 
         UILayer = LayerMask.NameToLayer("UI");
+    }
+
+    private void Start()
+    {
+        if (target == null)
+        {
+            target = GameObject.FindGameObjectWithTag("Model").transform;
+        }
     }
 
     private void OnEnable()

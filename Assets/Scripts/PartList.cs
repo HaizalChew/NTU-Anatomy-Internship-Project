@@ -21,6 +21,17 @@ public class PartList : MonoBehaviour
         InitializeDictionary(parentModel);
     }
 
+    private void Start()
+    {
+        if (parentModel == null)
+        {
+            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Model").Length; i++)
+            {
+                parentModel[i] = GameObject.FindGameObjectsWithTag("Model")[i].transform;
+            }
+        }
+    }
+
     public void SearchForPart(TMP_InputField input)
     {
         if (input.text != "")
