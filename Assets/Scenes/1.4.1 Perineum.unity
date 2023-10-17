@@ -263,6 +263,10 @@ PrefabInstance:
       propertyPath: selectableHandler
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 8580735002401583721, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+      propertyPath: cameraPanningSensitivity
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8580735003447776291, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
       propertyPath: m_Name
       value: FocalPoint

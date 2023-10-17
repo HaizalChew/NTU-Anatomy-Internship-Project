@@ -109,7 +109,7 @@ MonoBehaviour:
   rotationSpeed: 90
   minVerticalAngle: -89
   maxVerticalAngle: 89
-  cameraPanningSensitivity: 1
+  cameraPanningSensitivity: 2
   orbitLookInput: {fileID: -4357323021904490931, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
   orbitUnlockInput: {fileID: 6991840353829052109, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}
   panUnlockInput: {fileID: -3213935088973138889, guid: 3d7404845b2c871469d46cabb5d405af, type: 3}

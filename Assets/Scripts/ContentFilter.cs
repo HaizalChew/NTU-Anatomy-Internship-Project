@@ -110,6 +110,8 @@ public class ContentFilter : MonoBehaviour
 
     public void ShowContent()
     {
+        AudioManager.instance.PlaySoundEffect(1);
+
         if (contentArray[him].activeSelf == true)
         {
             contentArray[him].SetActive(false);
