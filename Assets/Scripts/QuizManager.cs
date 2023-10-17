@@ -33,6 +33,8 @@ public class QuizManager : MonoBehaviour
 
     private float originSliderValue;
 
+    private SaveStateManager saveStateManager;
+
     [Serializable]
     public class QuesDatum
     {

@@ -1,14 +1,17 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class SaveStateManager : MonoBehaviour
 {
 
     public static SaveStateManager instance;
     public bool[] topicChecklistCompleted;
-    public GameObject achievementPanel;
+    public GameObject[] achievementPanel;
 
     public int loadYearInt;
 
@@ -36,18 +39,14 @@ public class SaveStateManager : MonoBehaviour
         //{
         //    topicChecklistCompleted[i] = true;
         //}
-
-
     }
 
     private void Update()
     {
+
         loadYearInt = ContentFilter.saveYearInt;
-        if (allComplete())
-        {
-            achievementPanel.SetActive(true);
-        }
     }
+    
 
     //Check if All Quiz is Compeleted
     public bool allComplete()
@@ -60,6 +59,18 @@ public class SaveStateManager : MonoBehaviour
             }
         }
         return true;
+    }
+
+    public bool CheckCondition(int index)
+    {
+        if (topicChecklistCompleted[index] == true)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public int NumComplete()

@@ -14,6 +14,9 @@ public class MenuManager : MonoBehaviour
     public Transform rotationCenter;
     public float radius;
 
+    private bool achievementStatus;
+    public GameObject panel;
+
     private void Start()
     {
         SpawnAround();
@@ -74,6 +77,27 @@ public class MenuManager : MonoBehaviour
             GameObject c = Instantiate(achivements[i], worldPos, Quaternion.identity);
             c.transform.SetParent(rotationCenter, true);
             c.transform.localScale = new Vector3(1,1,1);
+        }
+    }
+
+    public void ToggleAchievement()
+    {
+        achievementStatus = !achievementStatus;
+        if (achievementStatus)
+        {
+            foreach (GameObject achievement in achivements)
+            {
+                achievement.SetActive(true);
+                panel.SetActive(false);
+            }
+        }
+        else
+        {
+            foreach (GameObject achievement in achivements)
+            {
+                achievement.SetActive(false);
+                panel.SetActive(true) ;
+            }
         }
     }
 
