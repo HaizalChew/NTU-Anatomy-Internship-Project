@@ -114,10 +114,7 @@ public class QuizManager : MonoBehaviour
     {
         questions = GetQuizQuestions(topicIndex);
         questionNumberCount = 0;
-        if (AudioManager.instance != null)
-        {
-            AudioManager.instance.PlaySoundEffect(2);
-        }
+        AudioManager.instance?.PlaySoundEffect(2);
 
         if (basicInteractions.isolateCheck == true)
         {

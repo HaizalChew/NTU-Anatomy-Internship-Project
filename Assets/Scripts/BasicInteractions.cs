@@ -123,11 +123,7 @@ public class BasicInteractions : MonoBehaviour
                 selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
                 camControl.ActivateRecentering(selectedObj);
-                if (AudioManager.instance != null)
-                {
-                    AudioManager.instance.PlaySoundEffect(0);
-                }
-                    
+                AudioManager.instance?.PlaySoundEffect(0);
 
             }
         }
@@ -166,10 +162,7 @@ public class BasicInteractions : MonoBehaviour
                 selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
                 camControl.ActivateRecentering(selectedObj);
-                if (AudioManager.instance != null)
-                {
-                    AudioManager.instance.PlaySoundEffect(0);
-                }
+                AudioManager.instance?.PlaySoundEffect(0);
             }
         }
         else if (selectedObj == null && selected != null)
@@ -194,10 +187,7 @@ public class BasicInteractions : MonoBehaviour
             selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
             camControl.ActivateRecentering(selectedObj);
-            if (AudioManager.instance != null)
-            {
-                AudioManager.instance.PlaySoundEffect(0);
-            }
+            AudioManager.instance?.PlaySoundEffect(0);
         }
         else if (selectedObj != null && selected != null)
         {
@@ -232,10 +222,7 @@ public class BasicInteractions : MonoBehaviour
             selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
             camControl.ActivateRecentering(selectedObj);
-            if (AudioManager.instance != null)
-            {
-                AudioManager.instance.PlaySoundEffect(0);
-            }
+            AudioManager.instance?.PlaySoundEffect(0);
         }
     }
 
