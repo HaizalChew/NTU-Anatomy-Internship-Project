@@ -50,8 +50,8 @@ public class UiManger : MonoBehaviour
         {
             camControls.zoomSlider = zoomSlider;
             camControls.selectableHandler = orbitControl;
-            plus.onClick.AddListener(delegate { camControls.SetZoomCamera(2); });
-            minus.onClick.AddListener(delegate { camControls.SetZoomCamera(-2); });
+            plus.onClick.AddListener(delegate { camControls.SetZoomCamera(-2); });
+            minus.onClick.AddListener(delegate { camControls.SetZoomCamera(2); });
             zoomSlider.minValue = 0.1f;
             zoomSlider.maxValue = 20f;
         }   

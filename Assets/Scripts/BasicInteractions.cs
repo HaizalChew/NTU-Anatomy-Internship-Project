@@ -111,7 +111,10 @@ public class BasicInteractions : MonoBehaviour
                 for (int i = 0; i < matArray.Length; i++)
                 {
                     matArray[i] = new Material(selectedMat);
-                    matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
+                    if (!ColorDifferenceTreshold(selectedObj.GetComponent<MeshRenderer>().materials[i].color, selectedMat.GetColor("_Color2")))
+                    {
+                        matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
+                    }
                 }
                 selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
@@ -120,6 +123,7 @@ public class BasicInteractions : MonoBehaviour
                 selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
                 camControl.ActivateRecentering(selectedObj);
+                AudioManager.instance?.PlaySoundEffect(0);
 
             }
         }
@@ -147,7 +151,10 @@ public class BasicInteractions : MonoBehaviour
                 for (int i = 0; i < matArray.Length; i++)
                 {
                     matArray[i] = new Material(selectedMat);
-                    matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
+                    if (!ColorDifferenceTreshold(selectedObj.GetComponent<MeshRenderer>().materials[i].color, selectedMat.GetColor("_Color2")))
+                    {
+                        matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
+                    }
                 }
                 selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
@@ -155,6 +162,7 @@ public class BasicInteractions : MonoBehaviour
                 selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
                 camControl.ActivateRecentering(selectedObj);
+                AudioManager.instance?.PlaySoundEffect(0);
             }
         }
         else if (selectedObj == null && selected != null)
@@ -168,7 +176,10 @@ public class BasicInteractions : MonoBehaviour
             for (int i = 0; i < matArray.Length; i++)
             {
                 matArray[i] = new Material(selectedMat);
-                matArray[i].color = selected.GetComponent<MeshRenderer>().materials[i].color;
+                if (!ColorDifferenceTreshold(selectedObj.GetComponent<MeshRenderer>().materials[i].color, selectedMat.GetColor("_Color2")))
+                {
+                    matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
+                }
             }
             selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
@@ -176,6 +187,7 @@ public class BasicInteractions : MonoBehaviour
             selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
             camControl.ActivateRecentering(selectedObj);
+            AudioManager.instance?.PlaySoundEffect(0);
         }
         else if (selectedObj != null && selected != null)
         {
@@ -199,7 +211,10 @@ public class BasicInteractions : MonoBehaviour
             for (int i = 0; i < matArray.Length; i++)
             {
                 matArray[i] = new Material(selectedMat);
-                matArray[i].color = selected.GetComponent<MeshRenderer>().materials[i].color;
+                if (!ColorDifferenceTreshold(selectedObj.GetComponent<MeshRenderer>().materials[i].color, selectedMat.GetColor("_Color2")))
+                {
+                    matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
+                }
             }
             selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
 
@@ -207,6 +222,7 @@ public class BasicInteractions : MonoBehaviour
             selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
 
             camControl.ActivateRecentering(selectedObj);
+            AudioManager.instance?.PlaySoundEffect(0);
         }
     }
 
@@ -411,6 +427,21 @@ public class BasicInteractions : MonoBehaviour
             }
         }
 
+    }
+
+    private bool ColorDifferenceTreshold(Color color1, Color color2)
+    {
+        float treshold = .5f;
+        float distance = Mathf.Sqrt(Mathf.Pow(color2.r - color1.r, 2) + Mathf.Pow(color2.g - color1.g, 2) + Mathf.Pow(color2.b - color1.b, 2));
+
+        if (distance < treshold)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void ResetDict()

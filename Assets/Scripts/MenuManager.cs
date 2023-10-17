@@ -39,12 +39,15 @@ public class MenuManager : MonoBehaviour
 
     public void ToMenu()
     {
+        AudioManager.instance?.PlaySoundEffect(2);
+
         SceneManager.LoadSceneAsync("Menu");
     }
 
     public void ToOtherScenes(int buildIndex)
     {
-        StartCoroutine(LoadingScreen(buildIndex));
+        AudioManager.instance?.PlaySoundEffect(2);
+        StartCoroutine(LoadingScreen(buildIndex));        
     }
 
     IEnumerator LoadingScreen(int buildIndex)
