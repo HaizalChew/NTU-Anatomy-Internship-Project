@@ -136,7 +136,7 @@ public class AchievementManager : MonoBehaviour
                 achievementPanel.SetActive(true);
                 uq.stillChecking = true;
                 loadStillCheckingMile[i] = uq.stillChecking;
-                PlayerPrefs.SetInt("loadStillChecking" + i, loadStillCheckingMile[i] ? 1 : 0);
+                PlayerPrefs.SetInt("loadStillCheckingMile" + i, loadStillCheckingMile[i] ? 1 : 0);
                 Debug.Log("changed2");
                 i++;
                 //yield return new WaitWhile(() => achievementPanel.activeSelf);
@@ -175,7 +175,7 @@ public class AchievementManager : MonoBehaviour
             achievementPanel.SetActive(true);
             uq.stillChecking = true;
             loadStillCheckingYear[i] = uq.stillChecking;
-            PlayerPrefs.SetInt("loadStillChecking" + i, loadStillCheckingYear[i] ? 1 : 0);
+            PlayerPrefs.SetInt("loadStillCheckingYear" + i, loadStillCheckingYear[i] ? 1 : 0);
             Debug.Log("changed3");
             i++;
             continue;

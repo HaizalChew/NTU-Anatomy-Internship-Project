@@ -117,5 +117,23 @@ public class MenuManager : MonoBehaviour
                 i++;
             }
         }
+        int y = 0;
+        foreach (bool check in AchievementManager.instance.loadStillCheckingMile)
+        {
+            if (check)
+            {
+                achivements[y+4].color = new Color(1f, 1f, 1f, 1f);
+                y++;
+            }
+        }
+        int x = 0;
+        foreach (bool check in AchievementManager.instance.loadStillCheckingYear)
+        {
+            if (check)
+            {
+                achivements[x+10].color = new Color(1f, 1f, 1f, 1f);
+                x++;
+            }
+        }
     }
 }   
