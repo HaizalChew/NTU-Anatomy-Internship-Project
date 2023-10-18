@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private RectTransform progressBar;
     [SerializeField] private GameObject[] completedCheckIndex;
 
-    public GameObject[] achivements;
+    public Image[] achivements;
     public Transform rotationCenter;
     public float radius;
 
@@ -31,9 +33,7 @@ public class MenuManager : MonoBehaviour
                 completedCheckIndex[i].SetActive(SaveStateManager.instance.topicChecklistCompleted[i]);
             }
             
-        }
-
- 
+        }  
 
     }
 
@@ -77,9 +77,9 @@ public class MenuManager : MonoBehaviour
 
             achivements[i].transform.position = worldPos;
 
-            GameObject c = Instantiate(achivements[i], worldPos, Quaternion.identity);
-            c.transform.SetParent(rotationCenter, true);
-            c.transform.localScale = new Vector3(1,1,1);
+            //GameObject c = Instantiate(achivements[i], worldPos, Quaternion.identity);
+            //c.transform.SetParent(rotationCenter, true);
+            //c.transform.localScale = new Vector3(1,1,1);
         }
     }
 
@@ -88,20 +88,33 @@ public class MenuManager : MonoBehaviour
         achievementStatus = !achievementStatus;
         if (achievementStatus)
         {
-            foreach (GameObject achievement in achivements)
+            foreach (Image achievement in achivements)
             {
-                achievement.SetActive(true);
+                achievement.enabled = true;
                 panel.SetActive(false);
             }
         }
         else
         {
-            foreach (GameObject achievement in achivements)
+            foreach (Image achievement in achivements)
             {
-                achievement.SetActive(false);
+                achievement.enabled = false;
                 panel.SetActive(true) ;
             }
         }
     }
 
-}
+
+    public void OnAchievement()
+    {
+        int i = 0;
+        foreach(bool check in AchievementManager.instance.loadStillChecking)
+        {
+            if (check)
+            {
+                achivements[i].color = new Color(1f, 1f, 1f, 1f);
+                i++;
+            }
+        }
+    }
+}   

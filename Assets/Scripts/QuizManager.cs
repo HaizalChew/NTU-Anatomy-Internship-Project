@@ -193,6 +193,7 @@ public class QuizManager : MonoBehaviour
             notificationCompleted.SetActive(true);
             SaveStateManager.instance.topicChecklistCompleted[topicIndex] = true;
             PlayerPrefs.SetInt("topicCheckListCompleted" + topicIndex, SaveStateManager.instance.topicChecklistCompleted[topicIndex] ? 1 : 0 );
+            StartCoroutine(AchievementManager.instance.StartDisplayAchievement());
         }
         
     }

@@ -33,6 +33,7 @@ public class SaveStateManager : MonoBehaviour
         }
 
         LoadData();
+        AchievementManager.instance.LoadAchievementData();
         Debug.Log(topicChecklistCompleted[1]);
 
         //for (int i = 0; i < topicChecklistCompleted.Length; i++)
