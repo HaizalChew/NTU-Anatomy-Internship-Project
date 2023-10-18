@@ -1027,8 +1027,7 @@ GameObject:
   - component: {fileID: 4863033493708211503}
   - component: {fileID: 5223051778431315173}
   - component: {fileID: 2240236727609050487}
-  - component: {fileID: 8545226698601354357}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Epidermis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1103,8 +1102,7 @@ GameObject:
   - component: {fileID: 5176725537302559268}
   - component: {fileID: 7482195258387597528}
   - component: {fileID: 971545244702072667}
-  - component: {fileID: 4821057518268380096}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Title
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1176,20 +1174,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8028421403367403885}
   m_Mesh: {fileID: 7063308581445582717, guid: fbedc45652b85334a9b4bebd7c0b70bc, type: 3}
---- !u!64 &1645903774884540405
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6358822525440986480}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2524615677801263050, guid: fbedc45652b85334a9b4bebd7c0b70bc, type: 3}
 --- !u!1 &1755221770425895590
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,8 +2077,7 @@ GameObject:
   - component: {fileID: 755964424653587237}
   - component: {fileID: 5221969824171282294}
   - component: {fileID: 1139325455885253670}
-  - component: {fileID: 6055921365510237604}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Dermis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2206,20 +2189,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2050788454451981477}
   m_Mesh: {fileID: -8230972762057333393, guid: fbedc45652b85334a9b4bebd7c0b70bc, type: 3}
---- !u!64 &4821057518268380096
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1315701762585218709}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6086275233559640314, guid: bf8bc6437a2fec342950324cdaa5f969, type: 3}
 --- !u!4 &4853822673466629498
 Transform:
   m_ObjectHideFlags: 0
@@ -2573,20 +2542,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!64 &5729151326993001909
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8063467555030764905}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7651456572499039303, guid: fbedc45652b85334a9b4bebd7c0b70bc, type: 3}
 --- !u!23 &5735408433469040661
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2841,20 +2796,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5416429700877925546}
   m_Mesh: {fileID: 7142159954449083673, guid: fbedc45652b85334a9b4bebd7c0b70bc, type: 3}
---- !u!64 &6055921365510237604
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4082604394945186325}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6604035646957973340, guid: fbedc45652b85334a9b4bebd7c0b70bc, type: 3}
 --- !u!23 &6152611909323729240
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3066,8 +3007,7 @@ GameObject:
   - component: {fileID: 5316443492325840551}
   - component: {fileID: 3706106643504313737}
   - component: {fileID: 7832166649792705069}
-  - component: {fileID: 1645903774884540405}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Hypodermis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3654,8 +3594,7 @@ GameObject:
   - component: {fileID: 9128531499746229030}
   - component: {fileID: 2313736845574214855}
   - component: {fileID: 2908705943647663179}
-  - component: {fileID: 5729151326993001909}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: VivekAnatomy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3845,20 +3784,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7789396241196127878}
   m_Mesh: {fileID: -8967025644826496277, guid: fbedc45652b85334a9b4bebd7c0b70bc, type: 3}
---- !u!64 &8545226698601354357
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1033250868370026495}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -3291961600425955827, guid: fbedc45652b85334a9b4bebd7c0b70bc, type: 3}
 --- !u!64 &8555295914989472239
 MeshCollider:
   m_ObjectHideFlags: 0

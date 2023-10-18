@@ -396,7 +396,6 @@ public class BasicInteractions : MonoBehaviour
 
         if (viewMode)
         {
-            uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 1;
             UpdateSliderValue();
             ToggleCollider(coronarySideModel,viewMode);
             ResetDict();
@@ -412,7 +411,6 @@ public class BasicInteractions : MonoBehaviour
         }
         else
         {
-            uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 0;
             veinCheck = false;
      
             ToggleCollider(coronarySideModel, viewMode);

@@ -125,7 +125,9 @@ public class QuizManager : MonoBehaviour
 
         if (basicInteractions.veinCheck)
         {
-            basicInteractions.dropdownPanel.SetBool("IsOpen", false);
+            ///basicInteractions.dropdownPanel.SetBool("IsOpen", false);
+            basicInteractions.ActivateViewMode();
+            basicInteractions.ToggleVeinTransparent();
         }
 
         //if (basicInteractions.coronaryModel != null)
@@ -193,6 +195,7 @@ public class QuizManager : MonoBehaviour
             notificationCompleted.SetActive(true);
             SaveStateManager.instance.topicChecklistCompleted[topicIndex] = true;
             PlayerPrefs.SetInt("topicCheckListCompleted" + topicIndex, SaveStateManager.instance.topicChecklistCompleted[topicIndex] ? 1 : 0 );
+            AudioManager.instance?.PlaySoundEffect(4);
             StartCoroutine(AchievementManager.instance.StartDisplayAchievement());
         }
         
@@ -234,12 +237,13 @@ public class QuizManager : MonoBehaviour
         {
             notificationPanel.SetActive(true);
             notificationRight.SetActive(true);
-
+            AudioManager.instance?.PlaySoundEffect(5);
         }
         else
         {
             notificationPanel.SetActive(true);
             notificationWrong.SetActive(true);
+            AudioManager.instance?.PlaySoundEffect(6);
         }
     }
 

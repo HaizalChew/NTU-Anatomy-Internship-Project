@@ -655,11 +655,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -7907670273406875193, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5740420758160205222, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5615707314556693388, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
       propertyPath: m_Layer
@@ -683,7 +683,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -3322525641338439476, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -3268570839699154391, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
       propertyPath: m_Layer
@@ -731,7 +731,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4122733448575608510, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5188130352231098274, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
       propertyPath: m_Layer
@@ -743,7 +743,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7429408495285443878, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7704765285885977963, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
       propertyPath: m_Layer
@@ -753,7 +753,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1166665949408541318, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
+    - {fileID: 4821057519567336594, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
+    - {fileID: 2964603102436213574, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
+    - {fileID: 2088281963307717392, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
+    - {fileID: 844469862217923223, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5cc28644c8039934dbda948d0dbd7049, type: 3}
 --- !u!1 &1561771661 stripped
 GameObject:
