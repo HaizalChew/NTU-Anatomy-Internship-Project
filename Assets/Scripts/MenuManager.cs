@@ -86,6 +86,7 @@ public class MenuManager : MonoBehaviour
     public void ToggleAchievement()
     {
         achievementStatus = !achievementStatus;
+        AudioManager.instance?.PlaySoundEffect(1);
         if (achievementStatus)
         {
             foreach (Image achievement in achivements)
