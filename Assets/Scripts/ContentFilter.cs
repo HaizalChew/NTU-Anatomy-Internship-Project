@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Threading;
+using UnityEngine.InputSystem.Android;
 
 public class ContentFilter : MonoBehaviour
 {
@@ -27,7 +29,7 @@ public class ContentFilter : MonoBehaviour
     {
         dropDownPanel.value = saveYearInt;
         DropDownPanelValueChanged(dropDownPanel);
-        GetCurrentFill();
+        GetCurrentFill(saveYearInt);
         SwitchProgressBar();
         dropDownPanel.onValueChanged.AddListener(delegate { DropDownPanelValueChanged(dropDownPanel); });
         dropDownPanel.onValueChanged.AddListener(delegate { SwitchProgressBar(); });
@@ -68,21 +70,75 @@ public class ContentFilter : MonoBehaviour
         {
             bar.gameObject.SetActive(true);
             twoBar.gameObject.SetActive(false);
+            GetCurrentFill(saveYearInt);
 
         }
         else
         {
             bar.gameObject.SetActive(false);
             twoBar.gameObject.SetActive(true);
+            GetCurrentFill(saveYearInt);
         }
     }
 
-    public void GetCurrentFill()
+    public void GetCurrentFill(int year)
     {
-        current = SaveStateManager.instance.NumComplete();
-        maximum = SaveStateManager.instance.topicChecklistCompleted.Length;
-        float fillAmount = (float)current / (float)maximum;
-        bar.fillAmount = fillAmount;
+        if(year == 0)
+        {
+            current = CheckYearOneProgress();
+            maximum = 6;
+            float fillAmount = (float)current / (float)maximum;
+            bar.fillAmount = fillAmount;
+        }
+        else
+        {
+            current = CheckYearTwoProgress();
+            maximum = 6;
+            float fillAmount = (float)current / (float)maximum;
+            twoBar.fillAmount = fillAmount;
+        }
+    }
+
+    public int CheckYearOneProgress()
+    {
+        int i = 0;
+        int min = 0;
+        foreach( bool check in SaveStateManager.instance.topicChecklistCompleted)
+        {
+           if(check && i < 6)
+            {
+                min++;
+            }
+           i++;
+        }
+        return min;
+    }
+
+    public int CheckYearTwoProgress()
+    {
+        int i = 0;
+        int min = 0;
+        foreach (bool check in SaveStateManager.instance.topicChecklistCompleted)
+        {
+            if (check && i > 5)
+            {
+                min++;
+            }
+            i++;
+        }
+        return min;
+    }
+    public int NumComplete()
+    {
+        int i = 0;
+        foreach (bool topicCheck in SaveStateManager.instance.topicChecklistCompleted)
+        {
+            if (topicCheck)
+            {
+                i++;
+            }
+        }
+        return i;
     }
 
     private void FilterContent(string year)
