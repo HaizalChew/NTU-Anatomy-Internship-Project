@@ -139,6 +139,7 @@ public class UiManger : MonoBehaviour
         uiPanel.SetActive(controlCheck);
         searchPanel.SetActive(false);
         animationPanel.SetActive(false);
+        AudioManager.instance?.PlaySoundEffect(1);
     }
     public void ActivateSearch()
     {
@@ -149,6 +150,7 @@ public class UiManger : MonoBehaviour
         uiPanel.SetActive(false);
         searchPanel.SetActive(searchCheck);
         animationPanel.SetActive(false);
+        AudioManager.instance?.PlaySoundEffect(1);
     }
 
     public void ActivateAnim()
@@ -160,6 +162,7 @@ public class UiManger : MonoBehaviour
         uiPanel.SetActive(false);
         searchPanel.SetActive(false);
         animationPanel.SetActive(animCheck);
+        AudioManager.instance?.PlaySoundEffect(1);
     }
 
     public void ActivateAnimState()
@@ -173,6 +176,7 @@ public class UiManger : MonoBehaviour
         uiPanel.SetActive(false);
         searchPanel.SetActive(false);
         animationPanel.SetActive(false);
+        AudioManager.instance?.PlaySoundEffect(1);
     }
 
     public void LoadAnimationModel(GameObject model)
@@ -215,6 +219,16 @@ public class UiManger : MonoBehaviour
         {
             transSlider.gameObject.SetActive(false);
         }
+    }
+
+    public void PlaySoundEffectWithIndex(int index)
+    {
+        AudioManager.instance?.PlaySoundEffect(index);
+    }
+    
+    public void RecenterCamera()
+    {
+        camControls.ActivateRecenteringOnButton();
     }
 
 }
