@@ -810,6 +810,10 @@ PrefabInstance:
     - target: {fileID: 2114506453851863944, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 4848736888263169330}
+    - target: {fileID: 2114506453851863944, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RecenterCamera
       objectReference: {fileID: 0}
     - target: {fileID: 2114506453968176766, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
       propertyPath: m_AnchorMax.x
