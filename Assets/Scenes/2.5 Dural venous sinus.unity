@@ -624,6 +624,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 953005473779060053, guid: 69d8f1d20cfa2e84995be3970107e8d7, type: 3}
+      propertyPath: m_Name
+      value: Cavernous
+      objectReference: {fileID: 0}
+    - target: {fileID: 953005473779060053, guid: 69d8f1d20cfa2e84995be3970107e8d7, type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}

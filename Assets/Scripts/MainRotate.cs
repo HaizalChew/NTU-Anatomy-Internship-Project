@@ -1,10 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using TMPro;
-using UnityEditor.IMGUI.Controls;
-using Unity.VisualScripting;
 
 public class MainRotate : MonoBehaviour
 {

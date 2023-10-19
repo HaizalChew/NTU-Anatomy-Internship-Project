@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using static SaveStateManager;
 using UnityEngine.UI;
-using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 public class AchievementManager : MonoBehaviour
 {
@@ -64,7 +64,10 @@ public class AchievementManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
+
+        //LoadAchievementData();
+        LoadAchievementData();
+
     }
     void Start()
     {
@@ -85,15 +88,11 @@ public class AchievementManager : MonoBehaviour
 
     public IEnumerator StartDisplayAchievement()
     {
-        //yield return new WaitWhile(() => achievementPanel.activeSelf);
         CheckUniqueAchievement();
-        //Debug.Log("wait1");
         yield return new WaitWhile(() => achievementPanel.activeSelf);
         CheckMilestoneAchievement();
-        //Debug.Log("wait2");
         yield return new WaitWhile(() => achievementPanel.activeSelf);
         CheckYearAchievement();
-        //Debug.Log("wait3");
         yield return new WaitWhile(() => achievementPanel.activeSelf);
     }
     private void CheckUniqueAchievement()
@@ -190,22 +189,12 @@ public class AchievementManager : MonoBehaviour
     public void LoadAchievementData()
     {
         Debug.Log("Load");
-        //foreach (UniqueAchievement uq in achievementPanels)
-        //{
-        //    Debug.Log("loop");
-        //    int i = 0;
-        //    Debug.Log("loop");
-        //    if(PlayerPrefs.GetInt("loadStillChecking" + i) == uq )
-        //    {
-        //        loadStillChecking[i] = true;
-        //        Debug.Log("CheckUnique" + loadStillChecking[i]);
-        //    }
-        //}
         for (int i = 0; i < loadStillChecking.Length; i++)
         {
             if (PlayerPrefs.GetInt("loadStillChecking" + i) == 1)
             {
                 loadStillChecking[i] = true;
+                Debug.Log("Get");
             }
         }
 
@@ -224,6 +213,7 @@ public class AchievementManager : MonoBehaviour
             }
         }
     }
+
 
 
 }

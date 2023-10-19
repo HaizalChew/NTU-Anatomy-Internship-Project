@@ -1,10 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
 
 public class SaveStateManager : MonoBehaviour
 {
@@ -33,7 +27,6 @@ public class SaveStateManager : MonoBehaviour
         }
 
         LoadData();
-        AchievementManager.instance.LoadAchievementData();
         Debug.Log(topicChecklistCompleted[1]);
 
         //for (int i = 0; i < topicChecklistCompleted.Length; i++)

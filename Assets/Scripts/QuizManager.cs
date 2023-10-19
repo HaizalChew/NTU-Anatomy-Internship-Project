@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.Collections;
 using TMPro;
 using UnityEngine.Networking;
@@ -197,6 +196,7 @@ public class QuizManager : MonoBehaviour
             PlayerPrefs.SetInt("topicCheckListCompleted" + topicIndex, SaveStateManager.instance.topicChecklistCompleted[topicIndex] ? 1 : 0 );
             AudioManager.instance?.PlaySoundEffect(4);
             StartCoroutine(AchievementManager.instance.StartDisplayAchievement());
+            PlayerPrefs.Save();
         }
         
     }
