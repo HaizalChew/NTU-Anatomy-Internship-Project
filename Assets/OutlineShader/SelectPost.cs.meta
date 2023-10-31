@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 95a80051cbb13154b9b6597cbab37b15
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - SelectedObject: {instanceID: 0}
+  - WriteObject: {fileID: 2100000, guid: 1ba573be39b06e24e9b54f992c49162e, type: 2}
+  - SelectOutline: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

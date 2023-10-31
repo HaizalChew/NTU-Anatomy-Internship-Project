@@ -43,13 +43,23 @@ public class BasicInteractions : MonoBehaviour
     public bool viewMode;
     public bool changeView;
 
+    private bool objectSelected;
+
+    public PostProcess postScript;
+    public SelectPost selectPost;
+
     public GameObject cloneContainer;
 
+    public bool selectHighlight;
+
     [SerializeField] Image image;
+
+    private GameObject originObject;
 
     //[SerializeField] GameObject selectedViewModel;
     void Start()
     {
+        //postScript.currentOutline = postScript.ApplyOutline;
         if (model == null)
         {
             model = GameObject.FindGameObjectWithTag("Model");
@@ -76,12 +86,8 @@ public class BasicInteractions : MonoBehaviour
 
         if (isolateCheck == false)
         {
-            if (Input.GetMouseButtonDown(1))
-            {
 
-                SelectPart();
-            }
-
+            SelectPart();
             HighlightPart();
             OnMouseEnter();
 
@@ -90,205 +96,110 @@ public class BasicInteractions : MonoBehaviour
         {
 
         }
+        if(selectPost.SelectedObject != null){
+            selectedObj = selectPost.SelectedObject.transform;
+        }
+        else{
+            selectedObj = null;
+        }
     }
 
     public void SelectPart(Transform selected = null)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-        if (selectedObj == null && selected == null)
-        {
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, selectableLayerMask))
+        if(selected == null){
+            if (Input.GetMouseButtonDown(1))
             {
-                selectedObj = hitInfo.transform;
-
-                selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
-
-                //selectedInstantiatedObj.transform.parent = model.transform;
-
-                Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
-
-                for (int i = 0; i < matArray.Length; i++)
-                {
-                    matArray[i] = new Material(selectedMat);
-                    if (!ColorDifferenceTreshold(selectedObj.GetComponent<MeshRenderer>().materials[i].color, selectedMat.GetColor("_Color2")))
-                    {
-                        matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
-                    }
+                var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                bool hitSelectable = Physics.Raycast(ray, out var hit) && hit.transform.CompareTag("Selectable");
+                if (hitSelectable) {
+                    selectPost.GetComponent<SelectPost>().enabled = true;
+                    hit.transform.gameObject.layer = LayerMask.NameToLayer("Highlight");
+                    selectPost.SelectedObject = hit.transform.GetComponent<Renderer>();
+                    camControl.ActivateRecentering(selectPost.SelectedObject.transform);
+                    AudioManager.instance?.PlaySoundEffect(0);
+                    objectSelected = true;
+                    highlight = hit.transform;
+                } else {
+                    selectPost.GetComponent<SelectPost>().enabled = false;
+                    selectPost.SelectedObject = null;
+                    objectSelected = false;
                 }
-                selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
-
-                selectedInstantiatedObj.layer = 0;
-                //selectedObj.gameObject.SetActive(false);
-                selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
-
-                camControl.ActivateRecentering(selectedObj);
+            }
+        }
+        else{
+                //postScript.currentOutline = postScript.SelectedOutline;
+                selectPost.GetComponent<SelectPost>().enabled = true;
+                selected.transform.gameObject.layer = LayerMask.NameToLayer("Highlight");
+                selectPost.SelectedObject = selected.transform.GetComponent<Renderer>();
+                camControl.ActivateRecentering(selected);
                 AudioManager.instance?.PlaySoundEffect(0);
-
-            }
-        }
-        else if (selectedObj != null && selected == null)
-        {
-            if (selectedInstantiatedObj != null)
-            {
-                Destroy(selectedInstantiatedObj);
-                selectedInstantiatedObj = null;
-            }
-
-            selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
-            selectedObj = null;
-
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, Mathf.Infinity, selectableLayerMask))
-            {
-                selectedObj = hitInfo.transform;
-
-                selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
-
-                //selectedInstantiatedObj.transform.parent = model.transform;
-
-                Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
-
-                for (int i = 0; i < matArray.Length; i++)
-                {
-                    matArray[i] = new Material(selectedMat);
-                    if (!ColorDifferenceTreshold(selectedObj.GetComponent<MeshRenderer>().materials[i].color, selectedMat.GetColor("_Color2")))
-                    {
-                        matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
-                    }
-                }
-                selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
-
-                selectedInstantiatedObj.layer = 0;
-                selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
-
-                camControl.ActivateRecentering(selectedObj);
-                AudioManager.instance?.PlaySoundEffect(0);
-            }
-        }
-        else if (selectedObj == null && selected != null)
-        {
-            selectedObj = selected;
-
-            selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
-
-            Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
-
-            for (int i = 0; i < matArray.Length; i++)
-            {
-                matArray[i] = new Material(selectedMat);
-                if (!ColorDifferenceTreshold(selectedObj.GetComponent<MeshRenderer>().materials[i].color, selectedMat.GetColor("_Color2")))
-                {
-                    matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
-                }
-            }
-            selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
-
-            selectedInstantiatedObj.layer = 0;
-            selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
-
-            camControl.ActivateRecentering(selectedObj);
-            AudioManager.instance?.PlaySoundEffect(0);
-        }
-        else if (selectedObj != null && selected != null)
-        {
-            if (selectedInstantiatedObj != null)
-            {
-                Destroy(selectedInstantiatedObj);
-                selectedInstantiatedObj = null;
-            }
-
-            selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
-            selectedObj = null;
-
-            selectedObj = selected;
-
-            selectedInstantiatedObj = Instantiate(selectedObj.gameObject, selectedObj.position, selectedObj.rotation);
-
-           //selectedInstantiatedObj.transform.parent = model.transform;
-
-            Material[] matArray = new Material[selectedInstantiatedObj.GetComponent<MeshRenderer>().materials.Length];
-
-            for (int i = 0; i < matArray.Length; i++)
-            {
-                matArray[i] = new Material(selectedMat);
-                if (!ColorDifferenceTreshold(selectedObj.GetComponent<MeshRenderer>().materials[i].color, selectedMat.GetColor("_Color2")))
-                {
-                    matArray[i].color = selectedObj.GetComponent<MeshRenderer>().materials[i].color;
-                }
-            }
-            selectedInstantiatedObj.GetComponent<MeshRenderer>().materials = matArray;
-
-            selectedInstantiatedObj.layer = 0;
-            selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
-
-            camControl.ActivateRecentering(selectedObj);
-            AudioManager.instance?.PlaySoundEffect(0);
+                objectSelected = true;
+                highlight = selected;
         }
     }
 
     private void HighlightPart()
     {
-        if (highlight != null)
-        {
-            highlight.GetComponent<MeshRenderer>().materials = orignialMaterial;
-            highlight = null;
-        }
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        // Hightlight Object when hovered
-        if (!EventSystem.current.IsPointerOverGameObject() && Physics.Raycast(ray, out raycastHit, Mathf.Infinity, selectableLayerMask))
-        {
-            highlight = raycastHit.transform;
-            if (highlight != selectedObj)
+        if(objectSelected == false){
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.CompareTag("Selectable")))
             {
-                orignialMaterial = highlight.GetComponent<MeshRenderer>().materials;
-                Material[] highlightMaterials = new Material[orignialMaterial.Length];
-
-                for (int i = 0; i < highlightMaterials.Length; i++)
-                {
-                    highlightMaterials[i] = new Material(highlightMaterial);
-                    highlightMaterials[i].color = orignialMaterial[i].color;
-                }
-
-                highlight.GetComponent<MeshRenderer>().materials = highlightMaterials;
-
-            }
-            else
-            {
+                postScript.GetComponent<PostProcess>().enabled = true;
+                postScript.OutlinedObject = hit.transform.GetComponent<Renderer>();
+                highlight = hit.transform;
+            } else {
+                postScript.GetComponent<PostProcess>().enabled = false;
+                postScript.OutlinedObject = null;
                 highlight = null;
             }
         }
+        else{
+            var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.CompareTag("Selectable")) && hit.transform.name != postScript.transform.name)
+            {
+                postScript.OutlinedObject = hit.transform.GetComponent<Renderer>();
+                highlight = hit.transform;
+            } else {
+                postScript.OutlinedObject = null;
+                highlight = null;
+            }
+        }
+
     }
+    
     public void IsolatePart()
     {
-        if (selectedObj)
+        if (selectPost.SelectedObject)
         {
             isolateCheck = !isolateCheck;
 
             uiManagerScript.SwitchSprite(isolateCheck, image);
 
-            foreach (Transform child in selectedObj.transform.parent)
+            foreach (Transform child in selectPost.SelectedObject.transform.root)
             {
-                if (child.name == selectedObj.name)
+                Debug.Log(child);
+                if (child.name == selectPost.SelectedObject.transform.name)
                 {
                     //child.gameObject.SetActive(isolateCheck);
-                    selectedInstantiatedObj.SetActive(isolateCheck);
+                    originObject = child.gameObject;
+                    child.gameObject.SetActive(isolateCheck);
                 }
                 else
                 {
                     child.gameObject.SetActive(!isolateCheck);
-                    selectedInstantiatedObj.SetActive(!isolateCheck);
                 }
 
             }
+            originObject.SetActive(true);
 
-            if (isolateCheck)
-            {
-                selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
-            }
-            else
-            {
-                selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
-            }
+            // if (isolateCheck)
+            // {
+            //     selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
+            // }
+            // else
+            // {
+            //     selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
+            // }
         }
     }
 

@@ -23,6 +23,7 @@ public class UiManger : MonoBehaviour
     [SerializeField] CameraControls camControls;
 
     [SerializeField] BasicInteractions basicInteractions;
+    [SerializeField] SelectPost selectPost;
 
     private bool controlCheck, searchCheck, animCheck, animState, modelAnimState;
     public bool sliderCheck;
@@ -108,9 +109,9 @@ public class UiManger : MonoBehaviour
 
     public void DisplayName()
     {
-        if (basicInteractions.selectedObj != null)
+        if (selectPost.SelectedObject != null)
         {
-            displayName.text = basicInteractions.selectedObj.name;
+            displayName.text = selectPost.SelectedObject.transform.name;
         }
         else
         {

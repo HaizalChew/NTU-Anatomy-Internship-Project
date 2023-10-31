@@ -113,7 +113,16 @@ public class PartList : MonoBehaviour
                 }
                 else
                 {
-                    partDict.Add(child.name.ToLower(), child.gameObject);
+                    if (child.childCount > 0)
+                    {
+                        Debug.Log(child);
+                        partDict.Add(child.name.ToLower(), child.GetChild(0).gameObject);
+                    }
+                    else
+                    {
+                        partDict.Add(child.name.ToLower(), child.gameObject);
+                    }
+                    
                 }
             }
         }
@@ -151,7 +160,17 @@ public class PartList : MonoBehaviour
 
                         spawnName.GetComponent<TMP_Text>().text = child.name;
                         spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
-                        spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
+                        
+                        if (child.childCount > 0)
+                        {
+                            spawnName.GetComponent<JumpToPart>().assignedPart = child.GetChild(0).gameObject;
+                        }
+                        
+                        else
+                        {
+                            spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
+                        }
+                        
                         spawnName.name = child.name;
                     }
                 }
@@ -164,7 +183,16 @@ public class PartList : MonoBehaviour
 
                     spawnName.GetComponent<TMP_Text>().text = child.name;
                     spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
-                    spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
+
+                    if (child.childCount > 0)
+                        {
+                            spawnName.GetComponent<JumpToPart>().assignedPart = child.GetChild(0).gameObject;
+                        }
+
+                    else
+                    {
+                        spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
+                    }
                     spawnName.name = child.name;
                 }
                 
