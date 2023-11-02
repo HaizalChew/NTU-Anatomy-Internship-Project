@@ -9,12 +9,9 @@ public class PostProcess : MonoBehaviour
 	public Renderer OutlinedObject;
 
 	public Material WriteObject;
-	//public Material ApplyOutline;
-    //public Material SelectedOutline;
-    public int matNum;
 
     
-    public Material[] currentOutline = new Material[2];
+    public Material currentOutline;
 	void Update()
 	{
 	
@@ -35,7 +32,7 @@ public class PostProcess : MonoBehaviour
 			commands.DrawRenderer(OutlinedObject, WriteObject);
 		}
 		//apply everything and clean up in commandbuffer
-		commands.Blit(source, destination, currentOutline[matNum]);
+		commands.Blit(source, destination, currentOutline);
 		commands.ReleaseTemporaryRT(selectionBuffer);
 
 		
