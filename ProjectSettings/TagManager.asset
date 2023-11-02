@@ -11,6 +11,7 @@ TagManager:
   - Year2
   - Model
   - AudioManager
+  - Hidden
   layers:
   - Default
   - TransparentFX

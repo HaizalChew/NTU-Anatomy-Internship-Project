@@ -110,10 +110,10 @@ public class BasicInteractions : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-                bool hitSelectable = Physics.Raycast(ray, out var hit) && hit.transform.CompareTag("Selectable");
+                bool hitSelectable = Physics.Raycast(ray, out var hit) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable");
                 if (hitSelectable) {
                     selectPost.GetComponent<SelectPost>().enabled = true;
-                    hit.transform.gameObject.layer = LayerMask.NameToLayer("Highlight");
+                    //hit.transform.gameObject.layer = LayerMask.NameToLayer("Highlight");
                     selectPost.SelectedObject = hit.transform.GetComponent<Renderer>();
                     camControl.ActivateRecentering(selectPost.SelectedObject.transform);
                     AudioManager.instance?.PlaySoundEffect(0);
@@ -129,7 +129,7 @@ public class BasicInteractions : MonoBehaviour
         else{
                 //postScript.currentOutline = postScript.SelectedOutline;
                 selectPost.GetComponent<SelectPost>().enabled = true;
-                selected.transform.gameObject.layer = LayerMask.NameToLayer("Highlight");
+                //selected.transform.gameObject.layer = LayerMask.NameToLayer("Highlight");
                 selectPost.SelectedObject = selected.transform.GetComponent<Renderer>();
                 camControl.ActivateRecentering(selected);
                 AudioManager.instance?.PlaySoundEffect(0);
@@ -142,7 +142,7 @@ public class BasicInteractions : MonoBehaviour
     {
         if(objectSelected == false){
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.CompareTag("Selectable")))
+            if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable")))
             {
                 postScript.GetComponent<PostProcess>().enabled = true;
                 postScript.OutlinedObject = hit.transform.GetComponent<Renderer>();
@@ -155,7 +155,7 @@ public class BasicInteractions : MonoBehaviour
         }
         else{
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.CompareTag("Selectable")) && hit.transform.name != postScript.transform.name)
+            if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable")) && hit.transform.name != postScript.transform.name)
             {
                 postScript.OutlinedObject = hit.transform.GetComponent<Renderer>();
                 highlight = hit.transform;
@@ -241,9 +241,17 @@ public class BasicInteractions : MonoBehaviour
     }
 
     public void ToggleVeinTransparent()
-    {
+    {   
+        veinCheck = !veinCheck;
+        partList.useExclude = veinCheck;
+        partList.ResetNameListOnButton();
+
         if (veinCheck)
         {
+            ToggleCollider(coronarySideModel, veinCheck);
+            ResetDict();
+            dropdownPanel.SetBool("IsOpen", true);
+
             foreach (Transform child in coronarySideModel.transform)
             {
                 if (child.tag != "Vein")
@@ -252,27 +260,47 @@ public class BasicInteractions : MonoBehaviour
                     //ChangeMaterial(child.gameObject);
                     child.gameObject.SetActive(false);
                 }
+
+                if (child.tag == "Hidden")
+                {
+                    child.gameObject.SetActive(true);
+                }
+            }
+
+            if (selectedObj != null)
+            {
+                selectedObj = null;
             }
         }
         else
         {
-            //foreach (Transform child in cloneContainer.transform)
-            //{
-            //    Destroy(child.gameObject);
-            //}
+            ToggleCollider(coronarySideModel, veinCheck);
+            ResetDict();
+            dropdownPanel.SetBool("IsOpen", false);
+
             foreach (Transform child in coronarySideModel.transform)
             {
                 if (child.tag != "Vein")
                 {
                     child.gameObject.SetActive(true);
                 }
+
+                if (child.tag == "Hidden")
+                {
+                    child.gameObject.SetActive(false);
+                }
+            }
+
+            if (selectedObj != null)
+            {
+                selectedObj = null;
             }
         }
     }
 
     public void ShowSlider()
     {
-        if (viewMode)
+        if (veinCheck)
         {
             renderingSlider.gameObject.SetActive(true);
         }
@@ -302,15 +330,12 @@ public class BasicInteractions : MonoBehaviour
     public void ActivateViewMode()
     {
         viewMode = !viewMode;
-        partList.useExclude = viewMode;
-        partList.ResetNameListOnButton();
+        
 
         if (viewMode)
         {
-            UpdateSliderValue();
-            ToggleCollider(coronarySideModel,viewMode);
-            ResetDict();
-            dropdownPanel.SetBool("IsOpen", true);
+            //UpdateSliderValue();
+            
 
             if (selectedObj != null)
             {
@@ -322,11 +347,9 @@ public class BasicInteractions : MonoBehaviour
         }
         else
         {
-            veinCheck = false;
+            //veinCheck = false;
      
-            ToggleCollider(coronarySideModel, viewMode);
-            ResetDict();
-            dropdownPanel.SetBool("IsOpen", false);
+            
 
             if (selectedObj != null)
             {
