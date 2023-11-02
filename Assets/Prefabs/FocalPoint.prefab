@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 8580735002401583726}
   - component: {fileID: 8580735002401583721}
   - component: {fileID: 8580735002401583722}
+  - component: {fileID: 1526190414}
+  - component: {fileID: 1526190418}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -63,7 +65,7 @@ Camera:
   field of view: 60
   orthographic: 0
   orthographic size: 5
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 247
@@ -152,6 +154,36 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1526190414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8580735002401583725}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5651e323008e84b83c562f86dc88a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OutlinedObject: {fileID: 0}
+  WriteObject: {fileID: 2100000, guid: e3d7b1d655e65a845a25ba4f47df8e4f, type: 2}
+  currentOutline: {fileID: 2100000, guid: 1ba573be39b06e24e9b54f992c49162e, type: 2}
+--- !u!114 &1526190418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8580735002401583725}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a80051cbb13154b9b6597cbab37b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SelectedObject: {fileID: 0}
+  WriteObject: {fileID: 2100000, guid: ccbe43c5fda3b5e4f8caa07af6694041, type: 2}
+  SelectOutline: {fileID: 2100000, guid: 274ac6233e386a44689a3708402c5565, type: 2}
 --- !u!1 &8580735002919774390
 GameObject:
   m_ObjectHideFlags: 0

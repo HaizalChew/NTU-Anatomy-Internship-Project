@@ -514,6 +514,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1087048648 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1526190418, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+  m_PrefabInstance: {fileID: 429912653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a80051cbb13154b9b6597cbab37b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1087048649 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1526190414, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+  m_PrefabInstance: {fileID: 429912653}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5651e323008e84b83c562f86dc88a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1330484673 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6654262569695046416, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
@@ -699,6 +721,14 @@ PrefabInstance:
       propertyPath: isolateBtn
       value: 
       objectReference: {fileID: 1064649258}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: postScript
+      value: 
+      objectReference: {fileID: 1087048649}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: selectPost
+      value: 
+      objectReference: {fileID: 1087048648}
     - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: partListScript
       value: 

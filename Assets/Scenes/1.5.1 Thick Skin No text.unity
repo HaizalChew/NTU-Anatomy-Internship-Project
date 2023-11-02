@@ -664,6 +664,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1290446458 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1526190418, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+  m_PrefabInstance: {fileID: 739141801}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a80051cbb13154b9b6597cbab37b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1290446459 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1526190414, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+  m_PrefabInstance: {fileID: 739141801}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5651e323008e84b83c562f86dc88a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1330484673 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6654262569695046416, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
@@ -849,6 +871,14 @@ PrefabInstance:
       propertyPath: isolateBtn
       value: 
       objectReference: {fileID: 1064649258}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: postScript
+      value: 
+      objectReference: {fileID: 1290446459}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: selectPost
+      value: 
+      objectReference: {fileID: 1290446458}
     - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: partListScript
       value: 

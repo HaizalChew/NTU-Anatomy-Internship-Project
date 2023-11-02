@@ -346,7 +346,7 @@ GameObject:
   - component: {fileID: 486936965}
   - component: {fileID: 486936966}
   - component: {fileID: 486936967}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ribs
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -1245,14 +1245,6 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 543450652813672094}
-    - target: {fileID: 8580735002401583721, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
-      propertyPath: cameraPanningSensitivity
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8580735002401583727, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
-      propertyPath: m_Depth
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8580735003447776291, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
       propertyPath: m_Name
       value: FocalPoint
@@ -1308,7 +1300,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8580735002401583721, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
   m_PrefabInstance: {fileID: 1407558124}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526190412}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6deda6367237ff247ba48dad4203c9a5, type: 3}
@@ -1392,41 +1384,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1526190412 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8580735002401583725, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+--- !u!114 &1526190414 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1526190414, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
   m_PrefabInstance: {fileID: 1407558124}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1526190414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526190412}
+  m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: db5651e323008e84b83c562f86dc88a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  OutlinedObject: {fileID: 0}
-  WriteObject: {fileID: 2100000, guid: e3d7b1d655e65a845a25ba4f47df8e4f, type: 2}
-  currentOutline: {fileID: 2100000, guid: 1ba573be39b06e24e9b54f992c49162e, type: 2}
---- !u!114 &1526190418
+--- !u!114 &1526190418 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 1526190418, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+  m_PrefabInstance: {fileID: 1407558124}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1526190412}
+  m_GameObject: {fileID: 0}
   m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 95a80051cbb13154b9b6597cbab37b15, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SelectedObject: {fileID: 0}
-  WriteObject: {fileID: 2100000, guid: ccbe43c5fda3b5e4f8caa07af6694041, type: 2}
-  SelectOutline: {fileID: 2100000, guid: 274ac6233e386a44689a3708402c5565, type: 2}
 --- !u!1001 &1578947248
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1610,7 +1589,7 @@ GameObject:
   - component: {fileID: 752790297912000527}
   - component: {fileID: 1862462239040082071}
   - component: {fileID: 1102857048654194003}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Myocardium
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -1724,7 +1703,7 @@ GameObject:
   - component: {fileID: 1709727794304965497}
   - component: {fileID: 1008667662312108079}
   - component: {fileID: 5484874142373860182}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Epicardial fat
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -1967,7 +1946,7 @@ GameObject:
   - component: {fileID: 8162370538383277665}
   - component: {fileID: 5776564965297495632}
   - component: {fileID: 3564433363825561286}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Serous peric
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -2078,7 +2057,7 @@ GameObject:
   - component: {fileID: 5168563620877498162}
   - component: {fileID: 5967993204470331391}
   - component: {fileID: 8167074039195790415}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Serr Ant Musc
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -2163,7 +2142,7 @@ GameObject:
   - component: {fileID: 6659743621151969282}
   - component: {fileID: 2898524396876714518}
   - component: {fileID: 308815438929595621}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ribs.001
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -2212,7 +2191,7 @@ GameObject:
   - component: {fileID: 5124571589244134142}
   - component: {fileID: 7007513779734198760}
   - component: {fileID: 2454763883101761974}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Purkinje fibres
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -2303,7 +2282,7 @@ GameObject:
   - component: {fileID: 8417795486609046260}
   - component: {fileID: 6385445201425691091}
   - component: {fileID: 2390346986302207144}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Collaterals
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -2438,7 +2417,7 @@ GameObject:
   - component: {fileID: 1696436562254349439}
   - component: {fileID: 4103096309867278248}
   - component: {fileID: 8971037392888409495}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Coronary vein
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -2457,7 +2436,7 @@ GameObject:
   - component: {fileID: 8458843764076581310}
   - component: {fileID: 2896145220623867884}
   - component: {fileID: 3951429243312834521}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Endocardium
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -2678,7 +2657,7 @@ GameObject:
   - component: {fileID: 5620235759475851828}
   - component: {fileID: 6941353188684438385}
   - component: {fileID: 4192837463784157614}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Skin
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3024,7 +3003,7 @@ GameObject:
   - component: {fileID: 2781833597122606852}
   - component: {fileID: 6573693376392730828}
   - component: {fileID: 4954243808788883851}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: EndoTx Fasc
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3100,7 +3079,7 @@ GameObject:
   - component: {fileID: 561313226744303972}
   - component: {fileID: 2926445766747977276}
   - component: {fileID: 7757514330803797572}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pulm Artery
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3119,7 +3098,7 @@ GameObject:
   - component: {fileID: 6426786279288882875}
   - component: {fileID: 6861005407323620196}
   - component: {fileID: 325819519891093041}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Supf Fasc
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3246,7 +3225,7 @@ GameObject:
   - component: {fileID: 4833921791963931864}
   - component: {fileID: 7884807405980579353}
   - component: {fileID: 794350598816637317}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pulm vein Inf
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3296,7 +3275,7 @@ GameObject:
   - component: {fileID: 4346043068269465944}
   - component: {fileID: 926107731922289741}
   - component: {fileID: 1028898762457285869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Int IC Musc
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3315,7 +3294,7 @@ GameObject:
   - component: {fileID: 4078560085658928824}
   - component: {fileID: 8557372235203479384}
   - component: {fileID: 5889880832590754846}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pulm vein Sup
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3364,7 +3343,7 @@ GameObject:
   - component: {fileID: 353031515053371386}
   - component: {fileID: 5048883333240112098}
   - component: {fileID: 3753971680786394701}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Innermost IC Musc
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3496,7 +3475,7 @@ GameObject:
   - component: {fileID: 2741335569120391539}
   - component: {fileID: 7617716958249104010}
   - component: {fileID: 1467837314440511227}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Visc Pleura
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3557,7 +3536,7 @@ GameObject:
   - component: {fileID: 6792533114724111906}
   - component: {fileID: 3948710804685004707}
   - component: {fileID: 6821185437596720264}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Intercost Vein
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3591,7 +3570,7 @@ GameObject:
   - component: {fileID: 2307721754179367689}
   - component: {fileID: 2357697527872732290}
   - component: {fileID: 4093202595575080917}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Fibrous peric
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3704,7 +3683,7 @@ GameObject:
   - component: {fileID: 1425064544437435128}
   - component: {fileID: 8781272135828577084}
   - component: {fileID: 1553086074496413063}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Coronary artery
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3723,7 +3702,7 @@ GameObject:
   - component: {fileID: 853437758695159191}
   - component: {fileID: 3405532682257496895}
   - component: {fileID: 236436818197906251}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Phrenic
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3784,7 +3763,7 @@ GameObject:
   - component: {fileID: 2580940230464163394}
   - component: {fileID: 624713345654405366}
   - component: {fileID: 7540318493049658351}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ext IC Musc
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -3892,7 +3871,7 @@ GameObject:
   - component: {fileID: 7021210701210520808}
   - component: {fileID: 5765150574194602788}
   - component: {fileID: 923151844701745959}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ribs
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -4102,7 +4081,7 @@ GameObject:
   - component: {fileID: 8650517782925692134}
   - component: {fileID: 8337070099960063530}
   - component: {fileID: 4316010744546051292}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Vagus
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -4262,7 +4241,7 @@ GameObject:
   - component: {fileID: 5499399000407576677}
   - component: {fileID: 8325546228094949310}
   - component: {fileID: 4798155345247096869}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Intercostal nerve
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -4281,7 +4260,7 @@ GameObject:
   - component: {fileID: 8500771801259885700}
   - component: {fileID: 6195978917296489269}
   - component: {fileID: 1768081174667962084}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Lung
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -4300,7 +4279,7 @@ GameObject:
   - component: {fileID: 3858057710635786771}
   - component: {fileID: 889326956146718106}
   - component: {fileID: 6621248980364362094}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Diaphragm
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -4341,7 +4320,7 @@ GameObject:
   - component: {fileID: 8557937802471865491}
   - component: {fileID: 7046791422235199587}
   - component: {fileID: 7824264095667246932}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Intercost artery
   m_TagString: Selectable
   m_Icon: {fileID: 0}
@@ -4444,7 +4423,7 @@ GameObject:
   - component: {fileID: 1025296331513616708}
   - component: {fileID: 4495839026302218641}
   - component: {fileID: 3148090602606011910}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Parietal Pleura
   m_TagString: Selectable
   m_Icon: {fileID: 0}

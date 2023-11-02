@@ -21,6 +21,7 @@ public class UiManger : MonoBehaviour
     [SerializeField] SelectableHandler orbitControl;
     [SerializeField] Button plus, minus;
     [SerializeField] CameraControls camControls;
+    [SerializeField] GameObject textBar;
 
     [SerializeField] BasicInteractions basicInteractions;
 
@@ -110,10 +111,12 @@ public class UiManger : MonoBehaviour
     {
         if (basicInteractions.selectedObj != null)  
         {
+            textBar.gameObject.SetActive(true);
             displayName.text = basicInteractions.selectedObj.name;
         }
         else
         {
+            textBar.gameObject.SetActive(false);
             displayName.text = null;
         }
     }

@@ -557,6 +557,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6deda6367237ff247ba48dad4203c9a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1239340357 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1526190418, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+  m_PrefabInstance: {fileID: 1188261328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a80051cbb13154b9b6597cbab37b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1239340358 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1526190414, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+  m_PrefabInstance: {fileID: 1188261328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5651e323008e84b83c562f86dc88a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1300161075 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 1745fc01dbf094942bc6c33a66dd0da8, type: 3}
@@ -1119,6 +1141,14 @@ PrefabInstance:
       propertyPath: camControl
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: postScript
+      value: 
+      objectReference: {fileID: 1239340358}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: selectPost
+      value: 
+      objectReference: {fileID: 1239340357}
     - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: coronaryModel
       value: 

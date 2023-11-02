@@ -8,7 +8,7 @@ public class SelectPost : MonoBehaviour
 {
 	public Renderer SelectedObject;
 
-	public Material WriteObject;
+	public Material WriteObject;	
 	//public Material ApplyOutline;
     //public Material SelectedOutline;
 

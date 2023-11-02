@@ -218,6 +218,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fd97b1f6c6586e47994cb3f5671cb34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &594128346 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1526190418, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+  m_PrefabInstance: {fileID: 194955435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95a80051cbb13154b9b6597cbab37b15, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &594128347 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1526190414, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+  m_PrefabInstance: {fileID: 194955435}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db5651e323008e84b83c562f86dc88a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +598,14 @@ PrefabInstance:
       propertyPath: isolateBtn
       value: 
       objectReference: {fileID: 1539773925}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: postScript
+      value: 
+      objectReference: {fileID: 594128347}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: selectPost
+      value: 
+      objectReference: {fileID: 594128346}
     - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: partListScript
       value: 

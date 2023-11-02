@@ -919,6 +919,10 @@ PrefabInstance:
       propertyPath: cameraPanningSensitivity
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8580735002401583727, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+      propertyPath: near clip plane
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8580735003447776291, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
       propertyPath: m_Name
       value: FocalPoint
@@ -1009,10 +1013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OutlinedObject: {fileID: 0}
   WriteObject: {fileID: 2100000, guid: 1ba573be39b06e24e9b54f992c49162e, type: 2}
-  matNum: 0
-  currentOutline:
-  - {fileID: 2100000, guid: 1ba573be39b06e24e9b54f992c49162e, type: 2}
-  - {fileID: 2100000, guid: 274ac6233e386a44689a3708402c5565, type: 2}
+  currentOutline: {fileID: 0}
 --- !u!114 &1330484673 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6654262569695046416, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
@@ -1183,7 +1184,7 @@ RectTransform:
   m_Children:
   - {fileID: 1602909183}
   m_Father: {fileID: 1961658035}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}

@@ -113,7 +113,6 @@ public class BasicInteractions : MonoBehaviour
                 bool hitSelectable = Physics.Raycast(ray, out var hit) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable");
                 if (hitSelectable) {
                     selectPost.GetComponent<SelectPost>().enabled = true;
-                    //hit.transform.gameObject.layer = LayerMask.NameToLayer("Highlight");
                     selectPost.SelectedObject = hit.transform.GetComponent<Renderer>();
                     camControl.ActivateRecentering(selectPost.SelectedObject.transform);
                     AudioManager.instance?.PlaySoundEffect(0);
@@ -127,9 +126,7 @@ public class BasicInteractions : MonoBehaviour
             }
         }
         else{
-                //postScript.currentOutline = postScript.SelectedOutline;
                 selectPost.GetComponent<SelectPost>().enabled = true;
-                //selected.transform.gameObject.layer = LayerMask.NameToLayer("Highlight");
                 selectPost.SelectedObject = selected.transform.GetComponent<Renderer>();
                 camControl.ActivateRecentering(selected);
                 AudioManager.instance?.PlaySoundEffect(0);
