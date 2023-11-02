@@ -77,4 +77,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/2.6 Salivary glands.unity
     guid: 09f131497f8eaa342a44a6ffc6d77b68
+  - enabled: 1
+    path: Assets/Scenes/2.7 Gl Blood Supply.unity
+    guid: 0fbe3a02438fbdc4b979a7dacfe1be41
   m_configObjects: {}

@@ -122,12 +122,13 @@ public class QuizManager : MonoBehaviour
             basicInteractions.IsolatePart();
         }
 
-        if (basicInteractions.veinCheck)
+        if (!basicInteractions.veinCheck)
         {
             ///basicInteractions.dropdownPanel.SetBool("IsOpen", false);
-            basicInteractions.ActivateViewMode();
-            basicInteractions.ToggleVeinTransparent();
+            basicInteractions.ToggleVeinTransparent();            
         }
+
+        basicInteractions.dropdownPanel.SetBool("IsOpen", false);
 
         //if (basicInteractions.coronaryModel != null)
         //{
@@ -143,8 +144,8 @@ public class QuizManager : MonoBehaviour
         //        basicInteractions.cloneContainer.SetActive(false);
         //    }
         //}
-              
-        if(basicInteractions.selectedObj != null)
+
+        if (basicInteractions.selectedObj != null)
         {
             basicInteractions.selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
             basicInteractions.selectedObj = null;
