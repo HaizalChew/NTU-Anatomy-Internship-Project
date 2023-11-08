@@ -122,7 +122,6 @@ public class PartList : MonoBehaviour
                     {
                         for (int j = 0; j < child.childCount; j++)
                         {
-                            Debug.Log(child.GetChild(j).name);
                             partDict.Add(child.GetChild(j).name.ToLower(), child.GetChild(j).gameObject);
                         }
                     }

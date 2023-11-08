@@ -188,13 +188,11 @@ public class AchievementManager : MonoBehaviour
 
     public void LoadAchievementData()
     {
-        Debug.Log("Load");
         for (int i = 0; i < loadStillChecking.Length; i++)
         {
             if (PlayerPrefs.GetInt("loadStillChecking" + i) == 1)
             {
                 loadStillChecking[i] = true;
-                Debug.Log("Get");
             }
         }
 

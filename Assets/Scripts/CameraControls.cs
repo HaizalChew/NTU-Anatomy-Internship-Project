@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -129,15 +130,15 @@ public class CameraControls : MonoBehaviour
         if (target != null)
         {
             Vector3 targetPoint = target.position;
-            float distance = Vector3.Distance(targetPoint, focus.transform.position);
+            float _distance = Vector3.Distance(targetPoint, focus.transform.position);
             float t = 1f;
-            if (distance > 0.01f && focusCentering > 0f)
+            if (_distance > 0.01f && focusCentering > 0f)
             {
                 t = Mathf.Pow(1f - focusCentering, Time.unscaledDeltaTime);
             }
-            if (distance > focusRadius)
+            if (_distance > focusRadius)
             {
-                t = Mathf.Min(t, focusRadius / distance);
+                t = Mathf.Min(t, focusRadius / _distance);
             }
             focus.transform.position = Vector3.Lerp(targetPoint, focus.transform.position, t);
         }
@@ -148,21 +149,29 @@ public class CameraControls : MonoBehaviour
         target = targetPos;
         stopRecentering = false;
 
-        if (distance >= recenteringZoom)
-        {
-            distance = recenteringZoom;
-        }
-        
+        StartCoroutine(InterpolateZooming());
     }
 
     public void ActivateRecenteringOnButton()
     {
         stopRecentering = false;
-        if (distance >= recenteringZoom)
+        StartCoroutine(InterpolateZooming());   
+    }
+
+    IEnumerator InterpolateZooming()
+    {
+        float currentDistance = distance;
+        float zoomRate = 0.02f;
+        float t = 0;
+
+        while (t < 1f)
         {
-            distance = recenteringZoom;
+            
+            distance = Mathf.Lerp(currentDistance, recenteringZoom, t);
+            t += zoomRate;
+
+            yield return new WaitForSeconds(0.002f);
         }
-        
     }
     
     // This will orbit the camera around the focus

@@ -27,7 +27,6 @@ public class SaveStateManager : MonoBehaviour
         }
 
         LoadData();
-        Debug.Log(topicChecklistCompleted[1]);
 
         //for (int i = 0; i < topicChecklistCompleted.Length; i++)
         //{
@@ -87,7 +86,6 @@ public class SaveStateManager : MonoBehaviour
             if (PlayerPrefs.GetInt("topicCheckListCompleted" + i) == 1)
             {
                 topicChecklistCompleted[i] = true;
-                Debug.Log("Check");
             }
         }
     }

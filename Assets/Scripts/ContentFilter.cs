@@ -63,7 +63,7 @@ public class ContentFilter : MonoBehaviour
 
     public void SwitchProgressBar()
     {
-        Debug.Log("Switch");
+
         if (ContentFilter.saveYearInt == 0)
         {
             bar.gameObject.SetActive(true);
