@@ -125,11 +125,9 @@ public class PartList : MonoBehaviour
                             partDict.Add(child.GetChild(j).name.ToLower(), child.GetChild(j).gameObject);
                         }
                     }
-                    else
-                    {
-                        partDict.Add(child.name.ToLower(), child.gameObject);
-                    }
-                    
+
+                    partDict.Add(child.name.ToLower(), child.gameObject);
+
                 }
             }
         }
@@ -159,45 +157,47 @@ public class PartList : MonoBehaviour
 
                 if (useExclude)
                 {
-                    if (!child.CompareTag(excludeTag) && child.gameObject.layer == LayerMask.NameToLayer("Selectable"))
+                    
+                    if (child.childCount > 0)
                     {
-                        continue;
-                    }
-                    else
-                    {
-
-                        if (child.childCount > 0)
+                        for (int j = 0; j < child.childCount; j++)
                         {
-                            for (int j = 0; j < child.childCount; j++)
+
+                            if (!child.GetChild(j).CompareTag(excludeTag))
+                            {
+                                continue;
+                            }
+                            else
                             {
                                 spacing += -50f;
                                 counter++;
 
-                                GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
+                                GameObject _spawnName = Instantiate(partNamePrefab, partNameParent.transform);
 
-                                spawnName.GetComponent<TMP_Text>().text = child.GetChild(j).name;
-                                spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
-                                spawnName.GetComponent<JumpToPart>().assignedPart = child.GetChild(j).gameObject;
+                                _spawnName.GetComponent<TMP_Text>().text = child.GetChild(j).name;
+                                _spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
+                                _spawnName.GetComponent<JumpToPart>().assignedPart = child.GetChild(j).gameObject;
 
-                                spawnName.name = child.GetChild(j).name;
+                                _spawnName.name = child.GetChild(j).name;
                             }
-                        }        
-                        else
-                        {
-                            spacing += -50f;
-                            counter++;
-
-                            GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
-
-                            spawnName.GetComponent<TMP_Text>().text = child.name;
-                            spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
-                            spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
-
-                            spawnName.name = child.name;
                         }
-                        
-                        
                     }
+
+                    if (!child.CompareTag(excludeTag))
+                    {
+                        continue;
+                    }
+
+                    spacing += -50f;
+                    counter++;
+
+                    GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
+
+                    spawnName.GetComponent<TMP_Text>().text = child.name;
+                    spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
+                    spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
+
+                    spawnName.name = child.name;
                 }
                 else
                 {
@@ -208,28 +208,26 @@ public class PartList : MonoBehaviour
                             spacing += -50f;
                             counter++;
 
-                            GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
+                            GameObject _spawnName = Instantiate(partNamePrefab, partNameParent.transform);
 
-                            spawnName.GetComponent<TMP_Text>().text = child.GetChild(j).name;
-                            spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
-                            spawnName.GetComponent<JumpToPart>().assignedPart = child.GetChild(j).gameObject;
+                            _spawnName.GetComponent<TMP_Text>().text = child.GetChild(j).name;
+                            _spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
+                            _spawnName.GetComponent<JumpToPart>().assignedPart = child.GetChild(j).gameObject;
 
-                            spawnName.name = child.GetChild(j).name;
+                            _spawnName.name = child.GetChild(j).name;
                         }
                     }
-                    else
-                    {
-                        spacing += -50f;
-                        counter++;
 
-                        GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
+                    spacing += -50f;
+                    counter++;
 
-                        spawnName.GetComponent<TMP_Text>().text = child.name;
-                        spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
-                        spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
+                    GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
 
-                        spawnName.name = child.name;
-                    }
+                    spawnName.GetComponent<TMP_Text>().text = child.name;
+                    spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
+                    spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
+
+                    spawnName.name = child.name;
                 }
                 
             }

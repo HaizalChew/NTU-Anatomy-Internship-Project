@@ -122,14 +122,18 @@ public class QuizManager : MonoBehaviour
             basicInteractions.IsolatePart();
         }
 
-        if (!basicInteractions.veinCheck)
+        if (basicInteractions.viewMode)
         {
-            ///basicInteractions.dropdownPanel.SetBool("IsOpen", false);
-            basicInteractions.ToggleVeinTransparent();            
+            if (!basicInteractions.veinCheck)
+            {
+                ///basicInteractions.dropdownPanel.SetBool("IsOpen", false);
+                basicInteractions.ToggleVeinTransparent();
+            }
+
+
+            basicInteractions.dropdownPanel.SetBool("IsOpen", false);
         }
-
-        basicInteractions.dropdownPanel.SetBool("IsOpen", false);
-
+        
         //if (basicInteractions.coronaryModel != null)
         //{
         //    basicInteractions.coronaryModel.gameObject.SetActive(false);

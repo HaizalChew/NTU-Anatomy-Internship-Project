@@ -69,7 +69,7 @@ public class UiManger : MonoBehaviour
 
         if (angioImage != null)
         {
-            SwitchSpritePink(basicInteractions.viewMode, angioImage);
+            SwitchSpritePink(basicInteractions.veinCheck, angioImage);
         }
         
 

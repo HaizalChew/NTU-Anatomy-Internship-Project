@@ -129,7 +129,9 @@ public class CameraControls : MonoBehaviour
     {
         if (target != null)
         {
-            Vector3 targetPoint = target.position;
+            target.TryGetComponent(out Renderer renderer);
+            Vector3 targetPoint = renderer?.bounds.center ?? target.position;
+
             float _distance = Vector3.Distance(targetPoint, focus.transform.position);
             float t = 1f;
             if (_distance > 0.01f && focusCentering > 0f)

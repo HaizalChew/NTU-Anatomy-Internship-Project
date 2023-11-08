@@ -831,6 +831,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1330484673}
     - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: viewMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: camControl
       value: 
       objectReference: {fileID: 929826262}
@@ -6855,7 +6859,7 @@ GameObject:
   - component: {fileID: 8961053241994699135}
   m_Layer: 6
   m_Name: Middle Colic
-  m_TagString: Selectable
+  m_TagString: Vein
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

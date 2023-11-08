@@ -1448,6 +1448,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: f70033f74a3e5d24786036340bff9303, type: 2}
     - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: viewMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
       propertyPath: camControl
       value: 
       objectReference: {fileID: 0}
