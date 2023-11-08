@@ -48,6 +48,11 @@ public class PartList : MonoBehaviour
 
             foreach (KeyValuePair<string, GameObject> part in parts)
             {
+                if (part.Value.layer != LayerMask.NameToLayer("Selectable"))
+                {
+                    continue;
+                }
+
                 if (useExclude)
                 {
                     if (!part.Value.CompareTag(excludeTag))
@@ -109,14 +114,17 @@ public class PartList : MonoBehaviour
             {
                 if (partDict.ContainsKey(child.name))
                 {
-                    return;
+                    continue;
                 }
                 else
                 {
                     if (child.childCount > 0)
                     {
-                        Debug.Log(child);
-                        partDict.Add(child.name.ToLower(), child.GetChild(0).gameObject);
+                        for (int j = 0; j < child.childCount; j++)
+                        {
+                            Debug.Log(child.GetChild(j).name);
+                            partDict.Add(child.GetChild(j).name.ToLower(), child.GetChild(j).gameObject);
+                        }
                     }
                     else
                     {
@@ -145,11 +153,70 @@ public class PartList : MonoBehaviour
         {
             foreach (Transform child in parentModel[i])
             {
+                if (child.gameObject.layer != LayerMask.NameToLayer("Selectable"))
+                {
+                    continue;
+                }
+
                 if (useExclude)
                 {
-                    if (!child.CompareTag(excludeTag))
+                    if (!child.CompareTag(excludeTag) && child.gameObject.layer == LayerMask.NameToLayer("Selectable"))
                     {
                         continue;
+                    }
+                    else
+                    {
+
+                        if (child.childCount > 0)
+                        {
+                            for (int j = 0; j < child.childCount; j++)
+                            {
+                                spacing += -50f;
+                                counter++;
+
+                                GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
+
+                                spawnName.GetComponent<TMP_Text>().text = child.GetChild(j).name;
+                                spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
+                                spawnName.GetComponent<JumpToPart>().assignedPart = child.GetChild(j).gameObject;
+
+                                spawnName.name = child.GetChild(j).name;
+                            }
+                        }        
+                        else
+                        {
+                            spacing += -50f;
+                            counter++;
+
+                            GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
+
+                            spawnName.GetComponent<TMP_Text>().text = child.name;
+                            spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
+                            spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
+
+                            spawnName.name = child.name;
+                        }
+                        
+                        
+                    }
+                }
+                else
+                {
+                    if (child.childCount > 0)
+                    {
+                        for (int j = 0; j < child.childCount; j++)
+                        {
+                            spacing += -50f;
+                            counter++;
+
+                            GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
+
+                            spawnName.GetComponent<TMP_Text>().text = child.GetChild(j).name;
+                            spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
+                            spawnName.GetComponent<JumpToPart>().assignedPart = child.GetChild(j).gameObject;
+
+                            spawnName.name = child.GetChild(j).name;
+                        }
                     }
                     else
                     {
@@ -160,40 +227,10 @@ public class PartList : MonoBehaviour
 
                         spawnName.GetComponent<TMP_Text>().text = child.name;
                         spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
-                        
-                        if (child.childCount > 0)
-                        {
-                            spawnName.GetComponent<JumpToPart>().assignedPart = child.GetChild(0).gameObject;
-                        }
-                        
-                        else
-                        {
-                            spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
-                        }
-                        
+                        spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
+
                         spawnName.name = child.name;
                     }
-                }
-                else
-                {
-                    spacing += -50f;
-                    counter++;
-
-                    GameObject spawnName = Instantiate(partNamePrefab, partNameParent.transform);
-
-                    spawnName.GetComponent<TMP_Text>().text = child.name;
-                    spawnName.GetComponent<RectTransform>().localPosition = new Vector3(0, spacing, 0);
-
-                    if (child.childCount > 0)
-                        {
-                            spawnName.GetComponent<JumpToPart>().assignedPart = child.GetChild(0).gameObject;
-                        }
-
-                    else
-                    {
-                        spawnName.GetComponent<JumpToPart>().assignedPart = child.gameObject;
-                    }
-                    spawnName.name = child.name;
                 }
                 
             }

@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 
 public class SelectPost : MonoBehaviour
 {
-	public Renderer SelectedObject;
+	public Renderer[] SelectedObject;
 
 	public Material WriteObject;	
 	//public Material ApplyOutline;
@@ -31,7 +31,10 @@ public class SelectPost : MonoBehaviour
 		commands.ClearRenderTarget(true, true, Color.clear);
 		if (SelectedObject != null)
 		{
-			commands.DrawRenderer(SelectedObject, WriteObject);
+			foreach (Renderer selectedObj in SelectedObject)
+            {
+				commands.DrawRenderer(selectedObj, WriteObject);
+			}
 		}
 		//apply everything and clean up in commandbuffer
 		commands.Blit(source, destination, SelectOutline);
