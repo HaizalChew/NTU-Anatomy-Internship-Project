@@ -1,9 +1,24 @@
 fileFormatVersion: 2
-guid: b507a4d835304b344af52d96193ace8a
+guid: 43fedd0337f63294caa46ffbcda3fab3
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: bf2f2b12ed0169f448337a159279faf5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: 13bc5d3cb0c16754ca613a3586e8a284, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _SalivaryGlandTextureAtlas
+    second: {fileID: 2100000, guid: f363c8b39cacdfc49b0eb2a165979aa3, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

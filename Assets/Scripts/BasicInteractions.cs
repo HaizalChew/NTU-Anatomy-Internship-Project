@@ -43,7 +43,7 @@ public class BasicInteractions : MonoBehaviour
     public bool viewMode;
     public bool changeView;
 
-    private bool objectSelected;
+    public bool objectSelected;
 
     public PostProcess postScript;
     public SelectPost selectPost;
@@ -96,12 +96,7 @@ public class BasicInteractions : MonoBehaviour
         {
 
         }
-        if(selectPost.SelectedObject != null){
-            selectedObj = selectPost.SelectedObject.transform;
-        }
-        else{
-            selectedObj = null;
-        }
+
     }
 
     public void SelectPart(Transform selected = null)
@@ -112,51 +107,101 @@ public class BasicInteractions : MonoBehaviour
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 bool hitSelectable = Physics.Raycast(ray, out var hit) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable");
                 if (hitSelectable) {
-                    selectPost.GetComponent<SelectPost>().enabled = true;
-                    selectPost.SelectedObject = hit.transform.GetComponent<Renderer>();
-                    camControl.ActivateRecentering(selectPost.SelectedObject.transform);
+                    selectPost.enabled = true;
+
+                    if (hit.transform.childCount > 0)
+                    {
+                        selectPost.SelectedObject = hit.transform.GetComponentsInChildren<Renderer>();
+                    }
+                    else
+                    {
+                        Renderer[] renderers = { hit.transform.GetComponent<Renderer>() };
+                        selectPost.SelectedObject = renderers;
+                    }
+                    
+                    camControl.ActivateRecentering(hit.transform);
                     AudioManager.instance?.PlaySoundEffect(0);
                     objectSelected = true;
                     highlight = hit.transform;
+
+                    selectedObj = hit.transform;
                 } else {
-                    selectPost.GetComponent<SelectPost>().enabled = false;
+                    selectPost.enabled = false;
                     selectPost.SelectedObject = null;
                     objectSelected = false;
                 }
             }
         }
         else{
-                selectPost.GetComponent<SelectPost>().enabled = true;
-                selectPost.SelectedObject = selected.transform.GetComponent<Renderer>();
-                camControl.ActivateRecentering(selected);
-                AudioManager.instance?.PlaySoundEffect(0);
-                objectSelected = true;
-                highlight = selected;
+             selectPost.GetComponent<SelectPost>().enabled = true;
+
+            if (selected.transform.childCount > 0)
+            {
+                selectPost.SelectedObject = selected.transform.GetComponentsInChildren<Renderer>();
+            }
+            else
+            {
+                Renderer[] renderers = { selected.transform.GetComponent<Renderer>() };
+                selectPost.SelectedObject = renderers;
+            }
+            camControl.ActivateRecentering(selected);
+            AudioManager.instance?.PlaySoundEffect(0);
+            objectSelected = true;
+            highlight = selected;
+            selectedObj = selected;
         }
     }
 
-    private void HighlightPart()
+    public void HighlightPart()
     {
-        if(objectSelected == false){
+
+        if (objectSelected == false)
+        {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable")))
             {
-                postScript.GetComponent<PostProcess>().enabled = true;
-                postScript.OutlinedObject = hit.transform.GetComponent<Renderer>();
-                highlight = hit.transform;
-            } else {
-                postScript.GetComponent<PostProcess>().enabled = false;
+                postScript.enabled = true;
+
+                if (hit.transform.childCount > 0)
+                {        
+                    postScript.OutlinedObject = hit.transform.GetComponentsInChildren<Renderer>();
+                    highlight = hit.transform;
+                }
+                else
+                {
+                    Renderer[] renderers = { hit.transform.GetComponent<Renderer>() };
+                    postScript.OutlinedObject = renderers;
+                    highlight = hit.transform;
+                }
+
+            }
+            else
+            {
+                postScript.enabled = false;
                 postScript.OutlinedObject = null;
                 highlight = null;
             }
         }
-        else{
+        else
+        {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable")) && hit.transform.name != postScript.transform.name)
             {
-                postScript.OutlinedObject = hit.transform.GetComponent<Renderer>();
-                highlight = hit.transform;
-            } else {
+                if (hit.transform.childCount > 0)
+                {
+                    postScript.OutlinedObject = hit.transform.GetComponentsInChildren<Renderer>();
+                    highlight = hit.transform;
+                }
+                else
+                {
+                    Renderer[] renderers = { hit.transform.GetComponent<Renderer>() };
+                    postScript.OutlinedObject = renderers;
+                    highlight = hit.transform;
+                }
+
+            }
+            else
+            {
                 postScript.OutlinedObject = null;
                 highlight = null;
             }
@@ -166,37 +211,18 @@ public class BasicInteractions : MonoBehaviour
     
     public void IsolatePart()
     {
-        if (selectPost.SelectedObject)
+        if (selectedObj)
         {
             isolateCheck = !isolateCheck;
 
             uiManagerScript.SwitchSprite(isolateCheck, image);
 
-            foreach (Transform child in selectPost.SelectedObject.transform.root)
+            foreach (Transform child in model.transform)
             {
-                Debug.Log(child);
-                if (child.name == selectPost.SelectedObject.transform.name)
-                {
-                    //child.gameObject.SetActive(isolateCheck);
-                    originObject = child.gameObject;
-                    child.gameObject.SetActive(isolateCheck);
-                }
-                else
-                {
-                    child.gameObject.SetActive(!isolateCheck);
-                }
-
+                child.gameObject.SetActive(!isolateCheck);
             }
-            originObject.SetActive(true);
 
-            // if (isolateCheck)
-            // {
-            //     selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
-            // }
-            // else
-            // {
-            //     selectedObj.gameObject.layer = LayerMask.NameToLayer("Seeable");
-            // }
+            selectedObj.gameObject.SetActive(true);
         }
     }
 
@@ -224,18 +250,18 @@ public class BasicInteractions : MonoBehaviour
     }
 
 
-    GameObject ChangeMaterial(GameObject bodyPart)
-    {
-        GameObject changedMat = Instantiate(bodyPart, bodyPart.transform.position, bodyPart.transform.rotation, cloneContainer.transform);
-        Destroy(changedMat.GetComponent<Rigidbody>());
-        Destroy(changedMat.GetComponent<MeshCollider>());
-        Renderer targetRend = changedMat.GetComponent<Renderer>();
-        Renderer srcRend = bodyPart.GetComponent<Renderer>();
-        Material newMat = Instantiate(transMat);
-        newMat.mainTexture = srcRend.material.mainTexture;
-        targetRend.material = newMat;
-        return (changedMat);
-    }
+    //GameObject ChangeMaterial(GameObject bodyPart)
+    //{
+    //    GameObject changedMat = Instantiate(bodyPart, bodyPart.transform.position, bodyPart.transform.rotation, cloneContainer.transform);
+    //    Destroy(changedMat.GetComponent<Rigidbody>());
+    //    Destroy(changedMat.GetComponent<MeshCollider>());
+    //    Renderer targetRend = changedMat.GetComponent<Renderer>();
+    //    Renderer srcRend = bodyPart.GetComponent<Renderer>();
+    //    Material newMat = Instantiate(transMat);
+    //    newMat.mainTexture = srcRend.material.mainTexture;
+    //    targetRend.material = newMat;
+    //    return (changedMat);
+    //}
 
     public void ToggleVeinTransparent()
     {   
@@ -245,203 +271,156 @@ public class BasicInteractions : MonoBehaviour
 
         if (veinCheck)
         {
-            ToggleCollider(coronarySideModel, veinCheck);
-            ResetDict();
+            //ToggleCollider(coronarySideModel, veinCheck);
             dropdownPanel.SetBool("IsOpen", true);
 
-            foreach (Transform child in coronarySideModel.transform)
-            {
-                if (child.tag != "Vein")
-                {
-
-                    //ChangeMaterial(child.gameObject);
-                    child.gameObject.SetActive(false);
-                }
-
-                if (child.tag == "Hidden")
-                {
-                    child.gameObject.SetActive(true);
-                }
-            }
-
-            if (selectedObj != null)
-            {
-                selectedObj = null;
-            }
+            ToggleAngioView(false);
         }
         else
         {
-            ToggleCollider(coronarySideModel, veinCheck);
-            ResetDict();
+            //ToggleCollider(coronarySideModel, veinCheck);
             dropdownPanel.SetBool("IsOpen", false);
 
+            ToggleAngioView(true);
+        }
+
+        void ToggleAngioView(bool toggle)
+        {
             foreach (Transform child in coronarySideModel.transform)
             {
+                if (child.childCount > 0)
+                {
+                    for (int i = 0; i < child.childCount; i++)
+                    {
+                        Transform childChild = child.GetChild(i);
+
+                        if (childChild.tag != "Vein")
+                        {
+                            childChild.GetComponent<Renderer>().enabled = toggle;
+                            childChild.GetComponent<Collider>().enabled = toggle;
+                        }
+
+                        if (childChild.tag == "Hidden")
+                        {
+                            childChild.GetComponent<Renderer>().enabled = !toggle;
+                            childChild.GetComponent<Collider>().enabled = !toggle;
+                        }
+                    }
+                }
+
                 if (child.tag != "Vein")
                 {
-                    child.gameObject.SetActive(true);
+                    child.GetComponent<Renderer>().enabled = toggle;
+                    child.GetComponent<Collider>().enabled = toggle;
                 }
 
                 if (child.tag == "Hidden")
                 {
-                    child.gameObject.SetActive(false);
+                    child.GetComponent<Renderer>().enabled = !toggle;
+                    child.GetComponent<Collider>().enabled = !toggle;
                 }
             }
 
             if (selectedObj != null)
             {
                 selectedObj = null;
+                selectPost.enabled = false;
+                selectPost.SelectedObject = null;
+                objectSelected = false;
             }
+
         }
     }
 
-    public void ShowSlider()
-    {
-        if (veinCheck)
-        {
-            renderingSlider.gameObject.SetActive(true);
-        }
-        else
-        {
-            renderingSlider.gameObject.SetActive(false);
-        }
-    }
+    //public void ShowSlider()
+    //{
+    //    if (veinCheck)
+    //    {
+    //        renderingSlider.gameObject.SetActive(true);
+    //    }
+    //    else
+    //    {
+    //        renderingSlider.gameObject.SetActive(false);
+    //    }
+    //}
 
-    public void ToggleCollider(GameObject model, bool viewMode)
-    {
-        foreach (Transform child in model.transform)
-        {
-            if (child.tag != "Vein")
-            {
-                if(viewMode)
-                {
-                    child.GetComponent<Collider>().enabled = !viewMode;
-                }
-                else
-                {
-                    child.GetComponent<Collider>().enabled = !viewMode;
-                }
-            }
-        }
-    }
-    public void ActivateViewMode()
-    {
-        viewMode = !viewMode;
+    //public void ToggleCollider(GameObject model, bool viewMode)
+    //{
+    //    foreach (Transform child in model.transform)
+    //    {
+    //        if (child.tag != "Vein")
+    //        {
+    //            child.GetComponent<Collider>().enabled = !viewMode;
+    //        }
+
+    //        if (child.tag == "Hidden")
+    //        {
+    //            child.GetComponent<Collider>().enabled = viewMode;
+    //        }
+    //    }
+    //}
+    //public void ActivateViewMode()
+    //{
+    //    viewMode = !viewMode;
         
 
-        if (viewMode)
-        {
-            //UpdateSliderValue();
+    //    if (viewMode)
+    //    {
+    //        //UpdateSliderValue();
             
 
-            if (selectedObj != null)
-            {
-                selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
-                selectedObj = null;
-                Destroy(selectedInstantiatedObj);
-            }
+    //        if (selectedObj != null)
+    //        {
+    //            selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
+    //            selectedObj = null;
+    //            Destroy(selectedInstantiatedObj);
+    //        }
             
-        }
-        else
-        {
-            //veinCheck = false;
+    //    }
+    //    else
+    //    {
+    //        //veinCheck = false;
      
             
 
-            if (selectedObj != null)
-            {
-                selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
-                selectedObj = null;
-                Destroy(selectedInstantiatedObj);
-            }
-        }
+    //        if (selectedObj != null)
+    //        {
+    //            selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
+    //            selectedObj = null;
+    //            Destroy(selectedInstantiatedObj);
+    //        }
+    //    }
 
-    }
+    //}
 
-    private bool ColorDifferenceTreshold(Color color1, Color color2)
-    {
-        float treshold = .5f;
-        float distance = Mathf.Sqrt(Mathf.Pow(color2.r - color1.r, 2) + Mathf.Pow(color2.g - color1.g, 2) + Mathf.Pow(color2.b - color1.b, 2));
+    //private bool ColorDifferenceTreshold(Color color1, Color color2)
+    //{
+    //    float treshold = .5f;
+    //    float distance = Mathf.Sqrt(Mathf.Pow(color2.r - color1.r, 2) + Mathf.Pow(color2.g - color1.g, 2) + Mathf.Pow(color2.b - color1.b, 2));
 
-        if (distance < treshold)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    //    if (distance < treshold)
+    //    {
+    //        return true;
+    //    }
+    //    else
+    //    {
+    //        return false;
+    //    }
+    //}
 
-    public void ResetDict()
-    {
-        //partListScript.ResetNameList(coronaryModel.transform);
-        //partListScript.ResetNameList(coronarySideModel.transform);
+    //private Renderer[] GetSpecificComponentsInChildren(Transform parent)
+    //{
+    //    List<Renderer> highlightObjectChildren = new List<Renderer>();
+    //    foreach (Renderer child in parent.GetComponentsInChildren<Renderer>())
+    //    {
+    //        if (!child.gameObject.name.Contains(parent.name))
+    //        {
+    //            highlightObjectChildren.Add(child);
+    //        }
+    //    }
 
-    }
-
-    ////public void ChangeViewMode()
-    ////{
-    ////    changeView = !changeView;
-    ////    if (viewMode)
-    ////    {
-    ////        ActivateViewMode();
-    ////    }
-    ////    veinCheck = false;
-
-    ////    if (changeView)
-    ////    {
-    ////        model = coronaryModelAngio;
-    ////        partListScript.parentModel = coronaryModelAngio.transform;
-    ////        if (uiManagerScript.sliderCheck)
-    ////        {
-    ////            uiManagerScript.ActivateTransSlider();
-    ////        }
-    ////        if (selectedObj != null)
-    ////        {
-    ////            coronaryModel.gameObject.SetActive(!changeView);
-    ////            coronaryModelAngio.gameObject.SetActive(changeView);
-    ////            partListScript.ResetNameList();
-    ////            partListScript.InitializeDictionary();
-    ////            Destroy(selectedInstantiatedObj);
-    ////            selectedObj.gameObject.SetActive(true);
-    ////            selectedObj = null;
-    ////        }
-    ////        else
-    ////        {
-    ////            coronaryModel.gameObject.SetActive(!changeView);
-    ////            coronaryModelAngio.gameObject.SetActive(changeView);
-    ////            partListScript.ResetNameList();
-    ////            partListScript.InitializeDictionary();
-    ////        }
-    ////    }
-    ////    else
-    ////    {
-    ////        model = coronaryModel;
-    ////        uiManagerScript.gameObject.GetComponent<QuizManager>().topicIndex = 0;
-    ////        partListScript.parentModel = coronaryModel.transform;
-    ////        if (uiManagerScript.sliderCheck)
-    ////        {
-    ////            uiManagerScript.ActivateTransSlider();
-    ////        }
-    ////        if (selectedObj != null)
-    ////        {
-    ////            coronaryModel.gameObject.SetActive(!changeView);
-    ////            coronaryModelAngio.gameObject.SetActive(changeView);
-    ////            partListScript.ResetNameList();
-    ////            partListScript.InitializeDictionary();
-    ////            Destroy(selectedInstantiatedObj);
-    ////            selectedObj.gameObject.SetActive(true);
-    ////            selectedObj = null;
-    ////        }
-    ////        else
-    ////        {
-    ////            coronaryModel.gameObject.SetActive(!changeView);
-    ////            coronaryModelAngio.gameObject.SetActive(changeView);
-    ////            partListScript.ResetNameList();
-    ////            partListScript.InitializeDictionary();
-    ////        }
-    ////    }
+    //    return highlightObjectChildren.ToArray();
+    //}
 
     public void OnMouseEnter() { showCheck = true; }
     public void OnMouseExit() { showCheck = false; }

@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 
 public class PostProcess : MonoBehaviour
 {
-	public Renderer OutlinedObject;
+	public Renderer[] OutlinedObject;
 
 	public Material WriteObject;
 
@@ -29,7 +29,10 @@ public class PostProcess : MonoBehaviour
 		commands.ClearRenderTarget(true, true, Color.clear);
 		if (OutlinedObject != null)
 		{
-			commands.DrawRenderer(OutlinedObject, WriteObject);
+			foreach (Renderer selectedObj in OutlinedObject)
+			{
+				commands.DrawRenderer(selectedObj, WriteObject);
+			}
 		}
 		//apply everything and clean up in commandbuffer
 		commands.Blit(source, destination, currentOutline);
