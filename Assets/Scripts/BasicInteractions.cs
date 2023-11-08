@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem.HID;
+
 public class BasicInteractions : MonoBehaviour
 {
     [SerializeField] Material selectedMat;
@@ -83,6 +85,7 @@ public class BasicInteractions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+  
 
         if (isolateCheck == false)
         {
@@ -105,26 +108,30 @@ public class BasicInteractions : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+                RaycastHit[] hits;
                 bool hitSelectable = Physics.Raycast(ray, out var hit) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable");
                 if (hitSelectable) {
-                    selectPost.enabled = true;
-
-                    if (hit.transform.childCount > 0)
+                    hits = Physics.RaycastAll(ray, Mathf.Infinity);
+                    RaycastHit[] shortLongHit = GetShortLongHit(hits);
+                    if (shortLongHit[0].transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") != 3)
                     {
-                        selectPost.SelectedObject = hit.transform.GetComponentsInChildren<Renderer>();
+                        selectPost.enabled = true;
+                        selectPost.SelectedObject = shortLongHit[0].transform.GetComponentsInChildren<Renderer>();
+                        highlight = shortLongHit[0].transform;
+                        selectedObj = shortLongHit[0].transform;
                     }
                     else
                     {
-                        Renderer[] renderers = { hit.transform.GetComponent<Renderer>() };
-                        selectPost.SelectedObject = renderers;
+                        selectPost.enabled = true;
+                        selectPost.SelectedObject = shortLongHit[1].transform.GetComponentsInChildren<Renderer>();
+                        highlight = shortLongHit[1].transform;
+                        selectedObj = shortLongHit[1].transform;
                     }
-                    
+
                     camControl.ActivateRecentering(hit.transform);
                     AudioManager.instance?.PlaySoundEffect(0);
                     objectSelected = true;
-                    highlight = hit.transform;
 
-                    selectedObj = hit.transform;
                 } else {
                     selectPost.enabled = false;
                     selectPost.SelectedObject = null;
@@ -154,26 +161,26 @@ public class BasicInteractions : MonoBehaviour
 
     public void HighlightPart()
     {
-
         if (objectSelected == false)
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit[] hits;
             if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable")))
             {
-                postScript.enabled = true;
-
-                if (hit.transform.childCount > 0)
-                {        
-                    postScript.OutlinedObject = hit.transform.GetComponentsInChildren<Renderer>();
-                    highlight = hit.transform;
+                hits = Physics.RaycastAll(ray, Mathf.Infinity);
+                RaycastHit[] shortLongHit = GetShortLongHit(hits);
+                if (shortLongHit[0].transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") != 3)
+                {
+                    postScript.enabled = true;
+                    postScript.OutlinedObject = shortLongHit[0].transform.GetComponentsInChildren<Renderer>();
+                    highlight = shortLongHit[0].transform;
                 }
                 else
                 {
-                    Renderer[] renderers = { hit.transform.GetComponent<Renderer>() };
-                    postScript.OutlinedObject = renderers;
-                    highlight = hit.transform;
+                    postScript.enabled = true;
+                    postScript.OutlinedObject = shortLongHit[1].transform.GetComponentsInChildren<Renderer>();
+                    highlight = shortLongHit[1].transform;
                 }
-
             }
             else
             {
@@ -185,18 +192,22 @@ public class BasicInteractions : MonoBehaviour
         else
         {
             var ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit[] hits;
             if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable")) && hit.transform.name != postScript.transform.name)
             {
-                if (hit.transform.childCount > 0)
+                hits = Physics.RaycastAll(ray, Mathf.Infinity);
+                RaycastHit[] shortLongHit = GetShortLongHit(hits);
+                if (shortLongHit[0].transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") != 3)
                 {
-                    postScript.OutlinedObject = hit.transform.GetComponentsInChildren<Renderer>();
-                    highlight = hit.transform;
+                    postScript.enabled = true;
+                    postScript.OutlinedObject = shortLongHit[0].transform.GetComponentsInChildren<Renderer>();
+                    highlight = shortLongHit[0].transform;
                 }
                 else
                 {
-                    Renderer[] renderers = { hit.transform.GetComponent<Renderer>() };
-                    postScript.OutlinedObject = renderers;
-                    highlight = hit.transform;
+                    postScript.enabled = true;
+                    postScript.OutlinedObject = shortLongHit[1].transform.GetComponentsInChildren<Renderer>();
+                    highlight = shortLongHit[1].transform;
                 }
 
             }
@@ -332,95 +343,35 @@ public class BasicInteractions : MonoBehaviour
         }
     }
 
-    //public void ShowSlider()
-    //{
-    //    if (veinCheck)
-    //    {
-    //        renderingSlider.gameObject.SetActive(true);
-    //    }
-    //    else
-    //    {
-    //        renderingSlider.gameObject.SetActive(false);
-    //    }
-    //}
+    private RaycastHit[] GetShortLongHit(RaycastHit[] hits)
+    {
+        float highestDistance = 0f;
+        float shortestDistance = 0f;
+        RaycastHit[] bothInfo = new RaycastHit[2];
 
-    //public void ToggleCollider(GameObject model, bool viewMode)
-    //{
-    //    foreach (Transform child in model.transform)
-    //    {
-    //        if (child.tag != "Vein")
-    //        {
-    //            child.GetComponent<Collider>().enabled = !viewMode;
-    //        }
+        for (int i = 0; i < hits.Length; i++)
+        {
+            RaycastHit hit = hits[i];
+            float distance = hit.distance;
+            if (i == 0)
+            {
+                shortestDistance = hit.distance;
+            }
 
-    //        if (child.tag == "Hidden")
-    //        {
-    //            child.GetComponent<Collider>().enabled = viewMode;
-    //        }
-    //    }
-    //}
-    //public void ActivateViewMode()
-    //{
-    //    viewMode = !viewMode;
-        
+            if (distance <= shortestDistance)
+            {
+                shortestDistance = distance;
+                bothInfo[0] = hit;
+            }
 
-    //    if (viewMode)
-    //    {
-    //        //UpdateSliderValue();
-            
-
-    //        if (selectedObj != null)
-    //        {
-    //            selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
-    //            selectedObj = null;
-    //            Destroy(selectedInstantiatedObj);
-    //        }
-            
-    //    }
-    //    else
-    //    {
-    //        //veinCheck = false;
-     
-            
-
-    //        if (selectedObj != null)
-    //        {
-    //            selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
-    //            selectedObj = null;
-    //            Destroy(selectedInstantiatedObj);
-    //        }
-    //    }
-
-    //}
-
-    //private bool ColorDifferenceTreshold(Color color1, Color color2)
-    //{
-    //    float treshold = .5f;
-    //    float distance = Mathf.Sqrt(Mathf.Pow(color2.r - color1.r, 2) + Mathf.Pow(color2.g - color1.g, 2) + Mathf.Pow(color2.b - color1.b, 2));
-
-    //    if (distance < treshold)
-    //    {
-    //        return true;
-    //    }
-    //    else
-    //    {
-    //        return false;
-    //    }
-    //}
-
-    //private Renderer[] GetSpecificComponentsInChildren(Transform parent)
-    //{
-    //    List<Renderer> highlightObjectChildren = new List<Renderer>();
-    //    foreach (Renderer child in parent.GetComponentsInChildren<Renderer>())
-    //    {
-    //        if (!child.gameObject.name.Contains(parent.name))
-    //        {
-    //            highlightObjectChildren.Add(child);
-    //        }
-    //    }
-
-    //    return highlightObjectChildren.ToArray();
-    //}
+            if (distance > highestDistance)
+            {
+                highestDistance = distance;
+                bothInfo[1] = hit;
+            }
+        }
+        return bothInfo;
+    }
 
     public void OnMouseEnter() { showCheck = true; }
     public void OnMouseExit() { showCheck = false; }
