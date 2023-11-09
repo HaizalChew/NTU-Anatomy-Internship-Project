@@ -55,6 +55,7 @@ public class BasicInteractions : MonoBehaviour
     public bool selectHighlight;
 
     [SerializeField] Image image;
+    [SerializeField] GameObject toggleAngioViewButton;
 
     private GameObject originObject;
 
@@ -135,6 +136,7 @@ public class BasicInteractions : MonoBehaviour
                 } else {
                     selectPost.enabled = false;
                     selectPost.SelectedObject = null;
+                    selectedObj = null;
                     objectSelected = false;
                 }
             }
@@ -235,6 +237,8 @@ public class BasicInteractions : MonoBehaviour
 
             selectedObj.gameObject.SetActive(true);
         }
+
+        toggleAngioViewButton?.SetActive(!isolateCheck);
     }
 
     private void OnGUI()
