@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem.HID;
+using System;
+using Unity.VisualScripting;
 
 public class BasicInteractions : MonoBehaviour
 {
@@ -59,6 +61,7 @@ public class BasicInteractions : MonoBehaviour
     private GameObject originObject;
 
     //[SerializeField] GameObject selectedViewModel;
+    SortedList objectHits;
     void Start()
     {
         //postScript.currentOutline = postScript.ApplyOutline;
@@ -112,20 +115,30 @@ public class BasicInteractions : MonoBehaviour
                 bool hitSelectable = Physics.Raycast(ray, out var hit) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable");
                 if (hitSelectable) {
                     hits = Physics.RaycastAll(ray, Mathf.Infinity);
-                    RaycastHit[] shortLongHit = GetShortLongHit(hits);
-                    if (shortLongHit[0].transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") != 3)
+                    List<KeyValuePair<RaycastHit, float>> objectData = GetShortLongHit(hits);
+                    for (int i = 0; i < objectData.Count; i++)
                     {
-                        selectPost.enabled = true;
-                        selectPost.SelectedObject = shortLongHit[0].transform.GetComponentsInChildren<Renderer>();
-                        highlight = shortLongHit[0].transform;
-                        selectedObj = shortLongHit[0].transform;
-                    }
-                    else
-                    {
-                        selectPost.enabled = true;
-                        selectPost.SelectedObject = shortLongHit[1].transform.GetComponentsInChildren<Renderer>();
-                        highlight = shortLongHit[1].transform;
-                        selectedObj = shortLongHit[1].transform;
+                        var hitData = objectData[i].Key;
+                        Debug.Log(hitData);
+                        if (hitData.transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") == 3)
+                        {
+                            Debug.Log("hit trans");
+                            selectPost.enabled = true;
+                            selectPost.SelectedObject = hitData.transform.GetComponentsInChildren<Renderer>();
+                            highlight = hitData.transform;
+                            selectedObj = hitData.transform;
+                            continue;
+                        }
+                        if (hitData.transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") == 0)
+                        {
+                            Debug.Log("hit block");
+                            selectPost.enabled = true;
+                            Debug.Log("hit script");
+                            selectPost.SelectedObject = hitData.transform.GetComponentsInChildren<Renderer>();
+                            highlight = hitData.transform;
+                            selectedObj = hitData.transform;
+                            break;
+                        }
                     }
 
                     camControl.ActivateRecentering(hit.transform);
@@ -133,6 +146,7 @@ public class BasicInteractions : MonoBehaviour
                     objectSelected = true;
 
                 } else {
+                    Debug.Log("else");
                     selectPost.enabled = false;
                     selectPost.SelectedObject = null;
                     objectSelected = false;
@@ -168,18 +182,24 @@ public class BasicInteractions : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable")))
             {
                 hits = Physics.RaycastAll(ray, Mathf.Infinity);
-                RaycastHit[] shortLongHit = GetShortLongHit(hits);
-                if (shortLongHit[0].transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") != 3)
+                List<KeyValuePair<RaycastHit, float>> objectData = GetShortLongHit(hits);
+                for (int i = 0; i < objectData.Count; i++)
                 {
-                    postScript.enabled = true;
-                    postScript.OutlinedObject = shortLongHit[0].transform.GetComponentsInChildren<Renderer>();
-                    highlight = shortLongHit[0].transform;
-                }
-                else
-                {
-                    postScript.enabled = true;
-                    postScript.OutlinedObject = shortLongHit[1].transform.GetComponentsInChildren<Renderer>();
-                    highlight = shortLongHit[1].transform;
+                    var hitData = objectData[i].Key;
+                    if (hitData.transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") == 3)
+                    {
+                        postScript.enabled = true;
+                        postScript.OutlinedObject = hitData.transform.GetComponentsInChildren<Renderer>();
+                        highlight = hitData.transform;
+                        continue;
+                    }
+                    if (hitData.transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") == 0)
+                    {
+                        postScript.enabled = true;
+                        postScript.OutlinedObject = hitData.transform.GetComponentsInChildren<Renderer>();
+                        highlight = hitData.transform;
+                        break;
+                    }
                 }
             }
             else
@@ -196,18 +216,24 @@ public class BasicInteractions : MonoBehaviour
             if (!EventSystem.current.IsPointerOverGameObject() && (Physics.Raycast(ray, out var hit, Mathf.Infinity) && hit.transform.gameObject.layer == LayerMask.NameToLayer("Selectable")) && hit.transform.name != postScript.transform.name)
             {
                 hits = Physics.RaycastAll(ray, Mathf.Infinity);
-                RaycastHit[] shortLongHit = GetShortLongHit(hits);
-                if (shortLongHit[0].transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") != 3)
+                List<KeyValuePair<RaycastHit, float>> objectData = GetShortLongHit(hits);
+                for (int i = 0; i < objectData.Count; i++)
                 {
-                    postScript.enabled = true;
-                    postScript.OutlinedObject = shortLongHit[0].transform.GetComponentsInChildren<Renderer>();
-                    highlight = shortLongHit[0].transform;
-                }
-                else
-                {
-                    postScript.enabled = true;
-                    postScript.OutlinedObject = shortLongHit[1].transform.GetComponentsInChildren<Renderer>();
-                    highlight = shortLongHit[1].transform;
+                    var hitData = objectData[i].Key;
+                    if (hitData.transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") == 3)
+                    {
+                        postScript.enabled = true;
+                        postScript.OutlinedObject = hitData.transform.GetComponentsInChildren<Renderer>();
+                        highlight = hitData.transform;
+                        continue;
+                    }
+                    if (hitData.transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") == 0)
+                    {
+                        postScript.enabled = true;
+                        postScript.OutlinedObject = hitData.transform.GetComponentsInChildren<Renderer>();
+                        highlight = hitData.transform;
+                        break;
+                    }
                 }
 
             }
@@ -343,34 +369,30 @@ public class BasicInteractions : MonoBehaviour
         }
     }
 
-    private RaycastHit[] GetShortLongHit(RaycastHit[] hits)
+    public class ObjectStore
     {
-        float highestDistance = 0f;
-        float shortestDistance = 0f;
-        RaycastHit[] bothInfo = new RaycastHit[2];
+        public RaycastHit hitData { get; set; }
+        public float distanceData { get; set; }
+    }
+
+    private int CompareLength(KeyValuePair<RaycastHit, float> a, KeyValuePair<RaycastHit, float> b)
+    {
+        return a.Value.CompareTo(b.Value);
+    }
+
+    private List<KeyValuePair<RaycastHit, float>> GetShortLongHit(RaycastHit[] hits)
+    {
+        List<KeyValuePair<RaycastHit, float>> objectData = new List<KeyValuePair<RaycastHit, float>>();
 
         for (int i = 0; i < hits.Length; i++)
         {
             RaycastHit hit = hits[i];
-            float distance = hit.distance;
-            if (i == 0)
-            {
-                shortestDistance = hit.distance;
-            }
-
-            if (distance <= shortestDistance)
-            {
-                shortestDistance = distance;
-                bothInfo[0] = hit;
-            }
-
-            if (distance > highestDistance)
-            {
-                highestDistance = distance;
-                bothInfo[1] = hit;
-            }
+            objectData.Add(new KeyValuePair<RaycastHit, float>(hit, hit.distance));
         }
-        return bothInfo;
+
+        objectData.Sort(CompareLength);
+        return objectData;
+        
     }
 
     public void OnMouseEnter() { showCheck = true; }
