@@ -32,7 +32,7 @@ public class MenuManager : MonoBehaviour
     {
         AudioManager.instance?.PlaySoundEffect(2);
 
-        SceneManager.LoadSceneAsync("Menu");
+        SceneManager.LoadSceneAsync("MenuYear2");
     }
 
     public void ToOtherScenes(int buildIndex)

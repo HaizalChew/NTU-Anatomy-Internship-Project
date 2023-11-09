@@ -448,6 +448,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1267769476 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2249991514973661149, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
+  m_PrefabInstance: {fileID: 1961658034}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1330484673 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6654262569695046416, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
@@ -870,6 +875,10 @@ PrefabInstance:
       propertyPath: coronarySideModel
       value: 
       objectReference: {fileID: 919132149206305480}
+    - target: {fileID: 6654262569695046423, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
+      propertyPath: toggleAngioViewButton
+      value: 
+      objectReference: {fileID: 1267769476}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79a2771a98745dc469667fef73c7e3dd, type: 3}
 --- !u!1 &1602909182
@@ -1109,6 +1118,10 @@ PrefabInstance:
     - target: {fileID: 2249991515021316552, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
+      objectReference: {fileID: 275088431}
+    - target: {fileID: 2249991515021316552, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: IsolatePart
       objectReference: {fileID: 0}
     - target: {fileID: 2249991516356800276, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
       propertyPath: m_text
