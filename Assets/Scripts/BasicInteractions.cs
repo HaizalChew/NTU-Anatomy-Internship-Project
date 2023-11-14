@@ -88,8 +88,6 @@ public class BasicInteractions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-  
-
         if (isolateCheck == false)
         {
 
@@ -98,11 +96,6 @@ public class BasicInteractions : MonoBehaviour
             OnMouseEnter();
 
         }
-        else
-        {
-
-        }
-
     }
 
     public void SelectPart(Transform selected = null)
@@ -119,10 +112,8 @@ public class BasicInteractions : MonoBehaviour
                     for (int i = 0; i < objectData.Count; i++)
                     {
                         var hitData = objectData[i].Key;
-                        Debug.Log(hitData);
                         if (hitData.transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") == 3)
                         {
-                            Debug.Log("hit trans");
                             selectPost.enabled = true;
                             selectPost.SelectedObject = hitData.transform.GetComponentsInChildren<Renderer>();
                             highlight = hitData.transform;
@@ -131,9 +122,7 @@ public class BasicInteractions : MonoBehaviour
                         }
                         if (hitData.transform.GetComponent<MeshRenderer>().material.GetFloat("_Mode") == 0)
                         {
-                            Debug.Log("hit block");
                             selectPost.enabled = true;
-                            Debug.Log("hit script");
                             selectPost.SelectedObject = hitData.transform.GetComponentsInChildren<Renderer>();
                             highlight = hitData.transform;
                             selectedObj = hitData.transform;
@@ -146,7 +135,7 @@ public class BasicInteractions : MonoBehaviour
                     objectSelected = true;
 
                 } else {
-                    Debug.Log("else");
+                    selectedObj = null;
                     selectPost.enabled = false;
                     selectPost.SelectedObject = null;
                     objectSelected = false;

@@ -25,8 +25,8 @@ public class ContentFilter : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        dropDownPanel.value = saveYearInt;
-        DropDownPanelValueChanged(dropDownPanel);
+        //dropDownPanel.value = saveYearInt;
+        //DropDownPanelValueChanged(dropDownPanel);
         GetCurrentFill(saveYearInt);
         SwitchProgressBar();
         dropDownPanel.onValueChanged.AddListener(delegate { DropDownPanelValueChanged(dropDownPanel); });

@@ -53,9 +53,14 @@ public class PartList : MonoBehaviour
                     continue;
                 }
 
+                if (part.Value.tag == "Hidden" && !GetComponent<BasicInteractions>().veinCheck)
+                {
+                    continue;
+                }
+
                 if (useExclude)
                 {
-                    if (!part.Value.CompareTag(excludeTag))
+                    if (part.Value.tag != excludeTag && part.Value.tag != "Hidden")
                     {
                         continue;
                     }
@@ -155,6 +160,11 @@ public class PartList : MonoBehaviour
                     continue;
                 }
 
+                if (child.gameObject.tag == "Hidden" && !GetComponent<BasicInteractions>().veinCheck)
+                {
+                    continue;
+                }
+
                 if (useExclude)
                 {
                     
@@ -163,7 +173,7 @@ public class PartList : MonoBehaviour
                         for (int j = 0; j < child.childCount; j++)
                         {
 
-                            if (!child.GetChild(j).CompareTag(excludeTag))
+                            if (child.GetChild(j).tag != excludeTag && child.GetChild(j).tag != "Hidden")
                             {
                                 continue;
                             }
@@ -183,7 +193,7 @@ public class PartList : MonoBehaviour
                         }
                     }
 
-                    if (!child.CompareTag(excludeTag))
+                    if (child.tag != excludeTag && child.tag != "Hidden")
                     {
                         continue;
                     }

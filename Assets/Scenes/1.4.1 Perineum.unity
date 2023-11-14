@@ -260,6 +260,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8580735002401583721, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
+      propertyPath: recenteringZoom
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8580735002401583721, guid: 471e44ba0c0dbb44cb4063cc7c2c2f1f, type: 3}
       propertyPath: selectableHandler
       value: 
       objectReference: {fileID: 0}
@@ -631,7 +635,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -5740420758160205222, guid: 28170eaa17613a54e90330cfba76a7cb, type: 3}
       propertyPath: m_Layer
-      value: 6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -5695926806368345853, guid: 28170eaa17613a54e90330cfba76a7cb, type: 3}
       propertyPath: m_Layer

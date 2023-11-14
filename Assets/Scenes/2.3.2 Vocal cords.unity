@@ -1032,7 +1032,7 @@ GameObject:
   - component: {fileID: 6371126522338255424}
   - component: {fileID: 5776726421532181196}
   - component: {fileID: 4032070152861621042}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: VivekAnatomy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
