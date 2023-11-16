@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Menu.unity
     guid: 16f388f9e719e794da1c1ee9ae8dc42e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MenuSplit.unity
     guid: d33e4b4f8769bd943aacb36b9e8d9134
   - enabled: 0
@@ -71,10 +71,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/2.3.3 Larynx membranes.unity
     guid: 958cea06aa462e84dbc4421bc2cfa09b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/2.4 Spinal cord blood supply.unity
     guid: f096e447f935dd94689d630a25d93dee
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/2.5 Dural venous sinus.unity
     guid: 4c2f19d775a5bfe4a915920faca80eac
   - enabled: 0
@@ -83,4 +83,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/2.7 Gl Blood Supply.unity
     guid: 0fbe3a02438fbdc4b979a7dacfe1be41
+  - enabled: 1
+    path: Assets/OutlineShader/New Scene.unity
+    guid: ea66a1acb7e73cc4ab59f991a1cb33a6
   m_configObjects: {}
