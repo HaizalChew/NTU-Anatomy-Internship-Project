@@ -13,7 +13,7 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] Material selectedMat;
     [SerializeField] Material highlightMaterial;
     [SerializeField] Material[] orignialMaterial;
-    [SerializeField] public Transform selectedObj;
+    public Transform selectedObj;
     [SerializeField] LayerMask selectableLayerMask;
     public GameObject selectedInstantiatedObj;
     public GameObject model;
@@ -25,14 +25,10 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] PartList partList;
     [SerializeField] Slider renderingSlider;
     public Animator dropdownPanel;
-    
-    public Material transMat;
-    private Material newMat;
 
     [SerializeField] PartList partListScript;
     [SerializeField] UiManger uiManagerScript;
 
-    private Vector3 toolTipPos;
     private Vector2 mousePos;
     private Vector3 offset = new Vector3(16, 16, 0);
     private Rect objRect;
@@ -41,7 +37,6 @@ public class BasicInteractions : MonoBehaviour
     public float sliderValue;
 
     public Transform highlight;
-    private RaycastHit raycastHit;
     public bool isolateCheck;
     public bool veinCheck;
     public bool viewMode;
@@ -59,9 +54,9 @@ public class BasicInteractions : MonoBehaviour
     [SerializeField] Image image;
 
     private GameObject originObject;
+    List<GameObject> currentActiveGObjs = new List<GameObject>();
 
     //[SerializeField] GameObject selectedViewModel;
-    SortedList objectHits;
     void Start()
     {
         //postScript.currentOutline = postScript.ApplyOutline;
@@ -78,11 +73,6 @@ public class BasicInteractions : MonoBehaviour
         mousePos = new Vector2(0, 0);
         showCheck = false;
         objRect = new Rect(0, 0, 300, 100);
-        if(transMat != null )
-        {
-            newMat = Instantiate(transMat);
-
-        }
     }
 
     // Update is called once per frame
@@ -239,16 +229,49 @@ public class BasicInteractions : MonoBehaviour
     {
         if (selectedObj)
         {
+            if (isolateCheck == false)
+            {
+                currentActiveGObjs = new List<GameObject>();
+
+                foreach (Transform child in model.transform.GetComponentsInChildren<Transform>())
+                {
+                    if (child.TryGetComponent<Renderer>(out Renderer renderer))
+                    {
+                        if (renderer.enabled)
+                        {
+                            currentActiveGObjs.Add(child.gameObject);
+                        }
+
+                        child.GetComponent<Renderer>().enabled = false;
+                        child.GetComponent<Collider>().enabled = false;
+                    }
+
+                }
+
+                if (selectedObj.childCount > 0)
+                {
+                    for (int i = 0; i < selectedObj.childCount; i++)
+                    {
+                        selectedObj.GetChild(i).GetComponent<Renderer>().enabled = true;
+                        selectedObj.GetChild(i).GetComponent<Collider>().enabled = true;
+                    }
+                }
+                
+                selectedObj.GetComponent<Renderer>().enabled = true;
+                selectedObj.GetComponent<Collider>().enabled = true;
+            }
+            else
+            {
+                foreach (GameObject child in currentActiveGObjs)
+                {
+                    child.GetComponent<Renderer>().enabled = true;
+                    child.GetComponent<Collider>().enabled = true;
+                }
+            }
+
             isolateCheck = !isolateCheck;
 
             uiManagerScript.SwitchSprite(isolateCheck, image);
-
-            foreach (Transform child in model.transform)
-            {
-                child.gameObject.SetActive(!isolateCheck);
-            }
-
-            selectedObj.gameObject.SetActive(true);
         }
     }
 
@@ -291,6 +314,11 @@ public class BasicInteractions : MonoBehaviour
 
     public void ToggleVeinTransparent()
     {   
+        if (isolateCheck)
+        {
+            return;
+        }
+
         veinCheck = !veinCheck;
         partList.useExclude = veinCheck;
         partList.ResetNameListOnButton();

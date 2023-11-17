@@ -24,7 +24,7 @@ EditorBuildSettings:
     path: Assets/Scenes/1.2.2 Angio normal view.unity
     guid: 23c610cd0fcc90241a477eb7365911d5
   - enabled: 0
-    path: Assets/Scenes/1.3 Diaphragm.unity
+    path: Assets/Scenes/1.3 Diaphragm & Mediastinum.unity
     guid: 783507c1605d1ca488508c2b064308dd
   - enabled: 0
     path: Assets/Scenes/1.4.1 Perineum.unity
@@ -44,10 +44,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/1.5.4 Thin Skin No text Full- for test.unity
     guid: 1663c5afab8988648a96f24d123da175
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/1.6.1 Spine ligaments.unity
     guid: a067645e8179d3e438a7f5730394c739
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/1.6.2 Spine movts.unity
     guid: e30caddbb4ffb63498f47a5b5c61560e
   - enabled: 0
@@ -71,10 +71,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/2.3.3 Larynx membranes.unity
     guid: 958cea06aa462e84dbc4421bc2cfa09b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/2.4 Spinal cord blood supply.unity
     guid: f096e447f935dd94689d630a25d93dee
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/2.5 Dural venous sinus.unity
     guid: 4c2f19d775a5bfe4a915920faca80eac
   - enabled: 0

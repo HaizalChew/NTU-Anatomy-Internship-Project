@@ -258,6 +258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 1.2.2 Angio normal view
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 132c6855c95044d42bcda35b830458f1, type: 3}
+      propertyPath: m_TagString
+      value: Model
+      objectReference: {fileID: 0}
     - target: {fileID: 1164826527667558275, guid: 132c6855c95044d42bcda35b830458f1, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -704,7 +708,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 409.31677, y: -44}
+  m_AnchoredPosition: {x: 294.41675, y: -44}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.53316766, y: 0.5}
 --- !u!114 &1013050877
@@ -1262,6 +1266,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 7a80991085e6957479231cd7d4545ff2, type: 3}
+    - target: {fileID: 2249991514973661090, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 423.09998
+      objectReference: {fileID: 0}
     - target: {fileID: 2249991514973661091, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1278,6 +1286,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 735201547}
+    - target: {fileID: 2249991516131036135, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 356
+      objectReference: {fileID: 0}
     - target: {fileID: 2249991516356800276, guid: d1b8e61f64afe674f96978768aceb892, type: 3}
       propertyPath: m_text
       value: 'Angio

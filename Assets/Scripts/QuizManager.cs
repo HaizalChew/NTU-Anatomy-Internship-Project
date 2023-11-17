@@ -117,7 +117,7 @@ public class QuizManager : MonoBehaviour
         questionNumberCount = 0;
         AudioManager.instance?.PlaySoundEffect(2);
 
-        if (basicInteractions.isolateCheck == true)
+        if (basicInteractions.isolateCheck)
         {
             basicInteractions.IsolatePart();
         }
@@ -153,7 +153,9 @@ public class QuizManager : MonoBehaviour
         {
             basicInteractions.selectedObj.gameObject.layer = LayerMask.NameToLayer("Selectable");
             basicInteractions.selectedObj = null;
-            Destroy(basicInteractions.selectedInstantiatedObj);
+            basicInteractions.selectPost.enabled = false;
+            basicInteractions.selectPost.SelectedObject = null;
+            basicInteractions.objectSelected = false;
         }
         
         quizModeActive = true;

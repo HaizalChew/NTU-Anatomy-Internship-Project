@@ -11,6 +11,11 @@ namespace UnityEngine.Rendering.Toon.Universal.Samples
 		void Awake()
 		{
 			pivot = transform.position;
+
+			if (Random.value > 0.5)
+            {
+				speed = -speed;
+            }
 		}
 
 		// Update is called once per frame

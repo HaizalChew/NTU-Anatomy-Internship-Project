@@ -229,6 +229,14 @@ PrefabInstance:
       propertyPath: basicInteractions
       value: 
       objectReference: {fileID: 275088431}
+    - target: {fileID: 3173874927067064169, guid: 5987f29071956b54a8b84a723844b6d5, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1330484673}
+    - target: {fileID: 3173874927067064169, guid: 5987f29071956b54a8b84a723844b6d5, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SearchForPart
+      objectReference: {fileID: 0}
     - target: {fileID: 3173874927683395355, guid: 5987f29071956b54a8b84a723844b6d5, type: 3}
       propertyPath: m_Pivot.x
       value: 0

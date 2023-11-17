@@ -4,33 +4,74 @@ ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: -196108535124574514
-    second: C2 - Axis|C2 - Axis.004Action.001
+      74: -623603649343465320
+    second: Scene
+  externalObjects:
   - first:
-      74: 4371631614402043275
-    second: C2 - Axis|L3.001Action
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: C1 - Atlas
+    second: {fileID: 2100000, guid: f61bed796b9d56741b21e79a7d81b085, type: 2}
   - first:
-      74: 5307190424316546958
-    second: C2 - Axis|T5.001Action.001
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material
+    second: {fileID: 2100000, guid: 801894d58d3fa1f4e82ecf7d6bf75021, type: 2}
   - first:
-      74: 3242329565141360787
-    second: L3|C2 - Axis.004Action.001
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.001
+    second: {fileID: 2100000, guid: c89a3b0ccef71a845bbe79ebb1958f76, type: 2}
   - first:
-      74: 611201555036398538
-    second: L3|L3.001Action
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 89898e9a67dc1164da15ef049030e9bb, type: 2}
   - first:
-      74: 1232154979402197686
-    second: L3|T5.001Action.001
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.004
+    second: {fileID: 2100000, guid: d22d0dd45c98ffd4a8bf89ab1debdc3c, type: 2}
   - first:
-      74: 3303551907900299125
-    second: T5|C2 - Axis.004Action.001
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.009
+    second: {fileID: 2100000, guid: 2a1c7ad85cf5f2f4987da50023a9ba60, type: 2}
   - first:
-      74: 6372897229885145096
-    second: T5|L3.001Action
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.010
+    second: {fileID: 2100000, guid: f10f4bef57545b943807fd60d15d4e2e, type: 2}
   - first:
-      74: -4948131529255399249
-    second: T5|T5.001Action.001
-  externalObjects: {}
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.011
+    second: {fileID: 2100000, guid: ba6acd2f9befe2343bb461cc60cf2308, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.014
+    second: {fileID: 2100000, guid: a4fa5b225f37f4342ace81eb3889b549, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.015
+    second: {fileID: 2100000, guid: 35a845f7d02733545b439e53f86e4a2e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.016
+    second: {fileID: 2100000, guid: bf657952720e2624cb51f50db10e1bb4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Occipital
+    second: {fileID: 2100000, guid: 6ee100d95a1f2b44baaf9c9db2e356ea, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: T1
+    second: {fileID: 2100000, guid: fdd358acb67a67949b205deaa491ff61, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -58,7 +99,36 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Scene
+      takeName: Scene
+      internalID: 0
+      firstFrame: 1
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
     isReadable: 1
   meshes:
     lODScreenPercentages: []

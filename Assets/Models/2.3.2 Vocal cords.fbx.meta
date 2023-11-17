@@ -4,53 +4,8 @@ ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable:
   - first:
-      74: -5045629822361258238
-    second: Vocal cord L|Aryt L.001Action
-  - first:
-      74: 2252894066212318093
-    second: Vocal cord L|Aryt R.001Action
-  - first:
-      74: 3377097172998452806
-    second: Vocal cord L|Vocal cord L.001Action
-  - first:
-      74: 1101632141154332459
-    second: Vocal cord L|Vocal cord R.001Action
-  - first:
-      74: -5566155571439060282
-    second: Vocal cord R|Aryt L.001Action
-  - first:
-      74: 6193476337660616605
-    second: Vocal cord R|Aryt R.001Action
-  - first:
-      74: 8428400631643948406
-    second: Vocal cord R|Vocal cord L.001Action
-  - first:
-      74: 4468741592800940430
-    second: Vocal cord R|Vocal cord R.001Action
-  - first:
-      74: 7382751643593058302
-    second: Aryt L|Aryt L.001Action
-  - first:
-      74: -3652481615965870415
-    second: Aryt L|Aryt R.001Action
-  - first:
-      74: -2088718956968668403
-    second: Aryt L|Vocal cord L.001Action
-  - first:
-      74: -4464828792373485190
-    second: Aryt L|Vocal cord R.001Action
-  - first:
-      74: 4533156414290521980
-    second: Aryt R|Aryt L.001Action
-  - first:
-      74: -8116834811948422033
-    second: Aryt R|Aryt R.001Action
-  - first:
-      74: -6284660265236287415
-    second: Aryt R|Vocal cord L.001Action
-  - first:
-      74: -2850249490308810708
-    second: Aryt R|Vocal cord R.001Action
+      74: -623603649343465320
+    second: Scene
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -90,8 +45,8 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
